@@ -1,0 +1,43 @@
+{% load i18n %}
+{% load rating_tags %}
+{% load thumbnail %}
+
+<div class="widget related">
+    <h3>{% trans featured_product_title %}</h3>
+
+    <div class="related-slider flexslider sidebarslider">
+        <ul class="related-list clearfix">
+            {% for product in featured_product_list %}
+                {% if forloop.counter == 1 or forloop.counter == 4 or forloop.counter == 7 or forloop.counter == 10 or forloop == 13 %}
+                    <li>
+                {% endif %}
+            <div class="related-product clearfix">
+                <figure style="min-height: 150px; min-width: 150px;">
+                    <a href="{{ product.get_absolute_url }}">
+                        {% if product.images.first %}
+                            <img class="item-image lazyOwl" src="{{ product.images.first.image|thumbnail_url:'150' }}" alt="{{ product.name }}" draggable="false">
+                        {% else %}
+                            <img class="item-image lazyOwl" src="/static/image/product-default.png" style="width: 150px; height: 150px;" alt=""  draggable="false">
+                        {% endif %}
+                    </a>
+                </figure>
+                <h5><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>
+                <div class="ratings-container">
+                    <div class="ratings">
+                        <div class="ratings-result" data-result="{% rating_product product.id %}"></div>
+                    </div><!-- End .ratings -->
+
+                </div><!-- End .rating-container -->
+                <div class="related-price">
+                    $ {{ product.price }}
+                </div><!-- End .related-price -->
+            </div>
+            {% if forloop.counter == 3 or forloop.counter == 6 or forloop.counter == 9 or forloop.counter == 12 or forloop == 15 %}
+                </li>
+            {% elif forloop.last %}
+                </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div><!-- End .related-slider -->
+</div><!-- End .widget -->

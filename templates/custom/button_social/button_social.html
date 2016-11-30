@@ -1,0 +1,17 @@
+{% if button.type == 'facebook' %}
+    <li><a href="{{ button.link }}" class="social-icon icon-facebook" target="_blank"></a></li>
+{% elif button.type == 'twitter' %}
+    <li><a href="{{ button.link }}" class="social-icon icon-twitter" target="_blank"></a></li>
+{% elif button.type == 'rss' %}
+    <li><a href="{{ button.link }}" class="social-icon icon-rss" target="_blank"></a></li>
+{% elif button.type == 'delicious' %}
+    <li><a href="{{ button.link }}" class="social-icon icon-delicious" target="_blank"></a></li>
+{% elif button.type == 'linkedin' %}
+    <li><a href="{{ button.link }}" class="social-icon icon-linkedin" target="_blank"></a></li>
+{% elif button.type == 'flickr' %}
+    <li><a href="{{ button.link }}" class="social-icon icon-flickr" target="_blank"></a></li>
+{% elif button.type == 'skype' %}
+    <li><a href="{{ button.link }}" class="social-icon icon-skype" target="_blank"></a></li>
+{% else %}
+    <li><a href="{{ button.link }}" class="social-icon icon-email" target="_blank"></a></li>
+{% endif %}

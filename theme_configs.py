@@ -1,5 +1,10 @@
 CONFIGS = [
     {
+        "name": "custom",
+        "display_name": "Custom",
+        "config": {}
+    },
+    {
         "name": "venedor",
         "display_name": "Venedor",
         "config": {

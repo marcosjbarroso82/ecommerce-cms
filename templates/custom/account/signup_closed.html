@@ -1,0 +1,18 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block breadcrumb %}
+{{ block.super }}
+<li class="active">{% trans "Sign Up Closed" %}</li>
+{% endblock breadcrumb %}
+
+{% block title %}{% trans "Sign Up Closed" %}{% endblock %}
+
+{% block content %}
+<div class="col-md-4 col-md-offset-4">
+    <h1 class="text-center">{% trans "Sign Up Closed" %}</h1>
+    <p>{% trans "We are sorry, but the sign up is currently closed." %}</p>
+</div>
+
+{% endblock %}

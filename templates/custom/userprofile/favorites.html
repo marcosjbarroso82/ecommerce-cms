@@ -1,0 +1,54 @@
+{% extends "userprofile/base.html" %}
+{% load i18n %}
+{% load favit_tags %}
+{% block title %}{% trans "Your favorites" %} — {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><span class="active">{% trans "Your favorites" %}</span></li>
+{% endblock breadcrumb %}
+
+{% block inner_content %}
+        <header class="content-title">
+            <h1 class="title">{% trans 'Your favorites' %}</h1>
+            <p class="title-desc">Your products favorites. Add favorites products and know when new offert to interested product.</p>
+        </header>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="table-title">{% trans 'Product' %}</th>
+                <th class="table-title">{% trans "Actions" %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if products %}
+                {% for product in products %}
+                    <tr>
+                        <td class="col-md-11" style="text-align: left;">
+                            <div class="col-md-2">
+                                {% if product.images.first %}
+                                    <img class="img-thumbnail" style="min-width: 100px; min-height: 100px; width: 100px;" src="{{ product.images.first.image.url }}" alt="{{ product.name }}" draggable="false">
+                                {% else %}
+                                    <img class="img-thumbnail" style="min-width: 100px; min-height: 100px; width: 100px;" src="/static/images/product-image-placeholder.png" alt="" >
+                                {% endif %}
+                            </div>
+                            <div class="col-md-10">
+                                <h5><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>
+                                <p>{{ product.description|safe }}</p>
+
+                            </div>
+                        </td>
+                        <td class="col-md-1" style="vertical-align: middle; text-align: center;">
+                            {% unfave_button product %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <p>{% trans 'You dont have favorites.' %}</p>
+            {% endif %}
+
+            </tbody>
+        </table>
+
+{% endblock %}
