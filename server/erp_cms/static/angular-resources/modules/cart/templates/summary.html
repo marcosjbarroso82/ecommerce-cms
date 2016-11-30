@@ -1,0 +1,120 @@
+{#{% block breadcrumb %}#}
+{#    {{ block.super }}#}
+{#    <li ><a href="#">Cart details</a></li>#}
+{#     <li ><span class="active">Summary</span></li>#}
+{#{% endblock %}#}
+
+
+<header class="content-title">
+    <h1 class="title">{% trans "Checkout" %}</h1>
+    <div class="md-margin"></div><!-- space -->
+</header>
+{#<div class="row">#}
+{#    <div class="col-md-12 col-sm-12 col-xs-12">#}
+{#        <div class="tab-container">#}
+{#            <ul class="nav-tabs nav-justified">#}
+{#                {% for stepitem in checkout %}#}
+{#                    <li class="{% if stepitem == step %}active{% endif %}">#}
+{#                        <a href="{{ stepitem.get_absolute_url }}">{% if stepitem %}<i class="fa fa-check-circle"></i> {% endif %}{{ stepitem.title }}</a>#}
+{#                    </li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{##}
+{#            <div class="tab-content">#}
+{#            <div class="lg-margin"></div><!-- Space -->#}
+{#                    {% block step_info %}{% endblock %}#}
+{##}
+{#                    {% block forms %}{% endblock %}#}
+{#            </div><!-- End .tab-content -->#}
+{#        </div><!-- End .tab-container -->#}
+{#    </div><!-- End .col-md-6 -->#}
+{#</div>#}
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dirección de facturación
+            </div>
+            <div class="panel-body">
+                <address ng-if="vm.address_billing">
+                    <strong>{{ vm.address_billing.first_name }} {{ vm.address_billing.last_name }}</strong><br>
+                    {{ vm.address_billing.street }}<br>
+                    {{ vm.address_billing.postal_code }} {{ vm.address_billing.city }}<br>
+                    {{ vm.address_billing.phone }}
+
+                </address>
+                <p ng-if="!vm.address_billing" class="text-danger">No address given yet.</p>
+                <p><a href="#">Editar direccion de facturación</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dirección de envío
+            </div>
+            <div class="panel-body">
+                <address ng-if="vm.address_shipping">
+                    <strong>{{ vm.address_shipping.first_name }} {{ vm.address_shipping.last_name }}</strong><br>
+                    {{ vm.address_shipping.street }}<br>
+                    {{ vm.address_shipping.postal_code }} {{ vm.address_shipping.city }}<br>
+                    {{ vm.address_shipping.phone }}
+                </address>
+                <p ng-if="!vm.address_shipping" class="text-danger">No address given yet.</p>
+                <p><a href="#">Editar direccion de envío</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Envio #1
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="col-sm-6">Producto</th>
+            <th class="col-md-1">Cantidad</th>
+            <th class="col-sm-2 text-right">Precio</th>
+            <th class="col-sm-3 text-right">Subtotal</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th colspan="2">Total</th>
+            <th class="text-right">{{ vm.total }}</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr ng-repeat="item in vm.cart.items">
+            <td>{{ item.name }}</td>
+            <td class="text-center">{{ item.quantity }}</td>
+            <td class="text-right">{{ item.price }}</td>
+            <td class="text-right">{{ item.subtotal }}</td>
+        </tr>
+        <tr ng-if="vm.shipping_price">
+            <td>Envio</td>
+            <td class="text-center">1</td>
+            <td class="text-right">{{ vm.shipping_price }}</td>
+            <td class="text-right">{{ vm.shipping_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="alert alert-success">
+    Su total será: $ {{ vm.total }}
+</div>
+
+
+<button ng-if="vm.all_step_valid" type="submit" class="btn btn-custom-2 btn-lg pull-right">
+    Realizar orden
+</button>
+
+<div ng-if="!vm.all_step_valid" class="alert alert-danger">
+    <p>Antes de continuar, asegúrese de que ha proporcionado toda la información requerida.</p>
+</div>
+
+

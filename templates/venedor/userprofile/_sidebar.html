@@ -1,0 +1,34 @@
+{% load i18n %}
+<div class="widget">
+    <h3>Menu</h3>
+
+    <div class="list-group list-group-brand list-group-accordion">
+        <a href="{% url 'profile:details' %}" class="list-group-item">{% trans 'My profile' %}
+            <span class="sidebar-icon fa fa-user"></span>
+        </a>
+        <a href="{% url 'profile:orders' %}" class="list-group-item">{% trans 'My orders' %}
+            <span class="sidebar-icon fa fa-list-alt"></span>
+        </a>
+        <a href="{% url 'profile:favorites' %}" class="list-group-item">{% trans 'My favorites' %}
+            <span class="sidebar-icon fa fa-heart"></span>
+        </a>
+    </div><!-- End .list-group -->
+</div>
+
+<style>
+    .sidebar h3{
+        color: #676a70;
+        text-transform: uppercase;
+        font: 700 16px/46px "PT Sans", Arial, sans-serif;
+        margin-bottom: 20px;
+        background: #e1e4e5;
+        padding-left: 30px;
+    }
+
+    .sidebar-icon{
+        display: block;
+        width: 25px;
+        height: 25px;
+        float: left;
+    }
+</style>

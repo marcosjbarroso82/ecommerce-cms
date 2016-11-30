@@ -1,0 +1,82 @@
+{% load i18n %}
+{% load cms_tags staticfiles sekizai_tags menu_tags %}
+
+<header id="header" class="header4">
+    <div id="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header-top-left">
+                        <ul id="top-links" class="clearfix">
+                            {% include '_top_menu.html' %}
+                        </ul>
+                    </div><!-- End .header-top-left -->
+                    <div class="header-top-right">
+                        <div class="header-text-container pull-right">
+                            <p class="header-link"><a href="{% url "account_login" %}">{% trans 'login' %}</a>&nbsp;or&nbsp;<a href="{% url 'account_signup' %}">{% trans 'create an account' %}</a></p>
+                        </div><!-- End .pull-right -->
+
+                        <div class="dropdown-cart-menu-container pull-right">
+                            {% include '_dropdown_cart.html' %}
+                        </div><!-- End .dropdown-cart-menu-container -->
+
+                        <div class="header-top-dropdowns pull-right">
+                            {% include '_dropdown_money.html' %}
+                            {% include '_dropdown_language.html' %}
+                        </div><!-- End .header-top-dropdowns -->
+                    </div><!-- End .header-top-right -->
+                </div><!-- End .col-md-12 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End #header-top -->
+
+    <div id="inner-header">
+
+        <div id="main-nav-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 clearfix">
+                        <div id="menu-wrapper" class="clearfix">
+                            <div class="logo-container">
+                                <h1 class="logo clearfix">
+                                    <span>{{ custom_site.display_name }}</span>
+                        <a href="/" title="{{ custom_site.display_name }}"><img src="{{ custom_site.logo }}" alt="{{ custom_site.name }}" width="184" height="60"></a>
+                                </h1>
+                            </div><!-- End .logo-container -->
+                            <div id="menu-right-side" class="clerfix">
+                                <div id="quick-access">
+                                    {% include '_search.html' %}
+                                </div><!-- End #quick-access -->
+                                <nav id="main-nav">
+                                    <div id="responsive-nav">
+                                        <div id="responsive-nav-button">
+                                            Menu <span id="responsive-nav-button-icon"></span>
+                                        </div><!-- responsive-nav-button -->
+                                    </div>
+                                    <ul class="menu clearfix">
+                                        {% show_menu 0 1 100 100 "menu.html" %}
+                                    </ul>
+
+                                </nav>
+                            </div><!-- End #menu-right-side -->
+                        </div><!-- End #menu-wrapper -->
+
+                    </div><!-- End .col-md-12 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+
+        </div><!-- End #nav -->
+    </div><!-- End #inner-header -->
+</header><!-- End #header -->
+
+
+
+
+
+
+
+
+
+
+
+

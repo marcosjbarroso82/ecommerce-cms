@@ -1,0 +1,13 @@
+{% for ance in ancestors %}
+    <li {% if ance.get_absolute_url == request.path %}class="active"{% endif %}>
+        {% if not forloop.last %}
+            <a href="{{ ance.get_absolute_url }}">{{ ance.get_menu_title }}</a>
+        {% else %}
+            {% if ance.get_absolute_url == request.path %}
+                {{ ance.get_menu_title }}
+            {% else %}
+                <a href="{{ ance.get_absolute_url }}">{{ ance.get_menu_title }}</a>
+            {% endif %}
+        {% endif %}
+    </li>
+{% endfor %}

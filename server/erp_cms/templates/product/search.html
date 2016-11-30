@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+<base href="{{ request.path }}" />
+{% endblock stylesheet %}
+
+
+
+{% block content %}
+<div id="loading" style=" display: block; width: 100%; min-height: 600px;">
+    <i class="fa-li fa fa-spinner fa-spin center-spinner"></i>
+</div>
+
+
+<div class="row" ng-app="App" ng-controller="ProductSearchCtrl as vm" id="content-app" style="display: none">
+    <base href="{{ request.path }}" />
+    {% verbatim %}
+    <div class="col-md-3 col-sm-4 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Categorias</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a ng-repeat="category in vm.category_data.list" ng-disabled="vm.q.category == category.id" ng-class="{'disabled': vm.q.category == category.id }" ng-click="vm.changeCategory(category)" class="list-group-item">{{ category.name }} <i class="fa fa-times" ng-show="vm.q.category == category.id" ng-click="vm.changeCategory(category)"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Precio</div>
+            <div class="panel-body">
+                <div class="col-md-6 form-group">
+                    <label for="price-range-low">Desde</label>
+                    <input type="text" id="price-range-low" ng-model="vm.q.min_price" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="price-range-high">Hasta</label>
+                    <input type="text" id="price-range-high" class="form-control" ng-model="vm.q.max_price" max="2000">
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <button id="btn-search-range-price" class="btn btn-custom-2 btn-sm" ng-click="vm.changeParams()">Ok</button>
+                <button class="btn btn-custom-2 btn-sm" ng-click="vm.q.min_price = ''; vm.q.max_price= ''; vm.changeParams();">Clear</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 col-sm-8 col-xs-12">
+        <!--<div class="row">
+            <div class="col-md-12" id="category-header" class="category-banner" ng-show="vm.category_selected">
+                <h2>{{ vm.category_selected.name }}</h2>
+                <p>{{ vm.category_selected.slug }}</p>
+            </div>
+        </div>-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3" style="margin: 20px 0px;">
+                    <label for="ordering">Ordenar por</label>
+                    <select name="ordering" id="ordering" ng-model="vm.q.ordering" ng-change="vm.changeParams()" class="form-control">
+                        <option value="">----</option>
+                        <option value="name">Nombre</option>
+                        <option value="price">Precio</option>
+                    </select>
+                </div>
+                <div class="col-md-3" style="margin: 20px 0px;">
+                    <label for="ordering">Mostrar cantidad</label>
+                    <select name="item_type" ng-model="vm.q.limit" ng-change="vm.changeParams()" class="form-control">
+                        <option value="8">8</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <nav aria-label="Page navigation" class="pull-right" ng-if="vm.data.pages.length > 1">
+                        <ul class="pagination">
+                            <li ng-disabled="!vm.data.previous" ng-class="{'disabled': !vm.data.previous }">
+                                <a  aria-label="Previous" ng-click="vm.loadPage(vm.data.previous)">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li ng-repeat="page in vm.data.pages" ng-disabled="page==vm.q.page" ng-class="{'disabled': page==vm.q.page }">
+                                <a ng-click="vm.loadPage(page)">{{ page }}</a>
+                            </li>
+                            <li ng-class="{'disabled': !vm.data.next }" ng-disabled="!vm.data.next">
+                                <a aria-label="Next" ng-click="vm.loadPage(vm.data.next)">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" ng-if="vm.data.list.length">
+            <div class="col-md-4" ng-repeat="product in vm.data.list" itemscope itemtype="https://schema.org/Product">
+                <div class="thumbnail">
+                    <img ng-if="product.images[0]"ng-src="{{ product.images[0].image }}" alt="" />
+                    <img ng-if="!product.images[0]" src="/static/image/product-default.png" alt="" />
+                    <div class="caption">
+                        <!-- HAS OFFERT -->
+                        <h4 ng-if="product.offert_price" class="pull-right old-price">$ {{ product.price }}</h4>
+                        <h4 ng-if="product.offert_price" class="pull-right item-price">$ {{ product.offert_price }}</h4>
+                        <!-- HASNT OFFERT -->
+                        <h4 ng-if="!product.offert_price" class="pull-right item-price">$ {{ product.price }}</h4>
+
+                        <span style="position: absolute;" ng-if="product.offert_price">{% trans "Discount!" %} </span>
+                        <span ng-if="product.is_new" class="new-rect">{% trans 'New' %}</span>
+                        <h4><a target="_self" href="{{vm.path}}/{{ product.slug }}-{{ product.id }}/">{{ product.name }}</a>
+                        </h4>
+                        <p>{{ product.description }}...</p>
+                        <div class="favit pull-right">
+                            <button ng-disabled="product.is_favorite" class="btn highlight second-color btn-favit-favorite" ng-click="vm.toggle_favorite(product)">
+                                <i class="fa " ng-class="{'fa-heart': product.is_favorite, 'fa-heart-o': !product.is_favorite}"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">{{ product.rating.quantity_vote }} Reviews</p>
+                        <p class="ratings-result" data-result="{{ product.rating.percent_rate }}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p ng-if="!vm.data.list.length">No hay productos.</p>
+        <div class="row" ng-if="vm.data.list.length">
+            <div class="pagination-container clearfix col-md-12" >
+                <nav aria-label="Page navigation" class="pull-right" ng-if="vm.data.pages.length > 1">
+                    <ul class="pagination">
+                        <li ng-disabled="!vm.data.previous" ng-class="{'disabled': !vm.data.previous }">
+                            <a  aria-label="Previous" ng-click="vm.loadPage(vm.data.previous)">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li ng-repeat="page in vm.data.pages" ng-disabled="page==vm.q.page" ng-class="{'disabled': page==vm.q.page }">
+                            <a ng-click="vm.loadPage(page)">{{ page }}</a>
+                        </li>
+                        <li ng-class="{'disabled': !vm.data.next }" ng-disabled="!vm.data.next">
+                            <a aria-label="Next" ng-click="vm.loadPage(vm.data.next)">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div><!-- End pagination-container -->
+        </div>
+
+    </div><!-- End .col-md-9 -->
+
+</div><!-- End .row -->
+{% endverbatim %}
+
+<script>
+    /**
+     * Loading when init app.
+     */
+    $( document ).ready(function() {
+        $("#loading").css('display', 'none');
+        $("#content-app").css('display', 'block');
+    });
+</script>
+
+<!--<script src="/static/theme/js/jquery.nouislider.min.js"></script>
+<script src="/static/theme/js/jquery.jscrollpane.min.js"></script>-->
+
+
+<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="/static/bower_components/angular-resource/angular-resource.min.js"></script>
+
+<!--<script type="text/javascript" src="/static/bower_components/nya-bootstrap-select/dist/js/nya-bs-select.js"></script>-->
+
+<script type="text/javascript" src="/static/angular-resources/apps/product.js"></script>
+
+<script type="text/javascript" src="/static/angular-resources/modules/product/product.module.js"></script>
+<script type="text/javascript" src="/static/angular-resources/modules/product/services/product.service.js"></script>
+<script type="text/javascript" src="/static/angular-resources/modules/product/services/category.service.js"></script>
+<script type="text/javascript" src="/static/angular-resources/modules/product/controllers/product-search.controller.js"></script>
+{% endblock %}

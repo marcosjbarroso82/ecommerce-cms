@@ -1,0 +1,303 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block stylesheet %}
+    <base href="{{ request.path }}" />
+{% endblock stylesheet %}
+
+
+{% block content %}
+       <div id="loading" style=" display: block; width: 100%; min-height: 600px;">
+    <i class="fa-li fa fa-spinner fa-spin center-spinner"></i>
+</div>
+
+
+<div class="row" ng-app="App" ng-controller="ProductSearchCtrl as vm" id="content-app" style="display: none">
+<base href="{{ request.path }}" />
+{% verbatim %}
+<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
+    <div class="widget">
+        <div class="panel-group custom-accordion sm-accordion" id="category-filter">
+            <div class="panel">
+                <div class="accordion-header">
+                    <div class="accordion-title"><span>Category</span></div><!-- End .accordion-title -->
+                    <a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-1"></a>
+                </div><!-- End .accordion-header -->
+                <div id="category-list-1" class="collapse in">
+                    <div class="panel-body">
+                        <ul class="category-filter-list jscrollpane">
+                            <li ng-repeat="category in vm.category_data.list" ng-class="{'activate': vm.q.category == category.id }">
+                                <i class="fa fa-times" ng-show="vm.q.category == category.id" ng-click="vm.changeCategory(category)"></i>
+                                <a ng-click="vm.changeCategory(category)">{{ category.name }}</a>
+                            </li>
+                        </ul>
+                    </div><!-- End .panel-body -->
+                </div><!-- #collapse -->
+            </div><!-- End .panel -->
+
+            <div class="panel">
+                <div class="accordion-header">
+                    <div class="accordion-title"><span>Price</span></div><!-- End .accordion-title -->
+                    <a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-3"></a>
+                </div><!-- End .accordion-header -->
+
+                <div id="category-list-3" class="collapse in">
+                    <div class="panel-body">
+                        <div id="price-range">
+                        </div><!-- End #price-range -->
+                        <div id="price-range-details">
+                            <span class="sm-separator">from</span>
+                            <input type="text" id="price-range-low" ng-model="vm.q.min_price" class="separator">
+                            <span class="sm-separator">to</span>
+                            <input type="text" id="price-range-high" ng-model="vm.q.max_price" max="2000">
+                        </div>
+                        <div id="price-range-btns">
+                            <button id="btn-search-range-price" class="btn btn-custom-2 btn-sm" ng-click="vm.changeParams()">Ok</button>
+                            <button class="btn btn-custom-2 btn-sm" ng-click="vm.q.min_price = ''; vm.q.max_price= ''; vm.changeParams();">Clear</button>
+                        </div>
+                    </div><!-- End .panel-body -->
+                </div><!-- #collapse -->
+            </div><!-- End .panel -->
+        </div><!-- .panel-group -->
+    </div><!-- End .widget -->
+
+</aside><!-- End .col-md-3 -->
+<div class="col-md-9 col-sm-8 col-xs-12 main-content">
+
+<div id="category-header" class="category-banner" ng-show="vm.category_selected">
+    <img src="/static/theme/images/banner.png" alt="Category banner" class="img-responsive">
+    <div class="category-title">
+        <h2>{{ vm.category_selected.name }}</h2>
+        <p>{{ vm.category_selected.slug }}</p>
+        <!--<a href="#" class="btn btn-custom">LEARN MORE</a>-->
+    </div><!-- End .category-title -->
+</div><!-- End #category-header -->
+
+<div class="md-margin"></div><!-- space -->
+
+<div class="category-toolbar clearfix">
+    <div class="toolbox-filter clearfix">
+
+        <div class="sort-box">
+            <span class="separator">Ordenar por:</span>
+            <div class="btn-group select-dropdown">
+                <button type="button" class="btn select-btn">{{ vm.q.ordering }} <div ng-if="!vm.q.ordering">-</div></button>
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="vm.q.ordering = 'name'; vm.changeParams();">Nombre</a></li>
+                    <li><a ng-click="vm.q.ordering = 'price'; vm.changeParams();">Precio</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="view-box" ng-init="display='column'">
+            <a class="icon-button icon-grid" ng-class="{'active': display == 'column'}" ng-click="display='column'"><i class="fa fa-th-large"></i></a>
+            <a class="icon-button icon-list" ng-class="{'active': display == 'list'}" ng-click="display='list';"><i class="fa fa-th-list"></i></a>
+        </div><!-- End .view-box -->
+
+    </div><!-- End .toolbox-filter -->
+    <div class="toolbox-pagination clearfix">
+
+        <ul class="pagination">
+            <li ng-disabled="!vm.data.previous" ng-class="{'disabled': !vm.data.previous }">
+                <a  aria-label="Previous" ng-click="vm.loadPage(vm.data.previous)">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li ng-repeat="page in vm.data.pages" ng-disabled="page==vm.q.page" ng-class="{'active': page==vm.q.page }">
+                <a ng-click="vm.loadPage(page)">{{ page }}</a>
+            </li>
+            <li ng-class="{'disabled': !vm.data.next }" ng-disabled="!vm.data.next">
+                <a aria-label="Next" ng-click="vm.loadPage(vm.data.next)">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+
+
+        <div class="view-count-box">
+            <span class="separator">Ver:</span>
+            <div class="btn-group select-dropdown">
+                <button type="button" class="btn select-btn">{{ vm.q.limit }} <div ng-if="!vm.q.limit">8</div></button>
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="vm.q.limit = 8; vm.changeParams();">8</a></li>
+                    <li><a ng-click="vm.q.limit = 15; vm.changeParams();">15</a></li>
+                    <li><a ng-click="vm.q.limit = 30; vm.changeParams();">30</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div><!-- End .toolbox-pagination -->
+
+</div><!-- End .category-toolbar -->
+<div class="md-margin"></div><!-- .space -->
+<div ng-if="vm.data.list.length">
+
+    <div class="category-item-container category-list-container" ng-if="display == 'list'">
+        <div class="item item-list clearfix" ng-repeat="product in vm.data.list" itemscope itemtype="https://schema.org/Product">
+            <figure class="item-image-container">
+                <a target="_self" href="{{vm.path}}/{{ product.slug }}-{{ product.id }}/" class="container-image-product-thumb-list">
+                    <i class="fa fa-spinner fa-spin fa-2x img-loading"></i>
+                    <!-- FIRST IMAGE -->
+                    <img ng-if="product.images[0]" class="item-image" ng-src="{{ product.images[0].image }}" alt="" />
+                    <img ng-if="!product.images[0]" class="item-image" src="/static/image/product-default.png" alt="" />
+
+                    <!-- SECOND IMAGE -->
+                    <img ng-if="product.images[1]" class="item-image-hover" ng-src="{{ product.images[1].image }}" alt="" />
+                    <img ng-if="!product.images[1]" class="item-image-hover" src="/static/image/product-default.png" alt="" />
+                </a>
+
+                <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="item-price-container">
+                    <!-- HAS OFFERT -->
+                    <span ng-if="product.offert_price" class="old-price">$ {{ product.price }}</span>
+                    <span ng-if="product.offert_price" class="item-price">$ {{ product.offert_price }}</span>
+                    <!-- HASNT OFFERT -->
+                    <span ng-if="!product.offert_price" class="item-price">$ {{ product.price }}</span>
+                </div>
+                <!-- IS NEW -->
+                <span class="new-rect" ng-if="product.is_new">Nuevo</span>
+            </figure>
+            <div class="item-meta-container">
+                <h3 class="item-name"><a href="{{ vm.path }}/{{ product.slug }}-{{ product.id }}/">{{ product.name }}</a></h3>
+                <div class="ratings-container">
+                    <div class="ratings">
+                        <div class="ratings-result" data-result="{{ product.rating.percent_rate }}"></div>
+                    </div><!-- End .ratings -->
+                    <span class="ratings-amount">
+                        {{ product.rating.quantity_vote }} Reviews
+                    </span>
+                </div><!-- End .rating-container -->
+                <p>{{ product.description }}</p>
+                <div class="item-action">
+                    <a href="{{vm.path}}/{{ product.slug }}-{{ product.id }}/" class="item-add-btn">
+                        <span class="icon-cart-text">Agregar al carrito</span>
+                    </a>
+                    <div class="item-action-inner">
+                        <div class="favit">
+                            <button ng-disabled="product.is_favorite" class="btn highlight second-color btn-favit-favorite" ng-click="vm.toggle_favorite(product)">
+                                <i class="fa " ng-class="{'fa-heart': product.is_favorite, 'fa-heart-o': !product.is_favorite}"></i>
+                            </button>
+                        </div>
+                        <!--<a href="#" class="icon-button icon-compare">{% trans 'Checkout' %}</a>-->
+                    </div><!-- End .item-action-inner -->
+                </div><!-- End .item-action -->
+            </div><!-- End .item-meta-container -->
+        </div><!-- End .item -->
+    </div>
+
+    <div class="category-item-container" ng-if="display != 'list'">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="product in vm.data.list" itemscope itemtype="https://schema.org/Product">
+                <div class="item item-hover">
+                    <div class="item-image-wrapper">
+                        <figure class="item-image-container">
+                            <a href="{{vm.path}}/{{ product.slug }}-{{ product.id }}/" class="container-image-product-thumb">
+                                <i class="fa fa-spinner fa-spin fa-2x img-loading"></i>
+                                <!-- FIRST IMAGE -->
+                                <img ng-if="product.images[0]" class="item-image" ng-src="{{ product.images[0].image }}" alt="" />
+                                <img ng-if="!product.images[0]" class="item-image" src="/static/image/product-default.png" alt="" />
+
+                                <!-- SECOND IMAGE -->
+                                <img ng-if="product.images[1]" class="item-image-hover" ng-src="{{ product.images[1].image }}" alt="" />
+                                <img ng-if="!product.images[1]" class="item-image-hover" src="/static/image/product-default.png" alt="" />
+                            </a>
+                        </figure>
+                        <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="item-price-container">
+                            <!-- HAS OFFERT -->
+                            <span ng-if="product.offert_price" class="old-price">$ {{ product.price }}</span>
+                            <span ng-if="product.offert_price" class="item-price">$ {{ product.offert_price }}</span>
+                            <!-- HASNT OFFERT -->
+                            <span ng-if="!product.offert_price" class="item-price">$ {{ product.price }}</span>
+                        </div>
+                        <!-- IS NEW -->
+                        <span class="new-rect" ng-if="product.is_new">Nuevo</span>
+                    </div><!-- End .item-image-wrapper -->
+                    <div class="item-meta-container">
+                        <div class="ratings-container">
+                            <div class="ratings">
+                                <div class="ratings-result" data-result="{{ product.rating.percent_rate }}"></div>
+                            </div><!-- End .ratings -->
+                                    <span class="ratings-amount">
+                                        {{ product.rating.quantity_vote }} Reviews
+                                    </span>
+                        </div><!-- End .rating-container -->
+                        <h3 class="item-name"><a href="{{vm.path}}/{{ product.slug }}-{{ product.id }}/" itemprop="name" title="{{ product.name }}">{{ product.name }}</a></h3>
+                        <div class="item-action">
+                            <a target="_self" href="{{vm.path}}/{{ product.slug }}-{{ product.id }}/" class="item-add-btn">
+                                <span class="icon-cart-text">Agregar a carrito</span>
+                            </a>
+                            <div class="item-action-inner">
+                                <div class="favit">
+                                    <button ng-disabled="product.is_favorite" class="btn highlight second-color btn-favit-favorite" ng-click="vm.toggle_favorite(product)">
+                                        <i class="fa " ng-class="{'fa-heart': product.is_favorite, 'fa-heart-o': !product.is_favorite}"></i>
+                                    </button>
+                                </div>
+                                <!--<a href="#" class="icon-button icon-compare">{% trans 'Checkout' %}</a>-->
+                            </div><!-- End .item-action-inner -->
+                        </div><!-- End .item-action -->
+                    </div><!-- End .item-meta-container -->
+                </div><!-- End .item -->
+            </div><!-- End .col-md-4 -->
+
+        </div><!-- End .row -->
+    </div><!-- End .category-item-container -->
+</div>
+<p ng-if="!vm.data.list.length">No hay productos.</p>
+
+<div class="pagination-container clearfix">
+    <div class="pull-right">
+        <ul class="pagination">
+            <li ng-disabled="!vm.data.previous" ng-class="{'disabled': !vm.data.previous }">
+                <a  aria-label="Previous" ng-click="vm.loadPage(vm.data.previous)">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li ng-repeat="page in vm.data.pages" ng-disabled="page==vm.q.page" ng-class="{'active': page==vm.q.page }">
+                <a ng-click="vm.loadPage(page)">{{ page }}</a>
+            </li>
+            <li ng-class="{'disabled': !vm.data.next }" ng-disabled="!vm.data.next">
+                <a aria-label="Next" ng-click="vm.loadPage(vm.data.next)">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </div><!-- End .pull-right -->
+</div><!-- End pagination-container -->
+
+</div><!-- End .col-md-9 -->
+
+</div><!-- End .row -->
+{% endverbatim %}
+
+<script>
+        /**
+         * Loading when init app.
+         */
+        $( document ).ready(function() {
+            $("#loading").css('display', 'none');
+            $("#content-app").css('display', 'block');
+        });
+    </script>
+
+<script src="/static/theme/js/jquery.nouislider.min.js"></script>
+<script src="/static/theme/js/jquery.jscrollpane.min.js"></script>
+
+
+<script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="/static/bower_components/angular-resource/angular-resource.min.js"></script>
+
+<!--<script type="text/javascript" src="/static/bower_components/nya-bootstrap-select/dist/js/nya-bs-select.js"></script>-->
+
+<script type="text/javascript" src="/static/angular-resources/apps/product.js"></script>
+
+<script type="text/javascript" src="/static/angular-resources/modules/product/product.module.js"></script>
+<script type="text/javascript" src="/static/angular-resources/modules/product/services/product.service.js"></script>
+<script type="text/javascript" src="/static/angular-resources/modules/product/services/category.service.js"></script>
+<script type="text/javascript" src="/static/angular-resources/modules/product/controllers/product-search.controller.js"></script>
+{% endblock %}

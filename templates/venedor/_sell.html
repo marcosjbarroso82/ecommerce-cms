@@ -1,0 +1,167 @@
+<div class="dropup" style="position: fixed; bottom: 13px; left: 10px; z-index: 1000;">
+    <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="#">
+        Estilos <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+        <li class="dropdown-submenu">
+            <a tabindex="-1" href="#">Color</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/theme-config?color=blue" style="height: 20px; padding: 5px">
+                        <div style="height: 10px; width: 10px; background-color: #14BFCC;"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/theme-config?color=blueorange" style="height: 20px; padding: 5px">
+                        <div style="height: 10px; width: 10px; background-color: #6dbcdb; float: left;"></div>
+                        <div style="height: 10px; width: 10px; background-color: #fd5c48; float: left;"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/theme-config?color=blueorange2" style="height: 20px; padding: 5px">
+                        <div style="height: 10px; width: 10px; background-color: #6dbcdb; float: left;"></div>
+                        <div style="height: 10px; width: 10px; background-color: #35424f; float: left;"></div>
+                        <div style="height: 10px; width: 10px; background-color: #fd5c48; float: left;"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/theme-config?color=brown" style="height: 20px; padding: 5px">
+                        <div style="height: 10px; width: 10px; background-color: #CFB985; float: left;"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/theme-config?color=browngreen" style="height: 20px; padding: 5px">
+                        <div style="height: 10px; width: 10px; background-color: #84af9b; float: left;"></div>
+                        <div style="height: 10px; width: 10px; background-color: #CFB985; float: left;"></div>
+                        <div style="height: 10px; width: 10px; background-color: #fd5c48; float: left;"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/theme-config?color=green" style="height: 20px; padding: 5px">
+                        <div style="height: 10px; width: 10px; background-color: #7bae23; float: left;"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/theme-config?color=green2" style="height: 20px; padding: 5px">
+                        <div style="height: 10px; width: 10px; background-color: #a8bf00; float: left;"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/theme-config?color=orange" style="height: 20px; padding: 5px">
+                        <div style="height: 10px; width: 10px; background-color: #ff9900; float: left;"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/theme-config?color=pink" style="height: 20px; padding: 5px">
+                        <div style="height: 10px; width: 10px; background-color: #ff7579; float: left;"></div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="divider"></li>
+        <li class="dropdown-submenu">
+            <a tabindex="-1" href="#">Header</a>
+            <ul class="dropdown-menu">
+                <li><a href="/theme-config?header=_header1.html">Cabecera 1</a></li>
+                <li><a href="/theme-config?header=_header2.html">Cabecera 2</a></li>
+                <li><a href="/theme-config?header=_header3.html">Cabecera 3</a></li>
+                <li><a href="/theme-config?header=_header4.html">Cabecera 4</a></li>
+                <li><a href="/theme-config?header=_header5.html">Cabecera 5</a></li>
+                <li><a href="/theme-config?header=_header6.html">Cabecera 6</a></li>
+                <li><a href="/theme-config?header=_header7.html">Cabecera 7</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<!-- Login form trigger -->
+<button class="btn btn-primary" data-toggle="modal" data-target="#modal-login-form" style="position: fixed; bottom: 13px; right: 57px; z-index: 1000;">
+    PEDI TU COMERCIO ELECTRONICO
+</button>
+
+
+<!-- Modal Login Form-->
+<div class="modal fade" id="modal-login-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <form id="login-form" method="get" action="#">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+                    <h4 class="modal-title" id="myModalLabel1">Formulario de contacto</h4>
+                </div><!-- End .modal-header -->
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="text" required class="form-control" placeholder="Su email">
+                    </div><!-- End .input-group -->
+                    <div class="form-group">
+                        <label for="">Nombre</label>
+                        <input type="text" required class="form-control" placeholder="Su nombre (opcional)"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Numero de contacto</label>
+                        <input type="text" required class="form-control" placeholder="Su numero de contacto"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Nota (opcional)</label>
+                        <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+                    </div>
+
+
+                </div><!-- End .modal-body -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom" data-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-custom-2">Enviar</button>
+                </div><!-- End .modal-footer -->
+            </div><!-- End .modal-content -->
+        </div><!-- End .modal-dialog -->
+    </form>
+</div><!-- End .modal -->
+
+
+<style>
+    .dropdown-submenu {
+        position: relative;
+    }
+
+    .dropdown-submenu>.dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+
+    .dropdown-submenu:hover>.dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-submenu>a:after {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #ccc;
+        margin-top: 5px;
+        margin-right: -10px;
+    }
+
+    .dropdown-submenu:hover>a:after {
+        border-left-color: #fff;
+    }
+
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
+</style>

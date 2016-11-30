@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="ie8"> <![endif]-->
+<!--[if IE 9]> <html class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->
+{% load i18n %}
+{% load staticfiles %}
+{% load cms_tags staticfiles sekizai_tags menu_tags %}
+{% load thumbnail %}
+<head>
+    <meta charset="utf-8">
+
+    <title>{% block title %}OwnEcommerce{% endblock %}</title>
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+        <meta name="author" content="{% trans "Context Software" %}">
+
+    {% endblock meta %}
+    {% render_block "meta" %}
+
+
+    <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--<link href='//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic%7CPT+Gudea:400,700,400italic%7CPT+Oswald:400,700,300' rel='stylesheet' id="googlefont">-->
+
+    <link rel="stylesheet" href="/static/venedor/theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/venedor/theme/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/venedor/theme/css/{{ theme_config.color }}/prettyPhoto.css">
+
+    {# TODO: When change this css to bower_compo../own-car../own.css hidden the row action move carrousel h #}
+    <link rel="stylesheet" href="/static/venedor/theme/css/{{ theme_config.color }}/owl.carousel.css">
+    <!--<link rel="stylesheet" href="/static/theme/css/revslider.css">-->
+    
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/toastr/toastr.min.css" />
+
+    <link rel="stylesheet" href="/static/venedor/theme/css/{{ theme_config.color }}/style.css">
+    <link rel="stylesheet" href="/static/venedor/theme/css/{{ theme_config.color }}/responsive.css">
+
+
+
+    <link rel="stylesheet" href="/static/bower_components/bootstrap-submenu/css/bootstrap-submenu.min.css"/> {# TODO: quiet this style on production #}
+
+    <link rel="stylesheet" href="{% static 'favit/css/favorite.css' %} ">
+
+    <link rel="stylesheet" href="/static/venedor/css/style.css">
+
+    {% render_block "css" %}
+    {% block stylesheet %}{% endblock stylesheet %}
+
+    <script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+            <script src="/static/theme/js/html5shiv.js"></script>
+            <script src="/static/theme/js/respond.min.js"></script>
+        <![endif]-->
+
+
+</head>
+<body {% block angular_app_declare_block %}{% endblock %} itemscope itemtype="http://schema.org/WebPage">
+{% cms_toolbar %}
+<div id="wrapper" class="{{ theme_config.content }}">
+    {% include theme_config.header %}
+    <section id="content">
+        {% block outerbreadcrumb %}
+            <div id="breadcrumb-container">
+                <div class="container">
+                    <ul class="breadcrumb">
+                        {% block breadcrumb %}
+                            {% show_breadcrumb  'breadcrumb.html' %}
+                        {% endblock breadcrumb %}
+
+                    </ul>
+                </div>
+            </div>
+        {% endblock outerbreadcrumb %}
+        {% if messages %}
+            <div class="col-md-12">
+                <div class="container">
+                    {% for message in messages %}
+                        <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        <div>
+            {% block feature %}
+                    <div class="spacer spacer-md"></div>
+            {% endblock feature %}
+        </div>
+        <div class="container">
+                    
+                    {% block content %}
+                        {# CONTENT HERE!!!! #}
+                    {% endblock content %}
+        </div><!-- End .container -->
+
+    </section><!-- End #content -->
+
+    <footer id="footer">
+        {% block footer-newsletter %}
+        {% endblock footer-newsletter %}
+
+
+        <div id="inner-footer">
+
+            <div class="container">
+                    {% static_placeholder "Footer" %}
+            </div><!-- End .container -->
+
+        </div><!-- End #inner-footer -->
+
+        <div id="footer-bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">
+                        <ul class="social-links clearfix">
+                            {% static_placeholder "Footer-social" %}
+                        </ul>
+                    </div><!-- End .col-md-7 -->
+
+                    <div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
+                        <p>&copy; 2015 Echo por <a href="http://context.com.ar" target="_blank">Context</a> &trade;.</p>
+                    </div><!-- End .col-md-5 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End #footer-bottom -->
+
+    </footer><!-- End #footer -->
+</div><!-- End #wrapper -->
+
+<a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a><!-- End #scroll-top -->
+
+
+
+{#<script>#}
+{##}
+{##}
+{#    // Calculate and set total price cart#}
+{#    $( document ).ready(function() {#}
+{#        var items = $('.dropdown-cart').find('.item-cart-sub-total');#}
+{#        var total = 0.00;#}
+{#        for(var i=0; i < items.length; i++){#}
+{#            total += parseFloat(items[i].value);#}
+{#        }#}
+{#        var contents_total = $('.dropdown-cart').find('.total-cart');#}
+{#        for(var i=0; i < contents_total.length; i++){#}
+{#            contents_total[i].innerHTML = '$' + String(total);#}
+{#        }#}
+{#    });#}
+{##}
+{#</script>#}
+
+
+<!-- END -->
+<script src="/static/venedor/theme/js/bootstrap.min.js"></script>
+<script src="/static/venedor/theme/js/smoothscroll.js"></script>
+<script src="/static/venedor/theme/js/jquery.debouncedresize.js"></script>
+<script src="/static/venedor/theme/js/retina.min.js"></script>
+
+<script src="/static/venedor/theme/js/jquery.hoverIntent.min.js"></script>
+
+<script src="/static/bower_components/owl-carousel/owl.carousel.min.js"></script>
+
+
+<script src="/static/bower_components/flexslider/jquery.flexslider-min.js"></script>
+
+
+<script type="text/javascript" src="{% static 'favit/js/favorite.js' %}"></script>
+
+{% block footer_scripts %}
+{% endblock footer_scripts %}
+
+<script src="/static/venedor/theme/js/main.js"></script>
+{% render_block "js" %}
+
+<script>
+    var cart_url = "{% url "checkout:cart" %}";
+</script>
+<script type="text/javascript" src="{% static 'venedor/js/display_cart.js' %}"></script>
+<script type="text/javascript" src="/static/bower_components/toastr/toastr.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // TODO: This script lookup all carousel and add event on button previous and next
+        if($('.owl-carousel').length > 0){
+            $('.owl-carousel').each(function() {
+                var $this = $(this),
+                        owlCarousel = $this.data('owlCarousel'),
+                        owlBtns = $this.data('navigationBtns'),
+                        prevBtn, nextBtn;
+
+                if (typeof owlCarousel === 'undefined' || typeof owlBtns === 'undefined') {
+                    return;
+                }
+
+                for(var key in owlBtns) {
+                    if (owlBtns[key].indexOf('next') == -1) {
+                        prevBtn = $(owlBtns[key]);
+                    }else {
+                        nextBtn = $(owlBtns[key]);
+                    }
+                }
+                prevBtn.on('click touchstart', function(e) {
+                    owlCarousel.prev();
+                    e.preventDefault();
+                });
+                nextBtn.on('click touchstart', function(e) {
+                    owlCarousel.next();
+                    e.preventDefault();
+                });
+            });
+        }
+    });
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-left",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+</script>
+</body>
+</html>

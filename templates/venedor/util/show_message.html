@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Ad" %}{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="#">{% trans "Ad" %}</a></li>
+{% endblock breadcrumb %}
+
+{% block content %}
+    {% for type, message in show_messages %}
+        <div class="panel panel-{{ type }}">
+            <div class="panel-body">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+

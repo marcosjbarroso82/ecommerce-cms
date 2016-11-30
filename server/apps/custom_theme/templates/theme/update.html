@@ -1,0 +1,26 @@
+{% load bootstrap3 %}
+
+<div class="container" id="content-main">
+    <h3>Personaliza el estilo de tu pagina</h3>
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+
+    {# Display a form #}
+    <form  method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <div class="submit-row">
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                    Guardar
+                </button>
+            {% endbuttons %}
+        </div>
+
+    </form>
+
+</div>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ERP Administration</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="build/main.css"/>
+        
+        <link rel="stylesheet" href="ngDialog/css/ngDialog-theme-plain.css">
+        <link rel="stylesheet" href="ngDialog/css/ngDialog.css">
+
+        <!--<link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap.css">-->
+        <!--<link rel="stylesheet" href="http://bootswatch.com/sandstone/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="http://bootswatch.com/simplex/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="http://bootswatch.com/lumen/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="http://bootswatch.com/flatly/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="http://bootswatch.com/journal/bootstrap.min.css">-->
+
+
+    </head>
+    <body ng-app="myApp">
+        <div ui-view></div>
+        <div ui-view="ng-admin"></div>
+        <script type="text/javascript">
+
+        function logout() {
+            window.localStorage.removeItem('userToken');
+            window.location.href = '/#/login';
+        }
+        </script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="css/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+        <script type="text/javascript" src="build/ng-admin.min.js" charset="utf-8"></script>
+
+        <script type="text/javascript" src="ng-admin-jwt-auth/build/ng-admin.jwt-auth.min.js"></script>
+
+
+        <script type="text/javascript" src="ngDialog/js/ngDialog.js"></script>
+
+        <script type="text/javascript" src="js/utils/util.module.js"></script>
+        <script type="text/javascript" src="js/utils/services/upload-multiple-images.service.js"></script>
+
+        <script type="text/javascript" src="js/utils/controllers/upload-multiple-images.controller.js"></script>
+
+        <script type="text/javascript" src="js/utils/directives/upload-file-client.directive.js"></script>
+        <script type="text/javascript" src="js/utils/directives/upload-multiple-image.directive.js"></script>
+
+
+        <!--<script type="text/javascript" src="js/cart/cart.module.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/cart/services/cart.service.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/cart/controllers/cart.controller.js" charset="utf-8"></script>
+        <script type="text/javascript" src="ng-admin-jwt-auth/build/ng-admin.jwt-auth.min.js"></script>-->
+
+        <script type="text/javascript" src="build/main.js" charset="utf-8"></script>
+
+        <!--<style>
+            .ng-admin-column-id{
+                width: 30px;
+            }
+        </style>-->
+
+        <!--<script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-46201426-1', 'auto');
+          ga('send', 'pageview');
+        </script>-->
+    </body>
+</html>

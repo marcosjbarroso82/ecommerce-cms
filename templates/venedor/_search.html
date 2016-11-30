@@ -1,0 +1,9 @@
+{% load i18n %}
+{% block header-search %}
+    <form class="form-inline quick-search-form" id="quick-search-form" method="get" action="#">
+        <div class="form-group">
+            <input type="text" name="q" id="text-search" class="form-control" placeholder="{% trans 'Search here' %}" {# value="{% block value_search %}{% endblock value_search %}" #}>
+        </div><!-- End .form-inline -->
+        <button type="submit" id="quick-search" class="btn btn-custom"></button>
+    </form>
+{% endblock header-search %}

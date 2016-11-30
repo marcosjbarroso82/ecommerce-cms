@@ -1,0 +1,3942 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-09 18:25-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/custom_theme/cms_toolbar.py:13
+msgid "Custom Css"
+msgstr ""
+
+#: apps/custom_theme/cms_toolbar.py:15
+msgid "Custom Css list"
+msgstr ""
+
+#: apps/custom_theme/cms_toolbar.py:20
+msgid "Add new Custom Css"
+msgstr ""
+
+#: apps/option/models.py:42
+msgctxt "Option choice value field"
+msgid "image"
+msgstr ""
+
+#: apps/pluggin_button_social/cms_plugins.py:11
+msgid "ButtonSocials"
+msgstr ""
+
+#: apps/pluggin_button_social/cms_plugins.py:12
+msgid "Button Social"
+msgstr ""
+
+#: apps/pluggin_featured_product/cms_plugins.py:15
+#: owncommerce/templates/dashboard/base.html:65
+#: saleor/dashboard/templates/dashboard/base.html:64
+#: saleor/dashboard/templates/dashboard/product/list.html:7
+#: saleor/dashboard/templates/dashboard/product/list.html:36
+#: saleor/dashboard/templates/dashboard/product/product_confirm_delete.html:17
+#: saleor/dashboard/templates/dashboard/product/product_form.html:8
+#: saleor/dashboard/templates/dashboard/product/product_form.html:43
+#: saleor/dashboard/templates/dashboard/product/product_image_confirm_delete.html:15
+#: saleor/dashboard/templates/dashboard/product/product_image_form.html:23
+#: saleor/dashboard/templates/dashboard/product/product_variant_confirm_delete.html:15
+#: saleor/dashboard/templates/dashboard/product/stock_confirm_delete.html:15
+#: saleor/dashboard/templates/dashboard/product/stock_form.html:23
+#: saleor/dashboard/templates/dashboard/product/variant_form.html:22
+msgid "Products"
+msgstr ""
+
+#: apps/pluggin_featured_product/cms_plugins.py:16
+msgid "Product Plugin"
+msgstr ""
+
+#: apps/pluggin_option/cms_plugins.py:12
+#: owncommerce/templates/dashboard/base.html:67
+#: owncommerce/templates/dashboard/product/option/form.html:6
+#: owncommerce/templates/dashboard/product/option/form.html:18
+#: owncommerce/templates/dashboard/product/option/list.html:5
+#: owncommerce/templates/dashboard/product/option/option_form.html:6
+#: owncommerce/templates/dashboard/product/option/option_form.html:33
+#: saleor/dashboard/templates/dashboard/base.html:66
+#: saleor/dashboard/templates/dashboard/product/option/form.html:6
+#: saleor/dashboard/templates/dashboard/product/option/form.html:33
+#: saleor/dashboard/templates/dashboard/product/option/list.html:5
+#: saleor/dashboard/templates/dashboard/product/option/list.html:20
+msgid "Options"
+msgstr ""
+
+#: apps/pluggin_option/cms_plugins.py:13
+msgid "Option Plugin"
+msgstr ""
+
+#: apps/products/cms_app.py:8
+msgid "Products App"
+msgstr ""
+
+#: apps/products/menu.py:12
+msgid "Product sub-menu"
+msgstr ""
+
+#: owncommerce/settings/base.py:35 owncommerce/settings/base.py:255
+msgid "es"
+msgstr ""
+
+#: owncommerce/templates/base.html:19
+#: owncommerce/templates/theme1/base.html:19
+#: owncommerce/templates/theme2/base.html:19
+#: owncommerce/templates/theme3/base.html:19
+msgid "Context Software"
+msgstr ""
+
+#: owncommerce/templates/base.html:72
+#: owncommerce/templates/theme1/base.html:72
+#: owncommerce/templates/theme2/base.html:72
+#: owncommerce/templates/theme3/base.html:72
+#: owncommerce/templates/userprofile/favorites.html:5
+#: owncommerce/templates/userprofile/favorites.html:10
+#: owncommerce/templates/userprofile/favorites.html:15
+msgid "Your favorites"
+msgstr ""
+
+#: owncommerce/templates/base.html:73
+#: owncommerce/templates/order/details.html:13
+#: owncommerce/templates/order/payment.html:14
+#: owncommerce/templates/theme1/base.html:73
+#: owncommerce/templates/theme2/base.html:73
+#: owncommerce/templates/theme3/base.html:73
+#: owncommerce/templates/userprofile/orders.html:5
+#: owncommerce/templates/userprofile/orders.html:10
+#: saleor/order/templates/order/details.html:14
+#: saleor/order/templates/order/payment.html:14
+#: saleor/userprofile/templates/userprofile/orders.html:5
+#: saleor/userprofile/templates/userprofile/orders.html:9
+msgid "Your orders"
+msgstr ""
+
+#: owncommerce/templates/base.html:74
+#: owncommerce/templates/registration/change_password.html:9
+#: owncommerce/templates/theme1/base.html:74
+#: owncommerce/templates/theme2/base.html:74
+#: owncommerce/templates/theme3/base.html:74
+#: owncommerce/templates/userprofile/address-delete.html:8
+#: owncommerce/templates/userprofile/address-edit.html:10
+#: owncommerce/templates/userprofile/details.html:4
+#: owncommerce/templates/userprofile/details.html:8
+#: owncommerce/templates/userprofile/favorites.html:9
+#: owncommerce/templates/userprofile/orders.html:9
+#: saleor/registration/templates/registration/change_password.html:9
+#: saleor/userprofile/templates/userprofile/address-delete.html:8
+#: saleor/userprofile/templates/userprofile/address-edit.html:10
+#: saleor/userprofile/templates/userprofile/details.html:4
+#: saleor/userprofile/templates/userprofile/details.html:8
+msgid "Your profile"
+msgstr ""
+
+#: owncommerce/templates/base.html:75
+#: owncommerce/templates/theme1/base.html:75
+#: owncommerce/templates/theme2/base.html:75
+#: owncommerce/templates/theme3/base.html:75
+msgid "My cart"
+msgstr ""
+
+#: owncommerce/templates/base.html:76 owncommerce/templates/base.html:151
+#: owncommerce/templates/checkout/details.html:5
+#: owncommerce/templates/checkout/details.html:25
+#: owncommerce/templates/theme1/base.html:76
+#: owncommerce/templates/theme1/base.html:151
+#: owncommerce/templates/theme2/base.html:76
+#: owncommerce/templates/theme2/base.html:151
+#: owncommerce/templates/theme3/base.html:76
+#: owncommerce/templates/theme3/base.html:151
+#: saleor/checkout/templates/checkout/details.html:5
+msgid "Checkout"
+msgstr ""
+
+#: owncommerce/templates/base.html:83
+msgid "Welcome"
+msgstr ""
+
+#: owncommerce/templates/base.html:84
+#: owncommerce/templates/dashboard/base.html:47
+#: owncommerce/templates/theme1/base.html:84
+#: owncommerce/templates/theme2/base.html:84
+#: owncommerce/templates/theme3/base.html:84
+#: saleor/dashboard/templates/dashboard/base.html:46
+msgid "Log out"
+msgstr ""
+
+#: owncommerce/templates/base.html:86
+msgid "Welcome to Commerce!"
+msgstr ""
+
+#: owncommerce/templates/base.html:87
+#: owncommerce/templates/checkout/billing.html:19
+#: owncommerce/templates/theme1/base.html:87
+#: owncommerce/templates/theme2/base.html:87
+#: owncommerce/templates/theme3/base.html:87
+#: saleor/checkout/templates/checkout/billing.html:14
+#: saleor/registration/templates/registration/login.html:15
+#: saleor/registration/templates/registration/login.html:23
+msgid "Log in"
+msgstr ""
+
+#: owncommerce/templates/base.html:87
+#: owncommerce/templates/registration/login.html:24
+#: owncommerce/templates/theme1/base.html:87
+#: owncommerce/templates/theme2/base.html:87
+#: owncommerce/templates/theme3/base.html:87
+#: saleor/registration/templates/registration/login.html:42
+msgid "Register"
+msgstr ""
+
+#: owncommerce/templates/base.html:113
+#: owncommerce/templates/checkout/summary.html:59
+#: owncommerce/templates/theme1/base.html:113
+#: owncommerce/templates/theme2/base.html:113
+#: owncommerce/templates/theme3/base.html:113
+#: saleor/checkout/templates/checkout/summary.html:51
+#: saleor/dashboard/templates/dashboard/order/detail.html:125
+msgid "Item"
+msgstr ""
+
+#: owncommerce/templates/base.html:117
+#: owncommerce/templates/theme1/base.html:117
+#: owncommerce/templates/theme2/base.html:117
+#: owncommerce/templates/theme3/base.html:117
+msgid "Shopping cart"
+msgstr ""
+
+#: owncommerce/templates/base.html:150
+#: owncommerce/templates/theme1/base.html:150
+#: owncommerce/templates/theme2/base.html:150
+#: owncommerce/templates/theme3/base.html:150
+#: saleor/cart/templates/cart/index.html:11
+msgid "Cart"
+msgstr ""
+
+#: owncommerce/templates/base.html:228
+#: owncommerce/templates/product/search.html:14
+#: owncommerce/templates/theme1/base.html:228
+#: owncommerce/templates/theme2/base.html:228
+#: owncommerce/templates/theme3/base.html:228
+msgid "Search here"
+msgstr ""
+
+#: owncommerce/templates/base.html:298
+#: owncommerce/templates/theme1/base.html:298
+#: owncommerce/templates/theme2/base.html:298
+#: owncommerce/templates/theme3/base.html:298
+msgid "MY ACCOUNT"
+msgstr ""
+
+#: owncommerce/templates/base.html:300
+#: owncommerce/templates/theme1/base.html:300
+#: owncommerce/templates/theme2/base.html:300
+#: owncommerce/templates/theme3/base.html:300
+msgid "Personal information"
+msgstr ""
+
+#: owncommerce/templates/base.html:301
+#: owncommerce/templates/theme1/base.html:301
+#: owncommerce/templates/theme2/base.html:301
+#: owncommerce/templates/theme3/base.html:301
+msgid "Order History"
+msgstr ""
+
+#: owncommerce/templates/base.html:326
+#: owncommerce/templates/theme1/base.html:326
+#: owncommerce/templates/theme2/base.html:326
+#: owncommerce/templates/theme3/base.html:326
+msgid "Our facebook"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:8
+#: saleor/cart/templates/cart/index.html:7
+msgid "Your cart"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:13
+msgid "CART"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:19
+msgid "Shopping Cart"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:20
+msgid "Detalles de tu carrito."
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:28
+#: owncommerce/templates/userprofile/favorites.html:22
+#: saleor/cart/templates/cart/index.html:20
+msgid "Product"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:30
+#: owncommerce/templates/checkout/digitaldelivery.html:17
+#: owncommerce/templates/checkout/summary.html:60
+#: owncommerce/templates/order/details.html:83
+#: owncommerce/templates/order/payment.html:108
+#: owncommerce/templates/product/search.html:86
+#: owncommerce/templates/product/search.html:152
+#: owncommerce/templates/userprofile/orders.html:24
+#: saleor/cart/templates/cart/index.html:23
+#: saleor/checkout/templates/checkout/digitaldelivery.html:17
+#: saleor/checkout/templates/checkout/summary.html:52
+#: saleor/dashboard/templates/dashboard/order/detail.html:128
+#: saleor/dashboard/templates/dashboard/product/product_form.html:165
+#: saleor/order/templates/order/details.html:81
+#: saleor/order/templates/order/payment.html:105
+#: saleor/userprofile/templates/userprofile/orders.html:23
+msgid "Price"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:31
+#: saleor/cart/templates/cart/index.html:22 saleor/dashboard/order/forms.py:88
+#: saleor/dashboard/templates/dashboard/order/detail.html:129
+#: saleor/dashboard/templates/dashboard/product/product_form.html:243
+msgid "Quantity"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:32
+#: owncommerce/templates/checkout/digitaldelivery.html:18
+#: owncommerce/templates/checkout/summary.html:61
+#: owncommerce/templates/order/details.html:84
+#: owncommerce/templates/order/payment.html:109
+#: saleor/cart/templates/cart/index.html:24
+#: saleor/checkout/templates/checkout/digitaldelivery.html:18
+#: saleor/checkout/templates/checkout/summary.html:53
+#: saleor/order/templates/order/details.html:82
+#: saleor/order/templates/order/payment.html:106
+msgid "Subtotal"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:37
+msgid "Update all quantities"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:38
+#: owncommerce/templates/checkout/summary.html:66
+#: owncommerce/templates/order/details.html:89
+#: owncommerce/templates/order/payment.html:114
+#: saleor/cart/templates/cart/index.html:30
+#: saleor/checkout/templates/checkout/summary.html:58
+#: saleor/dashboard/templates/dashboard/customer/detail.html:42
+#: saleor/dashboard/templates/dashboard/includes/_orders_table.html:14
+#: saleor/dashboard/templates/dashboard/order/detail.html:130
+#: saleor/dashboard/templates/dashboard/order/detail.html:148
+#: saleor/order/templates/order/details.html:87
+#: saleor/order/templates/order/payment.html:111
+msgid "Total"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:104
+#: owncommerce/templates/checkout/details.html:9
+msgid "CHECKOUT"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:105
+msgid "CONTINUE SHOPPING"
+msgstr ""
+
+#: owncommerce/templates/cart/index.html:110
+#: saleor/cart/templates/cart/index.html:90
+msgid "Your cart is empty"
+msgstr ""
+
+#: owncommerce/templates/checkout/address.html:9
+#: saleor/checkout/templates/checkout/address.html:7
+msgid "Use one of your existing addresses or enter a new address below."
+msgstr ""
+
+#: owncommerce/templates/checkout/address.html:37
+#: saleor/checkout/templates/checkout/address.html:35
+msgid "Enter a new address"
+msgstr ""
+
+#: owncommerce/templates/checkout/address.html:57
+#: saleor/checkout/templates/checkout/address.html:55
+msgid "Save address"
+msgstr ""
+
+#: owncommerce/templates/checkout/billing.html:8
+#: owncommerce/templates/checkout/shipping.html:13
+#: owncommerce/templates/checkout/summary.html:10
+#: owncommerce/templates/userprofile/details.html:32
+#: saleor/userprofile/templates/userprofile/details.html:25
+msgid "Billing"
+msgstr ""
+
+#: owncommerce/templates/checkout/billing.html:12
+#: owncommerce/templates/checkout/billing.html:42
+#: saleor/checkout/templates/checkout/billing.html:7
+#: saleor/checkout/templates/checkout/billing.html:37
+msgid "Bill to this address"
+msgstr ""
+
+#: owncommerce/templates/checkout/billing.html:18
+msgid "Already have an account? Or create one for save address"
+msgstr ""
+
+#: owncommerce/templates/checkout/digitaldelivery.html:10
+#: saleor/checkout/templates/checkout/digitaldelivery.html:10
+msgid "Delivery group"
+msgstr ""
+
+#: owncommerce/templates/checkout/digitaldelivery.html:16
+#: owncommerce/templates/order/details.html:82
+#: owncommerce/templates/order/payment.html:107
+#: owncommerce/templates/product/search.html:151
+#: saleor/checkout/templates/checkout/digitaldelivery.html:16
+#: saleor/dashboard/customer/forms.py:10
+#: saleor/dashboard/templates/dashboard/customer/list.html:46
+#: saleor/order/templates/order/details.html:80
+#: saleor/order/templates/order/payment.html:104
+msgid "Name"
+msgstr ""
+
+#: owncommerce/templates/checkout/digitaldelivery.html:40
+#: saleor/checkout/templates/checkout/digitaldelivery.html:40
+msgid "Enter address"
+msgstr ""
+
+#: owncommerce/templates/checkout/digitaldelivery.html:46
+#: saleor/checkout/templates/checkout/digitaldelivery.html:46
+msgid "Send to this address"
+msgstr ""
+
+#: owncommerce/templates/checkout/shipping.html:8
+#: owncommerce/templates/checkout/shipping.html:41
+#: saleor/checkout/templates/checkout/shipping.html:8
+#: saleor/checkout/templates/checkout/shipping.html:35
+msgid "Ship to this address"
+msgstr ""
+
+#: owncommerce/templates/checkout/shipping.html:14
+#: owncommerce/templates/checkout/summary.html:11
+#: owncommerce/templates/checkout/summary.html:83
+#: owncommerce/templates/order/details.html:104
+#: owncommerce/templates/order/payment.html:129
+#: owncommerce/templates/userprofile/details.html:33
+#: saleor/checkout/templates/checkout/summary.html:73
+#: saleor/dashboard/templates/dashboard/order/detail.html:139
+#: saleor/order/templates/order/details.html:102
+#: saleor/order/templates/order/payment.html:126
+#: saleor/userprofile/templates/userprofile/details.html:26
+msgid "Shipping"
+msgstr ""
+
+#: owncommerce/templates/checkout/shipping.html:22
+#: saleor/checkout/templates/checkout/shipping.html:16
+msgid "Shipping address same as billing"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:12 saleor/checkout/steps.py:197
+msgid "Summary"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:20
+#: owncommerce/templates/order/details.html:49
+#: owncommerce/templates/order/payment.html:76
+#: saleor/checkout/templates/checkout/summary.html:12
+#: saleor/dashboard/templates/dashboard/order/detail.html:93
+#: saleor/dashboard/templates/dashboard/payments/detail.html:81
+#: saleor/order/templates/order/details.html:47
+#: saleor/order/templates/order/payment.html:73
+msgid "Billing address"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:26
+#: owncommerce/templates/checkout/summary.html:42
+#: saleor/checkout/templates/checkout/summary.html:18
+#: saleor/checkout/templates/checkout/summary.html:34
+msgid "No address given yet."
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:28
+#: saleor/checkout/templates/checkout/summary.html:20
+msgid "Edit billing details"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:36
+#: owncommerce/templates/order/details.html:60
+#: owncommerce/templates/order/payment.html:88
+#: saleor/checkout/templates/checkout/summary.html:28
+#: saleor/dashboard/templates/dashboard/order/detail.html:72
+#: saleor/order/templates/order/details.html:58
+#: saleor/order/templates/order/payment.html:85
+msgid "Shipping address"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:44
+#: saleor/checkout/templates/checkout/summary.html:36
+msgid "Edit shipping details"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:54
+#: owncommerce/templates/order/details.html:74
+#: owncommerce/templates/order/payment.html:102
+#: saleor/checkout/templates/checkout/summary.html:46
+#: saleor/order/templates/order/details.html:72
+#: saleor/order/templates/order/payment.html:99
+#, python-format
+msgid "Shipment #%(number)s"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:96
+#: saleor/checkout/templates/checkout/summary.html:86
+msgid "Your total will be"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:99
+#: saleor/checkout/templates/checkout/summary.html:89
+#, python-format
+msgid "includes %(tax)s <span class=\"currency\">%(currency)s</span> tax"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:108
+#: saleor/checkout/templates/checkout/summary.html:99
+msgid "Place order"
+msgstr ""
+
+#: owncommerce/templates/checkout/summary.html:113
+#: saleor/checkout/templates/checkout/summary.html:105
+msgid ""
+"Before continuing please make sure that you've provided all of the "
+"information required."
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:10
+msgid "Dashboard - Commerce"
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:31
+#: saleor/dashboard/templates/dashboard/base.html:30
+msgid "Dashboard"
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:46
+#: saleor/dashboard/templates/dashboard/base.html:45
+msgid "Visit storefront"
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:62
+#: saleor/dashboard/templates/dashboard/base.html:61
+msgid "Catalogue"
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:66
+#: saleor/dashboard/templates/dashboard/base.html:65
+#: saleor/dashboard/templates/dashboard/product/attributes/confirm_delete.html:8
+#: saleor/dashboard/templates/dashboard/product/attributes/form.html:6
+#: saleor/dashboard/templates/dashboard/product/attributes/form.html:33
+#: saleor/dashboard/templates/dashboard/product/attributes/list.html:5
+#: saleor/dashboard/templates/dashboard/product/attributes/list.html:20
+#: saleor/dashboard/templates/dashboard/product/option/confirm_delete.html:8
+msgid "Attributes"
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:68
+#: saleor/dashboard/templates/dashboard/base.html:67
+#: saleor/dashboard/templates/dashboard/category/detail.html:6
+#: saleor/dashboard/templates/dashboard/category/detail.html:14
+#: saleor/dashboard/templates/dashboard/category/list.html:6
+#: saleor/dashboard/templates/dashboard/category/list.html:53
+msgid "Categories"
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:76
+#: saleor/dashboard/templates/dashboard/base.html:75
+msgid "Sales"
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:79
+#: saleor/dashboard/templates/dashboard/base.html:78
+#: saleor/dashboard/templates/dashboard/order/detail.html:7
+#: saleor/dashboard/templates/dashboard/order/detail.html:18
+#: saleor/dashboard/templates/dashboard/order/list.html:6
+#: saleor/dashboard/templates/dashboard/order/list.html:12
+msgid "Orders"
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:80
+#: saleor/dashboard/templates/dashboard/base.html:79
+#: saleor/dashboard/templates/dashboard/customer/detail.html:7
+#: saleor/dashboard/templates/dashboard/customer/detail.html:18
+#: saleor/dashboard/templates/dashboard/customer/list.html:6
+#: saleor/dashboard/templates/dashboard/customer/list.html:12
+msgid "Customers"
+msgstr ""
+
+#: owncommerce/templates/dashboard/base.html:81
+#: saleor/dashboard/templates/dashboard/base.html:80
+#: saleor/dashboard/templates/dashboard/order/detail.html:34
+#: saleor/dashboard/templates/dashboard/payments/detail.html:8
+#: saleor/dashboard/templates/dashboard/payments/detail.html:19
+#: saleor/dashboard/templates/dashboard/payments/list.html:6
+#: saleor/dashboard/templates/dashboard/payments/list.html:12
+msgid "Payments"
+msgstr ""
+
+#: owncommerce/templates/dashboard/index.html:47
+#: saleor/dashboard/templates/dashboard/index.html:47
+msgid "Orders ready for shipment"
+msgstr ""
+
+#: owncommerce/templates/dashboard/index.html:54
+#: saleor/dashboard/templates/dashboard/index.html:54
+msgid "No orders are ready for shipment."
+msgstr ""
+
+#: owncommerce/templates/dashboard/index.html:61
+#: saleor/dashboard/templates/dashboard/index.html:61
+msgid "Products with low stock"
+msgstr ""
+
+#: owncommerce/templates/dashboard/index.html:74
+#: saleor/dashboard/templates/dashboard/index.html:74
+msgid "No products are low in stock."
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/confirm_delete.html:4
+#: owncommerce/templates/dashboard/product/option/confirm_delete.html:9
+msgid "Delete product option"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/confirm_delete.html:8
+msgid "Product options"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/confirm_delete.html:14
+msgid "Are you sure you want to delete the following option?"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/confirm_delete.html:27
+#: owncommerce/templates/dashboard/product/option/modal_confirm_delete.html:15
+#: owncommerce/templates/dashboard/product/option/option_modal_confirm_delete.html:15
+#: owncommerce/templates/userprofile/address-delete.html:28
+#: owncommerce/templates/userprofile/address-edit.html:31
+#: saleor/dashboard/templates/dashboard/category/category_confirm_delete.html:53
+#: saleor/dashboard/templates/dashboard/category/detail.html:42
+#: saleor/dashboard/templates/dashboard/category/detail.html:44
+#: saleor/dashboard/templates/dashboard/category/modal_category_confirm_delete.html:48
+#: saleor/dashboard/templates/dashboard/category/modal_delete.html:47
+#: saleor/dashboard/templates/dashboard/category/modal_edit.html:23
+#: saleor/dashboard/templates/dashboard/order/modal_add_note.html:16
+#: saleor/dashboard/templates/dashboard/order/modal_address_edit.html:21
+#: saleor/dashboard/templates/dashboard/order/modal_capture.html:27
+#: saleor/dashboard/templates/dashboard/order/modal_change_quantity.html:16
+#: saleor/dashboard/templates/dashboard/order/modal_refund.html:27
+#: saleor/dashboard/templates/dashboard/order/modal_release.html:16
+#: saleor/dashboard/templates/dashboard/order/modal_ship_delivery_group.html:14
+#: saleor/dashboard/templates/dashboard/order/modal_split_order_line.html:17
+#: saleor/dashboard/templates/dashboard/product/attributes/confirm_delete.html:27
+#: saleor/dashboard/templates/dashboard/product/attributes/modal_confirm_delete.html:15
+#: saleor/dashboard/templates/dashboard/product/modal_product_confirm_delete.html:31
+#: saleor/dashboard/templates/dashboard/product/modal_product_image_confirm_delete.html:25
+#: saleor/dashboard/templates/dashboard/product/option/confirm_delete.html:27
+#: saleor/dashboard/templates/dashboard/product/option/modal_confirm_delete.html:15
+#: saleor/dashboard/templates/dashboard/product/product_form.html:146
+#: saleor/dashboard/templates/dashboard/product/product_form.html:228
+#: saleor/dashboard/templates/dashboard/product/product_image_confirm_delete.html:39
+#: saleor/userprofile/templates/userprofile/address-delete.html:31
+msgid "Cancel"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/confirm_delete.html:28
+#: owncommerce/templates/dashboard/product/option/modal_confirm_delete.html:14
+#: owncommerce/templates/dashboard/product/option/option_modal_confirm_delete.html:14
+#: owncommerce/templates/userprofile/address-delete.html:27
+#: owncommerce/templates/userprofile/details.html:68
+#: saleor/dashboard/templates/dashboard/category/category_confirm_delete.html:52
+#: saleor/dashboard/templates/dashboard/category/modal_delete.html:46
+#: saleor/dashboard/templates/dashboard/product/attributes/confirm_delete.html:28
+#: saleor/dashboard/templates/dashboard/product/attributes/modal_confirm_delete.html:14
+#: saleor/dashboard/templates/dashboard/product/modal_product_confirm_delete.html:30
+#: saleor/dashboard/templates/dashboard/product/modal_product_image_confirm_delete.html:24
+#: saleor/dashboard/templates/dashboard/product/option/confirm_delete.html:28
+#: saleor/dashboard/templates/dashboard/product/option/modal_confirm_delete.html:14
+#: saleor/dashboard/templates/dashboard/product/product_confirm_delete.html:6
+#: saleor/dashboard/templates/dashboard/product/product_confirm_delete.html:21
+#: saleor/dashboard/templates/dashboard/product/product_confirm_delete.html:43
+#: saleor/dashboard/templates/dashboard/product/product_form.html:132
+#: saleor/dashboard/templates/dashboard/product/product_form.html:145
+#: saleor/dashboard/templates/dashboard/product/product_form.html:214
+#: saleor/dashboard/templates/dashboard/product/product_form.html:227
+#: saleor/dashboard/templates/dashboard/product/product_form.html:315
+#: saleor/dashboard/templates/dashboard/product/product_form.html:361
+#: saleor/dashboard/templates/dashboard/product/product_image_confirm_delete.html:40
+#: saleor/dashboard/templates/dashboard/product/product_variant_confirm_delete.html:42
+#: saleor/dashboard/templates/dashboard/product/stock_confirm_delete.html:40
+#: saleor/userprofile/templates/userprofile/address-delete.html:30
+#: saleor/userprofile/templates/userprofile/details.html:61
+msgid "Delete"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/detail.html:19
+#: owncommerce/templates/dashboard/product/option/option_form.html:24
+#: saleor/dashboard/templates/dashboard/product/option/form.html:24
+msgid "Remove option"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/detail.html:27
+msgid "Add options to"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/detail.html:37
+msgid "Product options "
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/detail.html:58
+#: owncommerce/templates/userprofile/details.html:67
+#: saleor/dashboard/templates/dashboard/category/modal_edit.html:10
+#: saleor/dashboard/templates/dashboard/includes/address_short.html:11
+#: saleor/dashboard/templates/dashboard/product/product_form.html:310
+#: saleor/dashboard/templates/dashboard/product/product_form.html:357
+#: saleor/userprofile/templates/userprofile/details.html:60
+msgid "Edit"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/detail.html:64
+msgid "Options list"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/detail.html:84
+msgid "No options to"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/detail.html:91
+msgid "No options to product option found."
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/form.html:6
+#: owncommerce/templates/dashboard/product/option/form.html:19
+#: owncommerce/templates/dashboard/product/option/option_form.html:6
+#: owncommerce/templates/dashboard/product/option/option_form.html:34
+#: saleor/dashboard/templates/dashboard/product/option/form.html:6
+#: saleor/dashboard/templates/dashboard/product/option/form.html:34
+msgid "Add new option"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/form.html:39
+#: owncommerce/templates/dashboard/product/option/option_form.html:61
+#: saleor/cart/templates/cart/index.html:58
+#: saleor/dashboard/templates/dashboard/category/detail.html:47
+#: saleor/dashboard/templates/dashboard/category/modal_category_confirm_delete.html:47
+#: saleor/dashboard/templates/dashboard/category/modal_edit.html:22
+#: saleor/dashboard/templates/dashboard/order/modal_address_edit.html:20
+#: saleor/dashboard/templates/dashboard/order/modal_change_quantity.html:15
+#: saleor/dashboard/templates/dashboard/product/attributes/form.html:83
+#: saleor/dashboard/templates/dashboard/product/option/form.html:101
+#: saleor/dashboard/templates/dashboard/product/product_form.html:113
+#: saleor/dashboard/templates/dashboard/product/product_image_form.html:58
+#: saleor/dashboard/templates/dashboard/product/stock_form.html:55
+#: saleor/dashboard/templates/dashboard/product/variant_form.html:67
+msgid "Update"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/form.html:41
+#: owncommerce/templates/dashboard/product/option/option_form.html:63
+#: saleor/dashboard/templates/dashboard/category/detail.html:49
+#: saleor/dashboard/templates/dashboard/product/attributes/form.html:85
+#: saleor/dashboard/templates/dashboard/product/option/form.html:103
+#: saleor/dashboard/templates/dashboard/product/product_form.html:115
+#: saleor/dashboard/templates/dashboard/product/product_image_form.html:60
+#: saleor/dashboard/templates/dashboard/product/stock_form.html:57
+#: saleor/dashboard/templates/dashboard/product/variant_form.html:69
+msgid "Create"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/list.html:20
+msgid "Product Options"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/list.html:41
+#: saleor/dashboard/templates/dashboard/product/option/list.html:43
+msgid "No options found."
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/modal_confirm_delete.html:6
+#: owncommerce/templates/dashboard/product/option/option_modal_confirm_delete.html:6
+#: saleor/dashboard/templates/dashboard/product/attributes/modal_confirm_delete.html:6
+#: saleor/dashboard/templates/dashboard/product/modal_product_confirm_delete.html:10
+#: saleor/dashboard/templates/dashboard/product/modal_product_image_confirm_delete.html:10
+#: saleor/dashboard/templates/dashboard/product/option/modal_confirm_delete.html:6
+#: saleor/dashboard/templates/dashboard/product/product_form.html:137
+#: saleor/dashboard/templates/dashboard/product/product_form.html:219
+msgid "Are you sure?"
+msgstr ""
+
+#: owncommerce/templates/dashboard/product/option/modal_confirm_delete.html:9
+#: owncommerce/templates/dashboard/product/option/option_modal_confirm_delete.html:9
+#: saleor/dashboard/templates/dashboard/product/option/modal_confirm_delete.html:9
+#, python-format
+msgid "You are about to delete an option <strong>%(optionSet)s</strong>."
+msgstr ""
+
+#: owncommerce/templates/favit/unfave-button.html:6
+msgid "Remove"
+msgstr ""
+
+#: owncommerce/templates/home.html:97
+msgid "Sing up to receive the latest fashion news"
+msgstr ""
+
+#: owncommerce/templates/menu.html:21
+msgid "CATEGORIES"
+msgstr ""
+
+#: owncommerce/templates/order/details.html:8
+#: saleor/order/templates/order/details.html:8
+msgid "Order"
+msgstr ""
+
+#: owncommerce/templates/order/details.html:24
+msgid "Order Detail"
+msgstr ""
+
+#: owncommerce/templates/order/details.html:30
+#: saleor/order/templates/order/details.html:28
+#, python-format
+msgid "Order %(order)s: "
+msgstr ""
+
+#: owncommerce/templates/order/details.html:35
+#: owncommerce/templates/order/payment/emails/confirm_email.subject.txt:2
+#: saleor/order/templates/order/details.html:33
+#: saleor/order/templates/order/payment/emails/confirm_email.subject.txt:2
+msgid "Payment details"
+msgstr ""
+
+#: owncommerce/templates/order/details.html:37
+#: owncommerce/templates/order/payment.html:8
+#: owncommerce/templates/order/payment.html:45
+#: saleor/order/templates/order/details.html:35
+#: saleor/order/templates/order/payment.html:8
+#: saleor/order/templates/order/payment.html:42
+msgid "Pay for order"
+msgstr ""
+
+#: owncommerce/templates/order/emails/confirm_email.body.txt:3
+#: saleor/order/templates/order/emails/confirm_email.body.txt:3
+#, python-format
+msgid ""
+"Hi!\n"
+"\n"
+"Thank you for your order. To see your payment details please visit:\n"
+"%(payment_url)s\n"
+"\n"
+"Sincerely,\n"
+"Saleor Team"
+msgstr ""
+
+#: owncommerce/templates/order/emails/confirm_email.subject.txt:2
+#: saleor/order/templates/order/emails/confirm_email.subject.txt:2
+msgid "Order details"
+msgstr ""
+
+#: owncommerce/templates/order/payment.html:21
+#: owncommerce/templates/order/payment/details.html:5
+#: saleor/dashboard/templates/dashboard/customer/detail.html:40
+#: saleor/dashboard/templates/dashboard/payments/detail.html:8
+#: saleor/dashboard/templates/dashboard/payments/list.html:29
+#: saleor/order/templates/order/payment/details.html:5
+msgid "Payment"
+msgstr ""
+
+#: owncommerce/templates/order/payment.html:31
+#: saleor/order/templates/order/payment.html:28
+msgid "Payment pending"
+msgstr ""
+
+#: owncommerce/templates/order/payment.html:36
+#: saleor/order/templates/order/payment.html:33
+msgid ""
+"We are currently waiting for an external service to authorize your payment "
+"for this order."
+msgstr ""
+
+#: owncommerce/templates/order/payment.html:37
+#: saleor/order/templates/order/payment.html:34
+msgid "Current status"
+msgstr ""
+
+#: owncommerce/templates/order/payment.html:38
+#: saleor/order/templates/order/payment.html:35
+msgid ""
+"Unless you are absolutely sure that the process will not complete (for "
+"example you have closed the browser window before paying), you should wait "
+"before attempting a new payment. Please be warned that if you try again and "
+"the previous transaction succeeds you might end up being charged twice."
+msgstr ""
+
+#: owncommerce/templates/order/payment.html:40
+#: saleor/order/templates/order/payment.html:37
+msgid "I understand, allow me to pay again"
+msgstr ""
+
+#: owncommerce/templates/order/payment.html:54
+#: saleor/order/templates/order/payment.html:51
+msgid "Proceed to payment"
+msgstr ""
+
+#: owncommerce/templates/order/payment.html:62
+#: saleor/order/templates/order/payment.html:59
+msgid "You've authorized transaction. Order is in processing"
+msgstr ""
+
+#: owncommerce/templates/order/payment/default.html:16
+#: owncommerce/templates/order/payment/paypal-card.html:14
+#: saleor/order/templates/order/payment/default.html:16
+#: saleor/order/templates/order/payment/paypal-card.html:14
+msgid "Save changes"
+msgstr ""
+
+#: owncommerce/templates/order/payment/emails/confirm_email.body.txt:3
+#: saleor/order/templates/order/payment/emails/confirm_email.body.txt:3
+#, python-format
+msgid ""
+"Hi!\n"
+"\n"
+"Thank you for your payment. To see your payment details please visit:\n"
+"%(order_url)s\n"
+"\n"
+"Sincerely,\n"
+"Saleor Team"
+msgstr ""
+
+#: owncommerce/templates/order/payment/stripe.html:11
+#: saleor/order/templates/order/payment/stripe.html:11
+msgid "Change payment method"
+msgstr ""
+
+#: owncommerce/templates/order/success.html:5
+#: saleor/order/templates/order/success.html:5
+msgid "Order complete!"
+msgstr ""
+
+#: owncommerce/templates/order/success.html:9
+#: saleor/order/templates/order/success.html:9
+msgid "Your order is now complete"
+msgstr ""
+
+#: owncommerce/templates/order/success.html:10
+#: saleor/order/templates/order/success.html:10
+msgid "Thank you for your purchase!"
+msgstr ""
+
+#: owncommerce/templates/order/success.html:12
+#: saleor/order/templates/order/success.html:12
+msgid "Your order number is"
+msgstr ""
+
+#: owncommerce/templates/product/_featured_product.html:53
+#: owncommerce/templates/product/_product_column.html:41
+#: owncommerce/templates/product/_product_list.html:38
+msgid "New"
+msgstr ""
+
+#: owncommerce/templates/product/_featured_product.html:62
+#: owncommerce/templates/product/_product_column.html:50
+#: owncommerce/templates/product/_product_list.html:48
+#: owncommerce/templates/product/details.html:137
+msgid "Reviews"
+msgstr ""
+
+#: owncommerce/templates/product/_featured_product.html:68
+#: owncommerce/templates/product/_product_column.html:56
+#: owncommerce/templates/product/_product_list.html:54
+msgid "Add to Cart"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:144
+msgid "Availability"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:144
+msgid "in Stock"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:145
+msgid "Product Code"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:147
+msgid "Selected Variation"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:286
+#: saleor/product/templates/product/details.html:186
+msgid "ADD TO CART"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:316
+#: saleor/product/templates/product/details.html:221
+msgid "This product is currently <strong>unavailable</strong>."
+msgstr ""
+
+#: owncommerce/templates/product/details.html:327
+msgid "Description"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:328
+msgid "Review"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:329
+msgid "Addintional Info"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:330
+msgid "Video"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:376
+msgid "Featured."
+msgstr ""
+
+#: owncommerce/templates/product/details.html:376
+msgid "Some featured products."
+msgstr ""
+
+#: owncommerce/templates/product/details.html:380
+msgid "Related products"
+msgstr ""
+
+#: owncommerce/templates/product/details.html:380
+msgid "Other products related."
+msgstr ""
+
+#: owncommerce/templates/product/search.html:9
+msgid "Search"
+msgstr ""
+
+#: owncommerce/templates/product/search.html:66
+msgid "Category"
+msgstr ""
+
+#: owncommerce/templates/product/search.html:95
+msgid "from"
+msgstr ""
+
+#: owncommerce/templates/product/search.html:97
+msgid "to"
+msgstr ""
+
+#: owncommerce/templates/product/search.html:101
+msgid "Ok"
+msgstr ""
+
+#: owncommerce/templates/product/search.html:144
+msgid "Sort by"
+msgstr ""
+
+#: owncommerce/templates/product/search.html:210
+msgid "This search dont have products."
+msgstr ""
+
+#: owncommerce/templates/rating/form.html:5
+#: owncommerce/templates/rating/form.html:15
+#: owncommerce/templates/rating/rating_products_order.html:5
+#: owncommerce/templates/rating/rating_products_order.html:18
+msgid "Rating"
+msgstr ""
+
+#: owncommerce/templates/rating/form.html:9
+#: owncommerce/templates/rating/rating_products_order.html:12
+msgid "Rating your products' order"
+msgstr ""
+
+#: owncommerce/templates/rating/rating_products_order.html:61
+msgid "Voter"
+msgstr ""
+
+#: owncommerce/templates/registration/change_password.html:5
+#: owncommerce/templates/registration/change_password.html:10
+#: owncommerce/templates/registration/change_password.html:16
+#: saleor/registration/templates/registration/change_password.html:5
+#: saleor/registration/templates/registration/change_password.html:10
+#: saleor/registration/templates/registration/change_password.html:21
+msgid "Change password"
+msgstr ""
+
+#: owncommerce/templates/registration/change_password.html:27
+#: saleor/registration/templates/registration/change_password.html:28
+msgid "Update password"
+msgstr ""
+
+#: owncommerce/templates/registration/emails/change_email.body.txt:3
+#: saleor/registration/templates/registration/emails/change_email.body.txt:3
+#, python-format
+msgid ""
+"Hi!\n"
+"\n"
+"You have requested email change in saleor project. To continue visit the "
+"link below.\n"
+"\n"
+"%(confirmation_url)s\n"
+"\n"
+"If you didn't mean to change your email please ignore this message. We "
+"apologise for inconvenience.\n"
+"\n"
+"Sincerely,\n"
+"Saleor Team"
+msgstr ""
+
+#: owncommerce/templates/registration/emails/change_email.subject.txt:2
+#: owncommerce/templates/registration/emails/confirm_email.subject.txt:2
+#: saleor/registration/templates/registration/emails/change_email.subject.txt:2
+#: saleor/registration/templates/registration/emails/confirm_email.subject.txt:2
+msgid "Confirm your email address"
+msgstr ""
+
+#: owncommerce/templates/registration/emails/confirm_email.body.txt:3
+#: saleor/registration/templates/registration/emails/confirm_email.body.txt:3
+#, python-format
+msgid ""
+"Hi!\n"
+"\n"
+"You have requested login access to saleor project. To continue visit the "
+"link below.\n"
+"\n"
+"%(confirmation_url)s\n"
+"\n"
+"If you didn't try to login to saleor please ignore this message. We "
+"apologise for inconvenience.\n"
+"\n"
+"Sincerely,\n"
+"Saleor Team"
+msgstr ""
+
+#: owncommerce/templates/registration/invalid_token.html:4
+#: saleor/registration/templates/registration/invalid_token.html:4
+msgid "Invalid token"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:5
+#: saleor/registration/templates/registration/login.html:5
+msgid "Login"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:8
+#: owncommerce/templates/registration/request_email_confirmation.html:9
+msgid "login"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:13
+msgid "Login or Create An Account"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:20
+msgid "New Customer"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:22
+msgid ""
+"By creating an account with our store, you will be able to move through the "
+"checkout process faster, store multiple shipping addresses, view and track "
+"your orders in your account and more."
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:28
+msgid "Registered Customers"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:29
+msgid "If you have an account with us, please log in."
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:36
+msgid "Forgot your password?"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:37
+msgid "LOGIN"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:40
+#: saleor/registration/templates/registration/login.html:28
+msgid "Want to use your social profile?"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:44
+#: saleor/registration/templates/registration/login.html:32
+msgid "Log in using Facebook"
+msgstr ""
+
+#: owncommerce/templates/registration/login.html:48
+#: saleor/registration/templates/registration/login.html:36
+msgid "Log in using Google"
+msgstr ""
+
+#: owncommerce/templates/registration/logout.html:4
+#: saleor/registration/templates/registration/logout.html:4
+msgid "Logged out"
+msgstr ""
+
+#: owncommerce/templates/registration/request_email_confirmation.html:5
+#: owncommerce/templates/registration/request_email_confirmation.html:10
+#: owncommerce/templates/registration/request_email_confirmation.html:16
+#: owncommerce/templates/registration/request_email_confirmation.html:22
+#: saleor/registration/templates/registration/request_email_confirmation.html:5
+#: saleor/registration/templates/registration/request_email_confirmation.html:9
+#: saleor/registration/templates/registration/request_email_confirmation.html:20
+msgid "Register or reset your password"
+msgstr ""
+
+#: owncommerce/templates/registration/request_email_confirmation.html:23
+msgid "If you forgot password or new customer, enter your email."
+msgstr ""
+
+#: owncommerce/templates/registration/request_email_confirmation.html:29
+#: saleor/registration/templates/registration/request_email_confirmation.html:26
+msgid "Continue"
+msgstr ""
+
+#: owncommerce/templates/registration/set_password.html:5
+#: owncommerce/templates/registration/set_password.html:10
+#: owncommerce/templates/registration/set_password.html:22
+#: saleor/registration/templates/registration/set_password.html:5
+#: saleor/registration/templates/registration/set_password.html:11
+#: saleor/registration/templates/registration/set_password.html:17
+msgid "Set password"
+msgstr ""
+
+#: owncommerce/templates/userprofile/address-delete.html:4
+#: owncommerce/templates/userprofile/address-delete.html:9
+#: saleor/userprofile/templates/userprofile/address-delete.html:4
+#: saleor/userprofile/templates/userprofile/address-delete.html:9
+msgid "Delete address"
+msgstr ""
+
+#: owncommerce/templates/userprofile/address-delete.html:13
+#: saleor/userprofile/templates/userprofile/address-delete.html:13
+msgid "Are you sure you want to delete the following address?"
+msgstr ""
+
+#: owncommerce/templates/userprofile/address-edit.html:6
+#: saleor/userprofile/templates/userprofile/address-edit.html:6
+msgid "Edit Address"
+msgstr ""
+
+#: owncommerce/templates/userprofile/address-edit.html:12
+#: owncommerce/templates/userprofile/address-edit.html:20
+#: saleor/userprofile/templates/userprofile/address-edit.html:12
+msgid "Edit address"
+msgstr ""
+
+#: owncommerce/templates/userprofile/address-edit.html:14
+#: owncommerce/templates/userprofile/address-edit.html:20
+#: saleor/userprofile/templates/userprofile/address-edit.html:14
+msgid "New address"
+msgstr ""
+
+#: owncommerce/templates/userprofile/address-edit.html:30
+msgid "Save"
+msgstr ""
+
+#: owncommerce/templates/userprofile/details.html:14
+#: saleor/userprofile/templates/userprofile/details.html:12
+msgid "Profile"
+msgstr ""
+
+#: owncommerce/templates/userprofile/details.html:19
+#: saleor/userprofile/templates/userprofile/details.html:14
+msgid "Change your password"
+msgstr ""
+
+#: owncommerce/templates/userprofile/details.html:20
+#: saleor/userprofile/templates/userprofile/details.html:15
+msgid "Change your email address"
+msgstr ""
+
+#: owncommerce/templates/userprofile/details.html:24
+#: saleor/userprofile/templates/userprofile/details.html:19
+msgid "Your address book"
+msgstr ""
+
+#: owncommerce/templates/userprofile/details.html:24
+#: saleor/userprofile/templates/userprofile/details.html:69
+msgid "Add new address"
+msgstr ""
+
+#: owncommerce/templates/userprofile/details.html:30
+#: saleor/userprofile/templates/userprofile/details.html:23
+msgid "Short alias"
+msgstr ""
+
+#: owncommerce/templates/userprofile/details.html:31
+#: saleor/userprofile/templates/userprofile/details.html:24
+msgid "Addressee"
+msgstr ""
+
+#: owncommerce/templates/userprofile/details.html:48
+#: owncommerce/templates/userprofile/details.html:58
+#: saleor/userprofile/templates/userprofile/details.html:41
+#: saleor/userprofile/templates/userprofile/details.html:51
+msgid "Default"
+msgstr ""
+
+#: owncommerce/templates/userprofile/details.html:52
+#: owncommerce/templates/userprofile/details.html:62
+#: saleor/userprofile/templates/userprofile/details.html:45
+#: saleor/userprofile/templates/userprofile/details.html:55
+msgid "Make default"
+msgstr ""
+
+#: owncommerce/templates/userprofile/favorites.html:16
+msgid ""
+"Your products favorites. Add favorites products and know when new offert to "
+"interested product."
+msgstr ""
+
+#: owncommerce/templates/userprofile/favorites.html:23
+msgid "Actions"
+msgstr ""
+
+#: owncommerce/templates/userprofile/favorites.html:50
+msgid "You dont have favorites."
+msgstr ""
+
+#: owncommerce/templates/userprofile/orders.html:18
+#: saleor/userprofile/templates/userprofile/orders.html:17
+msgid "Order #"
+msgstr ""
+
+#: owncommerce/templates/userprofile/orders.html:21
+#: saleor/dashboard/templates/dashboard/index.html:21
+#: saleor/dashboard/templates/dashboard/order/detail.html:268
+#: saleor/dashboard/templates/dashboard/payments/list.html:28
+#: saleor/userprofile/templates/userprofile/orders.html:20
+msgid "Date"
+msgstr ""
+
+#: owncommerce/templates/userprofile/orders.html:27
+#: saleor/dashboard/templates/dashboard/payments/list.html:31
+#: saleor/userprofile/templates/userprofile/orders.html:26
+msgid "Status"
+msgstr ""
+
+#: owncommerce/templates/userprofile/orders.html:30
+#: saleor/userprofile/templates/userprofile/orders.html:29
+msgid "Last status change"
+msgstr ""
+
+#: owncommerce/templates/util/show_message.html:5
+#: owncommerce/templates/util/show_message.html:9
+msgid "Ad"
+msgstr ""
+
+#: saleor/cart/__init__.py:62
+#, python-format
+msgctxt "Shopping cart"
+msgid "Your cart (%(cart_count)s)"
+msgstr ""
+
+#: saleor/cart/forms.py:21
+msgctxt "Form field"
+msgid "Quantity"
+msgstr ""
+
+#: saleor/cart/forms.py:27
+msgid "Sorry. This product is currently out of stock."
+msgstr ""
+
+#: saleor/cart/forms.py:30
+msgid "Oops. We could not find that product."
+msgstr ""
+
+#: saleor/cart/forms.py:33 saleor/dashboard/order/forms.py:135
+#, python-format
+msgid "Only %(remaining)d remaining in stock."
+msgstr ""
+
+#: saleor/cart/templates/cart/index.html:70
+msgid "Remove from cart"
+msgstr ""
+
+#: saleor/cart/templates/cart/index.html:85
+msgid "Proceed to checkout"
+msgstr ""
+
+#: saleor/cart/views.py:24
+msgid ""
+"Sorry. We don't have that many items in stock. Quantity was set to maximum "
+"available for now."
+msgstr ""
+
+#: saleor/cart/views.py:57
+msgid "Successfully updated product quantities."
+msgstr ""
+
+#: saleor/checkout/forms.py:15
+msgid "Shipping method"
+msgstr ""
+
+#: saleor/checkout/steps.py:76
+msgid "Billing Address"
+msgstr ""
+
+#: saleor/checkout/steps.py:133
+msgid "Shipping Address"
+msgstr ""
+
+#: saleor/checkout/templates/checkout/billing.html:13
+msgid "Already have an account?"
+msgstr ""
+
+#: saleor/core/countries.py:8
+msgctxt "Country"
+msgid "Afghanistan"
+msgstr ""
+
+#: saleor/core/countries.py:9
+msgctxt "Country"
+msgid "Åland Islands"
+msgstr ""
+
+#: saleor/core/countries.py:10
+msgctxt "Country"
+msgid "Albania"
+msgstr ""
+
+#: saleor/core/countries.py:11
+msgctxt "Country"
+msgid "Algeria"
+msgstr ""
+
+#: saleor/core/countries.py:12
+msgctxt "Country"
+msgid "American Samoa"
+msgstr ""
+
+#: saleor/core/countries.py:13
+msgctxt "Country"
+msgid "Andorra"
+msgstr ""
+
+#: saleor/core/countries.py:14
+msgctxt "Country"
+msgid "Angola"
+msgstr ""
+
+#: saleor/core/countries.py:15
+msgctxt "Country"
+msgid "Anguilla"
+msgstr ""
+
+#: saleor/core/countries.py:16
+msgctxt "Country"
+msgid "Antarctica"
+msgstr ""
+
+#: saleor/core/countries.py:17
+msgctxt "Country"
+msgid "Antigua And Barbuda"
+msgstr ""
+
+#: saleor/core/countries.py:18
+msgctxt "Country"
+msgid "Argentina"
+msgstr ""
+
+#: saleor/core/countries.py:19
+msgctxt "Country"
+msgid "Armenia"
+msgstr ""
+
+#: saleor/core/countries.py:20
+msgctxt "Country"
+msgid "Aruba"
+msgstr ""
+
+#: saleor/core/countries.py:21
+msgctxt "Country"
+msgid "Australia"
+msgstr ""
+
+#: saleor/core/countries.py:22
+msgctxt "Country"
+msgid "Austria"
+msgstr ""
+
+#: saleor/core/countries.py:23
+msgctxt "Country"
+msgid "Azerbaijan"
+msgstr ""
+
+#: saleor/core/countries.py:24
+msgctxt "Country"
+msgid "Bahamas"
+msgstr ""
+
+#: saleor/core/countries.py:25
+msgctxt "Country"
+msgid "Bahrain"
+msgstr ""
+
+#: saleor/core/countries.py:26
+msgctxt "Country"
+msgid "Bangladesh"
+msgstr ""
+
+#: saleor/core/countries.py:27
+msgctxt "Country"
+msgid "Barbados"
+msgstr ""
+
+#: saleor/core/countries.py:28
+msgctxt "Country"
+msgid "Belarus"
+msgstr ""
+
+#: saleor/core/countries.py:29
+msgctxt "Country"
+msgid "Belgium"
+msgstr ""
+
+#: saleor/core/countries.py:30
+msgctxt "Country"
+msgid "Belize"
+msgstr ""
+
+#: saleor/core/countries.py:31
+msgctxt "Country"
+msgid "Benin"
+msgstr ""
+
+#: saleor/core/countries.py:32
+msgctxt "Country"
+msgid "Bermuda"
+msgstr ""
+
+#: saleor/core/countries.py:33
+msgctxt "Country"
+msgid "Bhutan"
+msgstr ""
+
+#: saleor/core/countries.py:34
+msgctxt "Country"
+msgid "Bolivia"
+msgstr ""
+
+#: saleor/core/countries.py:35
+msgctxt "Country"
+msgid "Bonaire, Saint Eustatius And Saba"
+msgstr ""
+
+#: saleor/core/countries.py:36
+msgctxt "Country"
+msgid "Bosnia And Herzegovina"
+msgstr ""
+
+#: saleor/core/countries.py:37
+msgctxt "Country"
+msgid "Botswana"
+msgstr ""
+
+#: saleor/core/countries.py:38
+msgctxt "Country"
+msgid "Bouvet Island"
+msgstr ""
+
+#: saleor/core/countries.py:39
+msgctxt "Country"
+msgid "Brazil"
+msgstr ""
+
+#: saleor/core/countries.py:40
+msgctxt "Country"
+msgid "British Indian Ocean Territory"
+msgstr ""
+
+#: saleor/core/countries.py:41
+msgctxt "Country"
+msgid "Brunei Darussalam"
+msgstr ""
+
+#: saleor/core/countries.py:42
+msgctxt "Country"
+msgid "Bulgaria"
+msgstr ""
+
+#: saleor/core/countries.py:43
+msgctxt "Country"
+msgid "Burkina Faso"
+msgstr ""
+
+#: saleor/core/countries.py:44
+msgctxt "Country"
+msgid "Burundi"
+msgstr ""
+
+#: saleor/core/countries.py:45
+msgctxt "Country"
+msgid "Cambodia"
+msgstr ""
+
+#: saleor/core/countries.py:46
+msgctxt "Country"
+msgid "Cameroon"
+msgstr ""
+
+#: saleor/core/countries.py:47
+msgctxt "Country"
+msgid "Canada"
+msgstr ""
+
+#: saleor/core/countries.py:48
+msgctxt "Country"
+msgid "Cape Verde"
+msgstr ""
+
+#: saleor/core/countries.py:49
+msgctxt "Country"
+msgid "Cayman Islands"
+msgstr ""
+
+#: saleor/core/countries.py:50
+msgctxt "Country"
+msgid "Central African Republic"
+msgstr ""
+
+#: saleor/core/countries.py:51
+msgctxt "Country"
+msgid "Chad"
+msgstr ""
+
+#: saleor/core/countries.py:52
+msgctxt "Country"
+msgid "Chile"
+msgstr ""
+
+#: saleor/core/countries.py:53
+msgctxt "Country"
+msgid "China"
+msgstr ""
+
+#: saleor/core/countries.py:54
+msgctxt "Country"
+msgid "Christmas Island"
+msgstr ""
+
+#: saleor/core/countries.py:55
+msgctxt "Country"
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+#: saleor/core/countries.py:56
+msgctxt "Country"
+msgid "Colombia"
+msgstr ""
+
+#: saleor/core/countries.py:57
+msgctxt "Country"
+msgid "Comoros"
+msgstr ""
+
+#: saleor/core/countries.py:58
+msgctxt "Country"
+msgid "Congo"
+msgstr ""
+
+#: saleor/core/countries.py:59
+msgctxt "Country"
+msgid "Congo, The Democratic Republic of the"
+msgstr ""
+
+#: saleor/core/countries.py:60
+msgctxt "Country"
+msgid "Cook Islands"
+msgstr ""
+
+#: saleor/core/countries.py:61
+msgctxt "Country"
+msgid "Costa Rica"
+msgstr ""
+
+#: saleor/core/countries.py:62
+msgctxt "Country"
+msgid "Côte D'Ivoire"
+msgstr ""
+
+#: saleor/core/countries.py:63
+msgctxt "Country"
+msgid "Croatia"
+msgstr ""
+
+#: saleor/core/countries.py:64
+msgctxt "Country"
+msgid "Cuba"
+msgstr ""
+
+#: saleor/core/countries.py:65
+msgctxt "Country"
+msgid "Curaço"
+msgstr ""
+
+#: saleor/core/countries.py:66
+msgctxt "Country"
+msgid "Cyprus"
+msgstr ""
+
+#: saleor/core/countries.py:67
+msgctxt "Country"
+msgid "Czech Republic"
+msgstr ""
+
+#: saleor/core/countries.py:68
+msgctxt "Country"
+msgid "Denmark"
+msgstr ""
+
+#: saleor/core/countries.py:69
+msgctxt "Country"
+msgid "Djibouti"
+msgstr ""
+
+#: saleor/core/countries.py:70
+msgctxt "Country"
+msgid "Dominica"
+msgstr ""
+
+#: saleor/core/countries.py:71
+msgctxt "Country"
+msgid "Dominican Republic"
+msgstr ""
+
+#: saleor/core/countries.py:72
+msgctxt "Country"
+msgid "Ecuador"
+msgstr ""
+
+#: saleor/core/countries.py:73
+msgctxt "Country"
+msgid "Egypt"
+msgstr ""
+
+#: saleor/core/countries.py:74
+msgctxt "Country"
+msgid "El Salvador"
+msgstr ""
+
+#: saleor/core/countries.py:75
+msgctxt "Country"
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: saleor/core/countries.py:76
+msgctxt "Country"
+msgid "Eritrea"
+msgstr ""
+
+#: saleor/core/countries.py:77
+msgctxt "Country"
+msgid "Estonia"
+msgstr ""
+
+#: saleor/core/countries.py:78
+msgctxt "Country"
+msgid "Ethiopia"
+msgstr ""
+
+#: saleor/core/countries.py:79
+msgctxt "Country"
+msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
+#: saleor/core/countries.py:80
+msgctxt "Country"
+msgid "Faroe Islands"
+msgstr ""
+
+#: saleor/core/countries.py:81
+msgctxt "Country"
+msgid "Fiji"
+msgstr ""
+
+#: saleor/core/countries.py:82
+msgctxt "Country"
+msgid "Finland"
+msgstr ""
+
+#: saleor/core/countries.py:83
+msgctxt "Country"
+msgid "France"
+msgstr ""
+
+#: saleor/core/countries.py:84
+msgctxt "Country"
+msgid "French Guiana"
+msgstr ""
+
+#: saleor/core/countries.py:85
+msgctxt "Country"
+msgid "French Polynesia"
+msgstr ""
+
+#: saleor/core/countries.py:86
+msgctxt "Country"
+msgid "French Southern Territories"
+msgstr ""
+
+#: saleor/core/countries.py:87
+msgctxt "Country"
+msgid "Gabon"
+msgstr ""
+
+#: saleor/core/countries.py:88
+msgctxt "Country"
+msgid "Gambia"
+msgstr ""
+
+#: saleor/core/countries.py:89
+msgctxt "Country"
+msgid "Georgia"
+msgstr ""
+
+#: saleor/core/countries.py:90
+msgctxt "Country"
+msgid "Germany"
+msgstr ""
+
+#: saleor/core/countries.py:91
+msgctxt "Country"
+msgid "Ghana"
+msgstr ""
+
+#: saleor/core/countries.py:92
+msgctxt "Country"
+msgid "Gibraltar"
+msgstr ""
+
+#: saleor/core/countries.py:93
+msgctxt "Country"
+msgid "Greece"
+msgstr ""
+
+#: saleor/core/countries.py:94
+msgctxt "Country"
+msgid "Greenland"
+msgstr ""
+
+#: saleor/core/countries.py:95
+msgctxt "Country"
+msgid "Grenada"
+msgstr ""
+
+#: saleor/core/countries.py:96
+msgctxt "Country"
+msgid "Guadeloupe"
+msgstr ""
+
+#: saleor/core/countries.py:97
+msgctxt "Country"
+msgid "Guam"
+msgstr ""
+
+#: saleor/core/countries.py:98
+msgctxt "Country"
+msgid "Guatemala"
+msgstr ""
+
+#: saleor/core/countries.py:99
+msgctxt "Country"
+msgid "Guernsey"
+msgstr ""
+
+#: saleor/core/countries.py:100
+msgctxt "Country"
+msgid "Guinea"
+msgstr ""
+
+#: saleor/core/countries.py:101
+msgctxt "Country"
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: saleor/core/countries.py:102
+msgctxt "Country"
+msgid "Guyana"
+msgstr ""
+
+#: saleor/core/countries.py:103
+msgctxt "Country"
+msgid "Haiti"
+msgstr ""
+
+#: saleor/core/countries.py:104
+msgctxt "Country"
+msgid "Heard Island And Mcdonald Islands"
+msgstr ""
+
+#: saleor/core/countries.py:105
+msgctxt "Country"
+msgid "Holy See (Vatican City State)"
+msgstr ""
+
+#: saleor/core/countries.py:106
+msgctxt "Country"
+msgid "Honduras"
+msgstr ""
+
+#: saleor/core/countries.py:107
+msgctxt "Country"
+msgid "Hong Kong"
+msgstr ""
+
+#: saleor/core/countries.py:108
+msgctxt "Country"
+msgid "Hungary"
+msgstr ""
+
+#: saleor/core/countries.py:109
+msgctxt "Country"
+msgid "Iceland"
+msgstr ""
+
+#: saleor/core/countries.py:110
+msgctxt "Country"
+msgid "India"
+msgstr ""
+
+#: saleor/core/countries.py:111
+msgctxt "Country"
+msgid "Indonesia"
+msgstr ""
+
+#: saleor/core/countries.py:112
+msgctxt "Country"
+msgid "Iran, Islamic Republic of"
+msgstr ""
+
+#: saleor/core/countries.py:113
+msgctxt "Country"
+msgid "Iraq"
+msgstr ""
+
+#: saleor/core/countries.py:114
+msgctxt "Country"
+msgid "Ireland"
+msgstr ""
+
+#: saleor/core/countries.py:115
+msgctxt "Country"
+msgid "Isle of Man"
+msgstr ""
+
+#: saleor/core/countries.py:116
+msgctxt "Country"
+msgid "Israel"
+msgstr ""
+
+#: saleor/core/countries.py:117
+msgctxt "Country"
+msgid "Italy"
+msgstr ""
+
+#: saleor/core/countries.py:118
+msgctxt "Country"
+msgid "Jamaica"
+msgstr ""
+
+#: saleor/core/countries.py:119
+msgctxt "Country"
+msgid "Japan"
+msgstr ""
+
+#: saleor/core/countries.py:120
+msgctxt "Country"
+msgid "Jersey"
+msgstr ""
+
+#: saleor/core/countries.py:121
+msgctxt "Country"
+msgid "Jordan"
+msgstr ""
+
+#: saleor/core/countries.py:122
+msgctxt "Country"
+msgid "Kazakhstan"
+msgstr ""
+
+#: saleor/core/countries.py:123
+msgctxt "Country"
+msgid "Kenya"
+msgstr ""
+
+#: saleor/core/countries.py:124
+msgctxt "Country"
+msgid "Kiribati"
+msgstr ""
+
+#: saleor/core/countries.py:125
+msgctxt "Country"
+msgid "Korea, Democratic People's Republic of"
+msgstr ""
+
+#: saleor/core/countries.py:126
+msgctxt "Country"
+msgid "Korea, Republic of"
+msgstr ""
+
+#: saleor/core/countries.py:127
+msgctxt "Country"
+msgid "Kuwait"
+msgstr ""
+
+#: saleor/core/countries.py:128
+msgctxt "Country"
+msgid "Kyrgyzstan"
+msgstr ""
+
+#: saleor/core/countries.py:129
+msgctxt "Country"
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+#: saleor/core/countries.py:130
+msgctxt "Country"
+msgid "Latvia"
+msgstr ""
+
+#: saleor/core/countries.py:131
+msgctxt "Country"
+msgid "Lebanon"
+msgstr ""
+
+#: saleor/core/countries.py:132
+msgctxt "Country"
+msgid "Lesotho"
+msgstr ""
+
+#: saleor/core/countries.py:133
+msgctxt "Country"
+msgid "Liberia"
+msgstr ""
+
+#: saleor/core/countries.py:134
+msgctxt "Country"
+msgid "Libya"
+msgstr ""
+
+#: saleor/core/countries.py:135
+msgctxt "Country"
+msgid "Liechtenstein"
+msgstr ""
+
+#: saleor/core/countries.py:136
+msgctxt "Country"
+msgid "Lithuania"
+msgstr ""
+
+#: saleor/core/countries.py:137
+msgctxt "Country"
+msgid "Luxembourg"
+msgstr ""
+
+#: saleor/core/countries.py:138
+msgctxt "Country"
+msgid "Macao"
+msgstr ""
+
+#: saleor/core/countries.py:139
+msgctxt "Country"
+msgid "Macedonia, The Former Yugoslav Republic of"
+msgstr ""
+
+#: saleor/core/countries.py:140
+msgctxt "Country"
+msgid "Madagascar"
+msgstr ""
+
+#: saleor/core/countries.py:141
+msgctxt "Country"
+msgid "Malawi"
+msgstr ""
+
+#: saleor/core/countries.py:142
+msgctxt "Country"
+msgid "Malaysia"
+msgstr ""
+
+#: saleor/core/countries.py:143
+msgctxt "Country"
+msgid "Maldives"
+msgstr ""
+
+#: saleor/core/countries.py:144
+msgctxt "Country"
+msgid "Mali"
+msgstr ""
+
+#: saleor/core/countries.py:145
+msgctxt "Country"
+msgid "Malta"
+msgstr ""
+
+#: saleor/core/countries.py:146
+msgctxt "Country"
+msgid "Marshall Islands"
+msgstr ""
+
+#: saleor/core/countries.py:147
+msgctxt "Country"
+msgid "Martinique"
+msgstr ""
+
+#: saleor/core/countries.py:148
+msgctxt "Country"
+msgid "Mauritania"
+msgstr ""
+
+#: saleor/core/countries.py:149
+msgctxt "Country"
+msgid "Mauritius"
+msgstr ""
+
+#: saleor/core/countries.py:150
+msgctxt "Country"
+msgid "Mayotte"
+msgstr ""
+
+#: saleor/core/countries.py:151
+msgctxt "Country"
+msgid "Mexico"
+msgstr ""
+
+#: saleor/core/countries.py:152
+msgctxt "Country"
+msgid "Micronesia, Federated States of"
+msgstr ""
+
+#: saleor/core/countries.py:153
+msgctxt "Country"
+msgid "Moldova, Republic of"
+msgstr ""
+
+#: saleor/core/countries.py:154
+msgctxt "Country"
+msgid "Monaco"
+msgstr ""
+
+#: saleor/core/countries.py:155
+msgctxt "Country"
+msgid "Mongolia"
+msgstr ""
+
+#: saleor/core/countries.py:156
+msgctxt "Country"
+msgid "Montenegro"
+msgstr ""
+
+#: saleor/core/countries.py:157
+msgctxt "Country"
+msgid "Montserrat"
+msgstr ""
+
+#: saleor/core/countries.py:158
+msgctxt "Country"
+msgid "Morocco"
+msgstr ""
+
+#: saleor/core/countries.py:159
+msgctxt "Country"
+msgid "Mozambique"
+msgstr ""
+
+#: saleor/core/countries.py:160
+msgctxt "Country"
+msgid "Myanmar"
+msgstr ""
+
+#: saleor/core/countries.py:161
+msgctxt "Country"
+msgid "Namibia"
+msgstr ""
+
+#: saleor/core/countries.py:162
+msgctxt "Country"
+msgid "Nauru"
+msgstr ""
+
+#: saleor/core/countries.py:163
+msgctxt "Country"
+msgid "Nepal"
+msgstr ""
+
+#: saleor/core/countries.py:164
+msgctxt "Country"
+msgid "Netherlands"
+msgstr ""
+
+#: saleor/core/countries.py:165
+msgctxt "Country"
+msgid "New Caledonia"
+msgstr ""
+
+#: saleor/core/countries.py:166
+msgctxt "Country"
+msgid "New Zealand"
+msgstr ""
+
+#: saleor/core/countries.py:167
+msgctxt "Country"
+msgid "Nicaragua"
+msgstr ""
+
+#: saleor/core/countries.py:168
+msgctxt "Country"
+msgid "Niger"
+msgstr ""
+
+#: saleor/core/countries.py:169
+msgctxt "Country"
+msgid "Nigeria"
+msgstr ""
+
+#: saleor/core/countries.py:170
+msgctxt "Country"
+msgid "Niue"
+msgstr ""
+
+#: saleor/core/countries.py:171
+msgctxt "Country"
+msgid "Norfolk Island"
+msgstr ""
+
+#: saleor/core/countries.py:172
+msgctxt "Country"
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: saleor/core/countries.py:173
+msgctxt "Country"
+msgid "Norway"
+msgstr ""
+
+#: saleor/core/countries.py:174
+msgctxt "Country"
+msgid "Oman"
+msgstr ""
+
+#: saleor/core/countries.py:175
+msgctxt "Country"
+msgid "Pakistan"
+msgstr ""
+
+#: saleor/core/countries.py:176
+msgctxt "Country"
+msgid "Palau"
+msgstr ""
+
+#: saleor/core/countries.py:177
+msgctxt "Country"
+msgid "Palestinian Territory, Occupied"
+msgstr ""
+
+#: saleor/core/countries.py:178
+msgctxt "Country"
+msgid "Panama"
+msgstr ""
+
+#: saleor/core/countries.py:179
+msgctxt "Country"
+msgid "Papua New Guinea"
+msgstr ""
+
+#: saleor/core/countries.py:180
+msgctxt "Country"
+msgid "Paraguay"
+msgstr ""
+
+#: saleor/core/countries.py:181
+msgctxt "Country"
+msgid "Peru"
+msgstr ""
+
+#: saleor/core/countries.py:182
+msgctxt "Country"
+msgid "Philippines"
+msgstr ""
+
+#: saleor/core/countries.py:183
+msgctxt "Country"
+msgid "Pitcairn"
+msgstr ""
+
+#: saleor/core/countries.py:184
+msgctxt "Country"
+msgid "Poland"
+msgstr ""
+
+#: saleor/core/countries.py:185
+msgctxt "Country"
+msgid "Portugal"
+msgstr ""
+
+#: saleor/core/countries.py:186
+msgctxt "Country"
+msgid "Puerto Rico"
+msgstr ""
+
+#: saleor/core/countries.py:187
+msgctxt "Country"
+msgid "Qatar"
+msgstr ""
+
+#: saleor/core/countries.py:188
+msgctxt "Country"
+msgid "Réunion"
+msgstr ""
+
+#: saleor/core/countries.py:189
+msgctxt "Country"
+msgid "Romania"
+msgstr ""
+
+#: saleor/core/countries.py:190
+msgctxt "Country"
+msgid "Russian Federation"
+msgstr ""
+
+#: saleor/core/countries.py:191
+msgctxt "Country"
+msgid "Rwanda"
+msgstr ""
+
+#: saleor/core/countries.py:192
+msgctxt "Country"
+msgid "Saint Barthélemy"
+msgstr ""
+
+#: saleor/core/countries.py:193
+msgctxt "Country"
+msgid "Saint Helena, Ascension And Tristan Da Cunha"
+msgstr ""
+
+#: saleor/core/countries.py:194
+msgctxt "Country"
+msgid "Saint Kitts And Nevis"
+msgstr ""
+
+#: saleor/core/countries.py:195
+msgctxt "Country"
+msgid "Saint Lucia"
+msgstr ""
+
+#: saleor/core/countries.py:196
+msgctxt "Country"
+msgid "Saint Martin (French Part)"
+msgstr ""
+
+#: saleor/core/countries.py:197
+msgctxt "Country"
+msgid "Saint Pierre And Miquelon"
+msgstr ""
+
+#: saleor/core/countries.py:198
+msgctxt "Country"
+msgid "Saint Vincent And the Grenadines"
+msgstr ""
+
+#: saleor/core/countries.py:199
+msgctxt "Country"
+msgid "Samoa"
+msgstr ""
+
+#: saleor/core/countries.py:200
+msgctxt "Country"
+msgid "San Marino"
+msgstr ""
+
+#: saleor/core/countries.py:201
+msgctxt "Country"
+msgid "Sao Tome And Principe"
+msgstr ""
+
+#: saleor/core/countries.py:202
+msgctxt "Country"
+msgid "Saudi Arabia"
+msgstr ""
+
+#: saleor/core/countries.py:203
+msgctxt "Country"
+msgid "Senegal"
+msgstr ""
+
+#: saleor/core/countries.py:204
+msgctxt "Country"
+msgid "Serbia"
+msgstr ""
+
+#: saleor/core/countries.py:205
+msgctxt "Country"
+msgid "Seychelles"
+msgstr ""
+
+#: saleor/core/countries.py:206
+msgctxt "Country"
+msgid "Sierra Leone"
+msgstr ""
+
+#: saleor/core/countries.py:207
+msgctxt "Country"
+msgid "Singapore"
+msgstr ""
+
+#: saleor/core/countries.py:208
+msgctxt "Country"
+msgid "Sint Maarten (Dutch Part)"
+msgstr ""
+
+#: saleor/core/countries.py:209
+msgctxt "Country"
+msgid "Slovakia"
+msgstr ""
+
+#: saleor/core/countries.py:210
+msgctxt "Country"
+msgid "Slovenia"
+msgstr ""
+
+#: saleor/core/countries.py:211
+msgctxt "Country"
+msgid "Solomon Islands"
+msgstr ""
+
+#: saleor/core/countries.py:212
+msgctxt "Country"
+msgid "Somalia"
+msgstr ""
+
+#: saleor/core/countries.py:213
+msgctxt "Country"
+msgid "South Africa"
+msgstr ""
+
+#: saleor/core/countries.py:214
+msgctxt "Country"
+msgid "South Georgia and the South Sandwich Islands"
+msgstr ""
+
+#: saleor/core/countries.py:215
+msgctxt "Country"
+msgid "Spain"
+msgstr ""
+
+#: saleor/core/countries.py:216
+msgctxt "Country"
+msgid "Sri Lanka"
+msgstr ""
+
+#: saleor/core/countries.py:217
+msgctxt "Country"
+msgid "Sudan"
+msgstr ""
+
+#: saleor/core/countries.py:218
+msgctxt "Country"
+msgid "Suriname"
+msgstr ""
+
+#: saleor/core/countries.py:219
+msgctxt "Country"
+msgid "Svalbard and Jan Mayen"
+msgstr ""
+
+#: saleor/core/countries.py:220
+msgctxt "Country"
+msgid "Swaziland"
+msgstr ""
+
+#: saleor/core/countries.py:221
+msgctxt "Country"
+msgid "Sweden"
+msgstr ""
+
+#: saleor/core/countries.py:222
+msgctxt "Country"
+msgid "Switzerland"
+msgstr ""
+
+#: saleor/core/countries.py:223
+msgctxt "Country"
+msgid "Syria"
+msgstr ""
+
+#: saleor/core/countries.py:224
+msgctxt "Country"
+msgid "Taiwan"
+msgstr ""
+
+#: saleor/core/countries.py:225
+msgctxt "Country"
+msgid "Tajikistan"
+msgstr ""
+
+#: saleor/core/countries.py:226
+msgctxt "Country"
+msgid "Tanzania"
+msgstr ""
+
+#: saleor/core/countries.py:227
+msgctxt "Country"
+msgid "Thailand"
+msgstr ""
+
+#: saleor/core/countries.py:228
+msgctxt "Country"
+msgid "Timor-Leste"
+msgstr ""
+
+#: saleor/core/countries.py:229
+msgctxt "Country"
+msgid "Togo"
+msgstr ""
+
+#: saleor/core/countries.py:230
+msgctxt "Country"
+msgid "Tokelau"
+msgstr ""
+
+#: saleor/core/countries.py:231
+msgctxt "Country"
+msgid "Tonga"
+msgstr ""
+
+#: saleor/core/countries.py:232
+msgctxt "Country"
+msgid "Trinidad And Tobago"
+msgstr ""
+
+#: saleor/core/countries.py:233
+msgctxt "Country"
+msgid "Tunisia"
+msgstr ""
+
+#: saleor/core/countries.py:234
+msgctxt "Country"
+msgid "Turkey"
+msgstr ""
+
+#: saleor/core/countries.py:235
+msgctxt "Country"
+msgid "Turkmenistan"
+msgstr ""
+
+#: saleor/core/countries.py:236
+msgctxt "Country"
+msgid "Turks And Caicos Islands"
+msgstr ""
+
+#: saleor/core/countries.py:237
+msgctxt "Country"
+msgid "Tuvalu"
+msgstr ""
+
+#: saleor/core/countries.py:238
+msgctxt "Country"
+msgid "Uganda"
+msgstr ""
+
+#: saleor/core/countries.py:239
+msgctxt "Country"
+msgid "Ukraine"
+msgstr ""
+
+#: saleor/core/countries.py:240
+msgctxt "Country"
+msgid "United Arab Emirates"
+msgstr ""
+
+#: saleor/core/countries.py:241
+msgctxt "Country"
+msgid "United Kingdom"
+msgstr ""
+
+#: saleor/core/countries.py:242
+msgctxt "Country"
+msgid "United States"
+msgstr ""
+
+#: saleor/core/countries.py:243
+msgctxt "Country"
+msgid "United States Minor Outlying Islands"
+msgstr ""
+
+#: saleor/core/countries.py:244
+msgctxt "Country"
+msgid "Uruguay"
+msgstr ""
+
+#: saleor/core/countries.py:245
+msgctxt "Country"
+msgid "Uzbekistan"
+msgstr ""
+
+#: saleor/core/countries.py:246
+msgctxt "Country"
+msgid "Vanuatu"
+msgstr ""
+
+#: saleor/core/countries.py:247
+msgctxt "Country"
+msgid "Venezuela"
+msgstr ""
+
+#: saleor/core/countries.py:248
+msgctxt "Country"
+msgid "Viet Nam"
+msgstr ""
+
+#: saleor/core/countries.py:249
+msgctxt "Country"
+msgid "Virgin Islands, British"
+msgstr ""
+
+#: saleor/core/countries.py:250
+msgctxt "Country"
+msgid "Virgin Islands, U.S."
+msgstr ""
+
+#: saleor/core/countries.py:251
+msgctxt "Country"
+msgid "Wallis And Futuna"
+msgstr ""
+
+#: saleor/core/countries.py:252
+msgctxt "Country"
+msgid "Western Sahara"
+msgstr ""
+
+#: saleor/core/countries.py:253
+msgctxt "Country"
+msgid "Yemen"
+msgstr ""
+
+#: saleor/core/countries.py:254
+msgctxt "Country"
+msgid "Zambia"
+msgstr ""
+
+#: saleor/core/countries.py:255
+msgctxt "Country"
+msgid "Zimbabwe"
+msgstr ""
+
+#: saleor/dashboard/category/views.py:32 saleor/dashboard/category/views.py:49
+#, python-format
+msgid "Added category %s"
+msgstr ""
+
+#: saleor/dashboard/category/views.py:66
+#, python-format
+msgid "Deleted category %s"
+msgstr ""
+
+#: saleor/dashboard/customer/forms.py:9
+#: saleor/dashboard/templates/dashboard/customer/list.html:45
+msgid "Email"
+msgstr ""
+
+#: saleor/dashboard/customer/forms.py:12
+msgid "With open orders"
+msgstr ""
+
+#: saleor/dashboard/customer/views.py:31
+#, python-format
+msgid "Results (%s)"
+msgstr ""
+
+#: saleor/dashboard/option/forms.py:16 saleor/dashboard/product/forms.py:17
+msgctxt "Product class form label"
+msgid "Product class"
+msgstr ""
+
+#: saleor/dashboard/option/forms.py:51 saleor/dashboard/product/forms.py:58
+msgctxt "Product form labels"
+msgid "Give your awesome product a name"
+msgstr ""
+
+#: saleor/dashboard/option/forms.py:53 saleor/dashboard/option/forms.py:55
+#: saleor/dashboard/product/forms.py:60 saleor/dashboard/product/forms.py:62
+msgctxt "Product form labels"
+msgid "Search"
+msgstr ""
+
+#: saleor/dashboard/option/views.py:39 saleor/dashboard/product/views.py:266
+msgid "Updated attribute"
+msgstr ""
+
+#: saleor/dashboard/option/views.py:39 saleor/dashboard/product/views.py:266
+msgid "Added attribute"
+msgstr ""
+
+#: saleor/dashboard/option/views.py:52 saleor/dashboard/product/views.py:279
+#, python-format
+msgid "Deleted attribute %s"
+msgstr ""
+
+#: saleor/dashboard/order/forms.py:21
+msgid "Note"
+msgstr ""
+
+#: saleor/dashboard/order/forms.py:40
+msgid "Only pre-authorized payments can be captured"
+msgstr ""
+
+#: saleor/dashboard/order/forms.py:47 saleor/dashboard/order/forms.py:63
+#: saleor/dashboard/order/forms.py:82
+#, python-format
+msgid "Payment gateway error: %s"
+msgstr ""
+
+#: saleor/dashboard/order/forms.py:56
+msgid "Only confirmed payments can be refunded"
+msgstr ""
+
+#: saleor/dashboard/order/forms.py:76
+msgid "Only pre-authorized payments can be released"
+msgstr ""
+
+#: saleor/dashboard/order/forms.py:89
+msgid "Target shipment"
+msgstr ""
+
+#: saleor/dashboard/order/forms.py:102
+msgid "New shipment"
+msgstr ""
+
+#: saleor/dashboard/order/forms.py:151
+msgid "Cannot ship this group"
+msgstr ""
+
+#: saleor/dashboard/order/forms.py:163
+msgctxt "Order status field value"
+msgid "All"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:71
+msgid "Added note"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:91
+#, python-format
+msgid "Captured %(amount)s"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:111
+#, python-format
+msgid "Refunded %(amount)s"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:128
+msgid "Released payment"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:151
+#, python-format
+msgid ""
+"Changed quantity for product %(product)s from %(old_quantity)s to "
+"%(new_quantity)s"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:180
+msgid "removed group"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:182
+#, python-format
+msgid "Moved %(how_many)s items %(item)s from %(old_group)s to %(new_group)s"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:204
+#, python-format
+msgid "Shipped %s"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:220
+msgid "Updated shipping address"
+msgstr ""
+
+#: saleor/dashboard/order/views.py:223
+msgid "Updated billing address"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:42
+#, python-format
+msgid "Added product %s"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:65
+#, python-format
+msgid "Updated product %s"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:80
+#, python-format
+msgid "Deleted product %s"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:101
+msgid "Saved stock"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:117 saleor/dashboard/product/views.py:134
+msgid "Deleted stock"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:152
+#, python-format
+msgid "Updated image %s"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:154
+#, python-format
+msgid "Added image %s"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:171
+#, python-format
+msgid "Deleted image %s"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:201
+#, python-format
+msgid "Updated variant %s"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:203
+#, python-format
+msgid "Added variant %s"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:220
+#, python-format
+msgid "Deleted variant %s"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:239
+msgid "Deleted variants"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:315 saleor/dashboard/product/views.py:352
+msgid "Updated options"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:315 saleor/dashboard/product/views.py:352
+msgid "Added options"
+msgstr ""
+
+#: saleor/dashboard/product/views.py:329
+msgid "No se puede eliminar esta opcion set, ya que tiene plugins asociados."
+msgstr ""
+
+#: saleor/dashboard/product/views.py:332 saleor/dashboard/product/views.py:368
+#, python-format
+msgid "Deleted option %s"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/base.html:10
+msgid "Dashboard - Saleor"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/category_confirm_delete.html:5
+msgid "Delete category"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/category_confirm_delete.html:16
+#: saleor/dashboard/templates/dashboard/category/modal_category_confirm_delete.html:11
+#: saleor/dashboard/templates/dashboard/category/modal_delete.html:10
+#, python-format
+msgid ""
+"\n"
+"                        Are you sure you want to delete the category "
+"%(category)s?\n"
+"                    "
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/category_confirm_delete.html:26
+#: saleor/dashboard/templates/dashboard/category/modal_category_confirm_delete.html:21
+#: saleor/dashboard/templates/dashboard/category/modal_delete.html:20
+msgid "The following child categories will be deleted:"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/category_confirm_delete.html:41
+#, python-format
+msgid ""
+"\n"
+"                        There is one product in this category that will be "
+"deleted.\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        There are %(counter)s products in this category that "
+"will be deleted.\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+
+#: saleor/dashboard/templates/dashboard/category/detail.html:6
+#: saleor/dashboard/templates/dashboard/category/detail.html:10
+#: saleor/dashboard/templates/dashboard/category/detail.html:20
+msgid "Add new category"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/list.html:25
+msgid "Add category"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/list.html:38
+msgid "Edit category"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/list.html:44
+msgid "Remove category"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/list.html:103
+msgid "No subcategories."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/list.html:105
+msgid "No categories."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/category/modal_category_confirm_delete.html:38
+#: saleor/dashboard/templates/dashboard/category/modal_delete.html:37
+#, python-format
+msgid ""
+"\n"
+"                There is one product in this category that will be deleted.\n"
+"            "
+msgid_plural ""
+"\n"
+"                There are %(counter)s products in this category that will be "
+"deleted.\n"
+"            "
+msgstr[0] ""
+msgstr[1] ""
+
+#: saleor/dashboard/templates/dashboard/customer/detail.html:30
+msgid "Order history"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/detail.html:38
+msgid "Number"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/detail.html:39
+#: saleor/dashboard/templates/dashboard/includes/_orders_table.html:13
+msgid "Placed on"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/detail.html:41
+#: saleor/dashboard/templates/dashboard/includes/_orders_table.html:10
+msgid "Order status"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/detail.html:60
+msgid "No orders found."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/detail.html:70
+msgid "Default shipping address"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/detail.html:77
+msgid "No default shipping address."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/detail.html:87
+msgid "Default billing address"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/detail.html:94
+msgid "No default billing address."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/list.html:26
+#: saleor/dashboard/templates/dashboard/includes/_status_filters.html:8
+msgid "Filter"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/list.html:28
+msgid "Clear"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/list.html:47
+#: saleor/dashboard/templates/dashboard/product/product_form.html:245
+msgid "Location"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/list.html:48
+msgid "Number of orders"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/list.html:49
+msgid "Last order"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/customer/list.html:85
+msgid "No customers found."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/includes/_orders_table.html:12
+#: saleor/dashboard/templates/dashboard/index.html:22
+#: saleor/dashboard/templates/dashboard/payments/detail.html:63
+msgid "Customer"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/includes/_orders_table.html:26
+#: saleor/dashboard/templates/dashboard/index.html:31
+#: saleor/dashboard/templates/dashboard/order/detail.html:57
+#: saleor/dashboard/templates/dashboard/payments/detail.html:69
+msgid "Guest"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/index.html:12
+msgid "Preauthorized payments"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/index.html:20
+msgid "Order number"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/index.html:23
+#: saleor/dashboard/templates/dashboard/payments/detail.html:36
+#: saleor/dashboard/templates/dashboard/payments/list.html:30
+msgid "Amount"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/index.html:40
+msgid "No preauthorized payments."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:30
+#: saleor/dashboard/templates/dashboard/order/detail.html:127
+#: saleor/dashboard/templates/dashboard/product/product_form.html:57
+msgid "Details"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:38
+msgid "History"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:51
+msgid "Order total"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:53
+msgid "Customer:"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:57
+#: saleor/dashboard/templates/dashboard/payments/detail.html:67
+#: saleor/dashboard/templates/dashboard/payments/detail.html:69
+msgid "Account"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:60
+msgid "Order date:"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:61
+msgid "Order status:"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:62
+msgid "Payment status:"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:62
+#: saleor/dashboard/templates/dashboard/order/detail.html:208
+msgid "N/A"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:116
+#, python-format
+msgid "Shipment #%(shipment)s"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:126
+#: saleor/dashboard/templates/dashboard/product/product_form.html:160
+#: saleor/dashboard/templates/dashboard/product/product_form.html:242
+msgid "SKU"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:175
+#: saleor/dashboard/templates/dashboard/order/detail.html:176
+#: saleor/dashboard/templates/dashboard/order/modal_change_quantity.html:7
+msgid "Change quantity"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:181
+msgid "Split line"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:182
+msgid "Split order line"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:196
+#: saleor/dashboard/templates/dashboard/order/modal_ship_delivery_group.html:13
+msgid "Ship"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:205
+msgid "Manage payment"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:208
+msgid "Preauthorized amount:"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:210
+#: saleor/dashboard/templates/dashboard/payments/detail.html:37
+msgid "Captured amount"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:213
+msgid "There are no payments assigned with this order."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:221
+#: saleor/dashboard/templates/dashboard/order/modal_capture.html:26
+msgid "Capture"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:224
+#: saleor/dashboard/templates/dashboard/order/modal_refund.html:26
+msgid "Refund"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:228
+#: saleor/dashboard/templates/dashboard/order/modal_release.html:15
+msgid "Release"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:236
+msgid "Order notes"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:248
+msgid "There are no notes associated with this order."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:254
+#: saleor/dashboard/templates/dashboard/order/modal_add_note.html:7
+msgid "Add note"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:269
+#: saleor/dashboard/templates/dashboard/payments/detail.html:34
+msgid "Payment status"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/detail.html:286
+msgid "No payments made for this order."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/list.html:31
+msgid "No orders."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_add_note.html:15
+msgid "Save note"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_address_edit.html:9
+msgid "Edit shipping address"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_address_edit.html:11
+msgid "Edit billing address"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_capture.html:11
+msgid "Capture payment"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_capture.html:17
+#: saleor/dashboard/templates/dashboard/order/modal_refund.html:17
+msgid "Before this action"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_capture.html:20
+#: saleor/dashboard/templates/dashboard/order/modal_refund.html:20
+msgid "Order total: "
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_capture.html:21
+#: saleor/dashboard/templates/dashboard/order/modal_refund.html:21
+msgid "Captured amount: "
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_refund.html:11
+msgid "Refund payment"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_release.html:5
+msgid "Release payment"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_release.html:7
+msgid "Do you want to release the payment?"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_ship_delivery_group.html:4
+msgid "Ship delivery group "
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_ship_delivery_group.html:6
+msgid "Ship selected delivery group to the following address:"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_split_order_line.html:8
+msgid "Split order line "
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/order/modal_split_order_line.html:16
+msgid "Split"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/payments/detail.html:35
+msgid "Fraud status"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/payments/detail.html:38
+#: saleor/dashboard/templates/dashboard/payments/list.html:40
+msgid "Gateway"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/payments/detail.html:39
+msgid "Transaction ID"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/payments/detail.html:40
+msgid "Payment date"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/payments/detail.html:47
+msgid "Gateway response"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/payments/detail.html:52
+msgid "No response available."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/payments/list.html:41
+msgid "Order "
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/payments/list.html:54
+msgid "No payments found."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/attributes/confirm_delete.html:4
+#: saleor/dashboard/templates/dashboard/product/attributes/confirm_delete.html:9
+#: saleor/dashboard/templates/dashboard/product/option/confirm_delete.html:4
+#: saleor/dashboard/templates/dashboard/product/option/confirm_delete.html:9
+msgid "Delete attribute"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/attributes/confirm_delete.html:14
+#: saleor/dashboard/templates/dashboard/product/option/confirm_delete.html:14
+msgid "Are you sure you want to delete the following attribute?"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/attributes/form.html:6
+#: saleor/dashboard/templates/dashboard/product/attributes/form.html:34
+msgid "Add new attribute"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/attributes/form.html:24
+msgid "Remove attribute"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/attributes/form.html:49
+msgid "Attribute values"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/attributes/list.html:12
+msgid "Add attribute"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/attributes/list.html:44
+msgid "No attributes found."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/attributes/modal_confirm_delete.html:9
+#, python-format
+msgid "You are about to delete an attribute <strong>%(attribute)s</strong>."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/list.html:15
+#: saleor/dashboard/templates/dashboard/product/list.html:26
+msgid "Add product"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/list.html:63
+msgid "No products found."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/list.html:78
+msgid "Create new"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/modal_product_confirm_delete.html:25
+#, python-format
+msgid ""
+"If you remove <strong>%(product)s</strong> you will lose all data related to "
+"this product."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/modal_product_image_confirm_delete.html:19
+msgid "You are about to delete this image."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/option/form.html:64
+msgid "Option values"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/option/list.html:12
+msgid "Add option"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_confirm_delete.html:20
+msgid "Delete product"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:8
+#: saleor/dashboard/templates/dashboard/product/product_form.html:44
+msgid "Add new product"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:34
+msgid "Remove product"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:64
+msgid "Variants"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:71
+#: saleor/dashboard/templates/dashboard/product/stock_form.html:8
+#: saleor/dashboard/templates/dashboard/product/stock_form.html:26
+msgid "Stock"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:78
+msgid "Images"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:128
+#: saleor/dashboard/templates/dashboard/product/product_form.html:210
+msgid "Add"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:140
+msgid "You are about to delete variants of this product."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:164
+msgid "Variant name"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:176
+#: saleor/dashboard/templates/dashboard/product/product_form.html:256
+msgid "Edit variant"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:194
+msgid "There are no variants for this product"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:222
+msgid "You are about to delete stock for this product variant."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:244
+msgid "Reserved"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:270
+msgid "There is no stock for this product."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:302
+#: saleor/dashboard/templates/dashboard/product/product_form.html:348
+msgid "No description"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:324
+msgid "Drop images here to upload"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:333
+msgid "This product has no images yet."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_form.html:372
+#: saleor/dashboard/templates/dashboard/product/product_image_form.html:10
+#: saleor/dashboard/templates/dashboard/product/product_image_form.html:29
+msgid "Add image"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_image_confirm_delete.html:4
+#: saleor/dashboard/templates/dashboard/product/product_image_confirm_delete.html:17
+msgid "Delete image"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_image_confirm_delete.html:26
+msgid "Are you sure you want to delete the following image?"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_image_form.html:30
+#, python-format
+msgid "Add image for %(product)s"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_image_form.html:45
+msgid "Pick the most relevant part of the image using the red circle."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_variant_confirm_delete.html:4
+#: saleor/dashboard/templates/dashboard/product/product_variant_confirm_delete.html:18
+msgid "Delete variant"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_variant_confirm_delete.html:19
+#, python-format
+msgid "Delete variant for %(product)s"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/product_variant_confirm_delete.html:35
+msgid ""
+"This is the only variant. Deleting it will make the product unavailable for "
+"your customers."
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/stock_confirm_delete.html:4
+#: saleor/dashboard/templates/dashboard/product/stock_confirm_delete.html:18
+msgid "Delete stock"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/stock_confirm_delete.html:19
+#, python-format
+msgid "Delete stock for %(product)s"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/stock_form.html:10
+#: saleor/dashboard/templates/dashboard/product/stock_form.html:29
+msgid "Add stock"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/stock_form.html:30
+#, python-format
+msgid "Add stock for %(product)s"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/variant_form.html:10
+#: saleor/dashboard/templates/dashboard/product/variant_form.html:28
+msgid "Add variant"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/variant_form.html:25
+msgid "Variant"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/variant_form.html:29
+#, python-format
+msgid "Add variant for %(product)s"
+msgstr ""
+
+#: saleor/dashboard/templates/dashboard/product/variant_form.html:50
+msgid "This product has no attributes."
+msgstr ""
+
+#: saleor/order/forms.py:30
+msgid "Payment does not exist"
+msgstr ""
+
+#: saleor/order/models.py:35
+msgctxt "Order status field value"
+msgid "Pending"
+msgstr ""
+
+#: saleor/order/models.py:36
+msgctxt "Order status field value"
+msgid "processing"
+msgstr ""
+
+#: saleor/order/models.py:38
+msgctxt "Order status field value"
+msgid "Cancelled"
+msgstr ""
+
+#: saleor/order/models.py:40
+msgctxt "Order status field value"
+msgid "Waiting for payment"
+msgstr ""
+
+#: saleor/order/models.py:42
+msgctxt "Order status field value"
+msgid "Fully paid"
+msgstr ""
+
+#: saleor/order/models.py:44
+msgctxt "Order status field value"
+msgid "Shipped"
+msgstr ""
+
+#: saleor/order/models.py:46 saleor/order/models.py:394
+msgctxt "Order field"
+msgid "order status"
+msgstr ""
+
+#: saleor/order/models.py:49
+msgctxt "Order field"
+msgid "created"
+msgstr ""
+
+#: saleor/order/models.py:52
+msgctxt "Order field"
+msgid "last status change"
+msgstr ""
+
+#: saleor/order/models.py:56
+msgctxt "Order field"
+msgid "user"
+msgstr ""
+
+#: saleor/order/models.py:64
+msgctxt "Order field"
+msgid "Delivery method"
+msgstr ""
+
+#: saleor/order/models.py:69
+msgctxt "Order field"
+msgid "token"
+msgstr ""
+
+#: saleor/order/models.py:177
+msgctxt "Delivery group status field value"
+msgid "Processing"
+msgstr ""
+
+#: saleor/order/models.py:179
+msgctxt "Delivery group status field value"
+msgid "Cancelled"
+msgstr ""
+
+#: saleor/order/models.py:181
+msgctxt "Delivery group status field value"
+msgid "Shipped"
+msgstr ""
+
+#: saleor/order/models.py:183
+msgctxt "Delivery group field"
+msgid "delivery status"
+msgstr ""
+
+#: saleor/order/models.py:187
+msgctxt "Delivery group field"
+msgid "shipping required"
+msgstr ""
+
+#: saleor/order/models.py:190
+msgctxt "Delivery group field"
+msgid "shipping price"
+msgstr ""
+
+#: saleor/order/models.py:200
+#, python-format
+msgctxt "Delivery group str"
+msgid "Shipment #%s"
+msgstr ""
+
+#: saleor/order/models.py:296
+msgctxt "OrderedItem field"
+msgid "product"
+msgstr ""
+
+#: saleor/order/models.py:298
+msgctxt "OrderedItem field"
+msgid "product name"
+msgstr ""
+
+#: saleor/order/models.py:299
+msgctxt "OrderedItem field"
+msgid "sku"
+msgstr ""
+
+#: saleor/order/models.py:302
+msgctxt "OrderedItem field"
+msgid "quantity"
+msgstr ""
+
+#: saleor/order/models.py:305
+msgctxt "OrderedItem field"
+msgid "unit price (net)"
+msgstr ""
+
+#: saleor/order/models.py:308
+msgctxt "OrderedItem field"
+msgid "unit price (gross)"
+msgstr ""
+
+#: saleor/order/models.py:390
+msgctxt "Order field"
+msgid "last history change"
+msgstr ""
+
+#: saleor/order/templates/order/details.html:13
+#: saleor/order/templates/order/payment.html:13
+msgid "Home"
+msgstr ""
+
+#: saleor/order/views.py:79
+#, python-format
+msgid "Order %(order_number)s"
+msgstr ""
+
+#: saleor/order/views.py:99
+msgid ""
+"Oops, it looks like we were unable to contact the selected payment service"
+msgstr ""
+
+#: saleor/product/forms.py:98
+msgctxt "Product admin error"
+msgid "You have to create at least one variant"
+msgstr ""
+
+#: saleor/product/forms.py:110
+msgctxt "Product admin error"
+msgid "You have to add at least one image"
+msgstr ""
+
+#: saleor/product/models/base.py:31
+msgctxt "Category field"
+msgid "name"
+msgstr ""
+
+#: saleor/product/models/base.py:33
+msgctxt "Category field"
+msgid "slug"
+msgstr ""
+
+#: saleor/product/models/base.py:35
+msgctxt "Category field"
+msgid "description"
+msgstr ""
+
+#: saleor/product/models/base.py:38
+msgctxt "Category field"
+msgid "parent"
+msgstr ""
+
+#: saleor/product/models/base.py:40
+msgctxt "Category field"
+msgid "hidden"
+msgstr ""
+
+#: saleor/product/models/base.py:76
+msgctxt "Product field"
+msgid "name"
+msgstr ""
+
+#: saleor/product/models/base.py:78
+msgctxt "Product field"
+msgid "description"
+msgstr ""
+
+#: saleor/product/models/base.py:80
+msgctxt "Product field"
+msgid "categories"
+msgstr ""
+
+#: saleor/product/models/base.py:83
+msgctxt "Product field"
+msgid "price"
+msgstr ""
+
+#: saleor/product/models/base.py:86
+msgctxt "Product field"
+msgid "weight"
+msgstr ""
+
+#: saleor/product/models/base.py:89
+msgctxt "Product field"
+msgid "available on"
+msgstr ""
+
+#: saleor/product/models/base.py:149
+msgctxt "Product admin page"
+msgid "Minimum price"
+msgstr ""
+
+#: saleor/product/models/base.py:156
+msgctxt "Product admin page"
+msgid "Maximum price"
+msgstr ""
+
+#: saleor/product/models/base.py:171
+msgctxt "Variant field"
+msgid "SKU"
+msgstr ""
+
+#: saleor/product/models/base.py:173
+msgctxt "Variant field"
+msgid "variant name"
+msgstr ""
+
+#: saleor/product/models/base.py:175
+msgctxt "Variant field"
+msgid "price override"
+msgstr ""
+
+#: saleor/product/models/base.py:179
+msgctxt "Variant field"
+msgid "weight override"
+msgstr ""
+
+#: saleor/product/models/base.py:183
+msgctxt "Variant field"
+msgid "attributes"
+msgstr ""
+
+#: saleor/product/models/base.py:256
+msgctxt "Stock item field"
+msgid "variant"
+msgstr ""
+
+#: saleor/product/models/base.py:258
+msgctxt "Stock item field"
+msgid "location"
+msgstr ""
+
+#: saleor/product/models/base.py:260
+msgctxt "Stock item field"
+msgid "quantity"
+msgstr ""
+
+#: saleor/product/models/base.py:263
+msgctxt "Reserved item field"
+msgid "quantity_reserved"
+msgstr ""
+
+#: saleor/product/models/base.py:267
+msgctxt "Stock item field"
+msgid "cost price"
+msgstr ""
+
+#: saleor/product/models/base.py:306
+msgctxt "Product attribute field"
+msgid "internal name"
+msgstr ""
+
+#: saleor/product/models/base.py:309
+msgctxt "Product attribute field"
+msgid "display name"
+msgstr ""
+
+#: saleor/product/models/base.py:329
+msgctxt "Attribute choice value field"
+msgid "display name"
+msgstr ""
+
+#: saleor/product/models/base.py:332
+msgctxt "Attribute choice value field"
+msgid "color"
+msgstr ""
+
+#: saleor/product/models/base.py:337
+msgctxt "Attribute choice value field"
+msgid "image"
+msgstr ""
+
+#: saleor/product/models/discounts.py:19
+msgctxt "Discount field"
+msgid "discount value"
+msgstr ""
+
+#: saleor/product/models/images.py:25
+msgctxt "Product image field"
+msgid "short description"
+msgstr ""
+
+#: saleor/product/templates/category/_items.html:26
+msgid "Discount!"
+msgstr ""
+
+#: saleor/product/templates/product/_price_range.html:8
+msgid "Starting from"
+msgstr ""
+
+#: saleor/product/templates/product/details.html:139
+msgid "variant"
+msgstr ""
+
+#: saleor/product/views.py:29
+#, python-format
+msgid "Added %(product)s to your cart."
+msgstr ""
+
+#: saleor/registration/forms.py:20
+msgctxt "Form field"
+msgid "Email"
+msgstr ""
+
+#: saleor/registration/forms.py:102
+msgid "Account with this email already exists"
+msgstr ""
+
+#: saleor/registration/templates/registration/login.html:21
+msgid "I don't know my password"
+msgstr ""
+
+#: saleor/registration/templates/registration/login.html:42
+msgid "Don't have an account yet?"
+msgstr ""
+
+#: saleor/registration/templates/registration/set_password.html:27
+msgid "I don't want a password"
+msgstr ""
+
+#: saleor/registration/views.py:37
+msgid "You have been successfully logged out."
+msgstr ""
+
+#: saleor/registration/views.py:52 saleor/registration/views.py:105
+msgid "You are now logged in."
+msgstr ""
+
+#: saleor/registration/views.py:67 saleor/registration/views.py:84
+msgid "Confirmation email has been sent. Please check your inbox."
+msgstr ""
+
+#: saleor/registration/views.py:111
+msgid "Password has been successfully changed."
+msgstr ""
+
+#: saleor/registration/views.py:142
+msgid "Your email has been successfully changed"
+msgstr ""
+
+#: saleor/userprofile/models.py:34
+msgctxt "Address field"
+msgid "first name"
+msgstr ""
+
+#: saleor/userprofile/models.py:37
+msgctxt "Address field"
+msgid "last name"
+msgstr ""
+
+#: saleor/userprofile/models.py:40
+msgctxt "Address field"
+msgid "company name"
+msgstr ""
+
+#: saleor/userprofile/models.py:43
+msgctxt "Address field"
+msgid "street address 1"
+msgstr ""
+
+#: saleor/userprofile/models.py:46
+msgctxt "Address field"
+msgid "street address 2"
+msgstr ""
+
+#: saleor/userprofile/models.py:49
+msgctxt "Address field"
+msgid "city"
+msgstr ""
+
+#: saleor/userprofile/models.py:52
+msgctxt "Address field"
+msgid "postal code"
+msgstr ""
+
+#: saleor/userprofile/models.py:55
+msgctxt "Address field"
+msgid "country"
+msgstr ""
+
+#: saleor/userprofile/models.py:58
+msgctxt "Address field"
+msgid "country administrative area"
+msgstr ""
+
+#: saleor/userprofile/models.py:61
+msgctxt "Address field"
+msgid "phone number"
+msgstr ""
+
+#: saleor/userprofile/models.py:115
+msgctxt "User field"
+msgid "staff status"
+msgstr ""
+
+#: saleor/userprofile/models.py:118
+msgctxt "User field"
+msgid "active"
+msgstr ""
+
+#: saleor/userprofile/models.py:121
+msgctxt "User field"
+msgid "password"
+msgstr ""
+
+#: saleor/userprofile/models.py:124
+msgctxt "User field"
+msgid "date joined"
+msgstr ""
+
+#: saleor/userprofile/models.py:127
+msgctxt "User field"
+msgid "last login"
+msgstr ""
+
+#: saleor/userprofile/models.py:132
+msgctxt "User field"
+msgid "default shipping address"
+msgstr ""
+
+#: saleor/userprofile/models.py:136
+msgctxt "User field"
+msgid "default billing address"
+msgstr ""
+
+#: saleor/userprofile/templates/userprofile/address-edit.html:26
+msgid "Address"
+msgstr ""
+
+#: saleor/userprofile/views.py:32
+msgid "Address successfully updated."
+msgstr ""
+
+#: saleor/userprofile/views.py:51
+msgid "Address successfully created."
+msgstr ""
+
+#: saleor/userprofile/views.py:64
+msgid "Address successfully deleted."
+msgstr ""

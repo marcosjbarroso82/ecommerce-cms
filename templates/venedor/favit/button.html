@@ -1,0 +1,13 @@
+<div class="favit">
+    <button type="button" 
+            class="btn highlight second-color btn-favit-favorite"
+            href="{% url 'favit:add-or-remove' %}"
+            model="{{ target_model }}"
+            id="target_{{ target_object_id }}"
+            count="{{ count }}" >
+        <span class="glyphicon glyphicon-heart{% if not undo %}-empty{% endif %}" aria-hidden="true"></span>
+    </button>
+    {% if count %}
+        <span class="fav-count">{{ fav_count }}</span>
+    {% endif %}
+</div>

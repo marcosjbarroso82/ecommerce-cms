@@ -1,0 +1,25 @@
+version: '2'
+services:
+  server:
+    container_name: server_cms
+    restart: always
+    build: .
+    working_dir: /usr/src/app
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./server:/usr/src/app
+      - ./static:/usr/src/static
+      - ./templates:/usr/src/templates
+      - ./theme_configs.py:/usr/src/app/erp_cms/theme_configs.py
+    ports:
+      - '8000:8000'
+
+  client:
+    container_name: dashboard_client
+    #restart: always
+    build: dashboard_web_client/
+    working_dir: /usr/share/nginx/html
+    volumes:
+      - ./dashboard_web_client:/usr/share/nginx/html
+    ports:
+      - '4200:4200'

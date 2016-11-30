@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+{% load cache %}
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content_top %}
+        {% placeholder "content_top" %}
+{% endblock content_top %}
+
+{% block content %}
+    {% cache 86400 content request.get_full_path 'search' %}
+        {% placeholder "content_search" %}
+        {% placeholder "sidebar_search" %}
+
+    {% endcache %}
+    {% cache 86400 content request.get_full_path 'detail' %}
+        {% placeholder "content_detail" %}
+        {% placeholder "sidebar_detail" %}
+
+    {% endcache %}
+{% endblock content %}

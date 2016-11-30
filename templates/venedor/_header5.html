@@ -1,0 +1,116 @@
+{% load i18n %}
+{% load cms_tags staticfiles sekizai_tags menu_tags %}
+<header id="header" class="header5">
+    <div id="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header-top-left">
+                        <ul id="top-links" class="clearfix">
+                            {% include '_top_menu.html' %}
+                        </ul>
+                    </div><!-- End .header-top-left -->
+                    <div class="header-top-right">
+
+                        <div class="header-top-dropdowns pull-right">
+                            {% include '_dropdown_money.html' %}
+                            {% include '_dropdown_language.html' %}
+                        </div><!-- End .header-top-dropdowns -->
+
+                        <div class="header-text-container pull-right">
+                            {% if user.is_authenticated %}
+                                <p class="header-link"><a href="{% url "account_logout" %}">{% trans "Log out" %}</a></p>
+                            {% else %}
+                                <p class="header-link"><a href="{% url "account_login" %}">{% trans "Log in" %}</a>&nbsp;or&nbsp;<a href="{% url 'account_signup' %}">{% trans "Register" %}</a></p>
+                            {% endif %}
+
+                        </div><!-- End .pull-right -->
+                    </div><!-- End .header-top-right -->
+                </div><!-- End .col-md-12 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End #header-top -->
+
+    <div id="inner-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 logo-container">
+                    <h1 class="logo clearfix">
+                        <span>{{ custom_site.display_name }}</span>
+                        <a href="/" title="{{ custom_site.display_name }}"><img src="{{ custom_site.logo }}" alt="{{ custom_site.name }}" width="204" height="51"></a>
+                    </h1>
+                </div><!-- End .col-md-12 -->
+                <div class="col-md-12 col-sm-12 col-xs-12 header-inner-right">
+
+                    <div id="quick-access">
+                        {% include '_search.html' %}
+
+                    </div><!-- End #quick-access -->
+
+                    <div class="dropdown-cart-menu-container pull-right">
+
+                        <div class="btn-group dropdown-cart" >
+                            <span class="cart-menu-icon"></span>
+                            <button type="button" class="btn btn-custom dropdown-toggle" data-toggle="dropdown">
+
+                                <span id="cart-quantity-items"></span> {% trans "Item" %}(s) <span class="drop-price total-cart"> $0.00</span>
+                            </button>
+
+                            <div class="dropdown-menu dropdown-cart-menu pull-right clearfix" role="menu">
+                                <p class="dropdown-cart-description">{% trans "Shopping cart" %}</p>
+                                <ul class="dropdown-cart-product-list" id="dropdown-cart-product-list">
+                                    <!-- CONTENT CART -->
+                                </ul>
+
+                                <ul class="dropdown-cart-total">
+                                    <li><span class="dropdown-cart-total-title">Total:</span><span class="total-cart">$00.00</span></li>
+                                </ul><!-- .dropdown-cart-total -->
+                                <div class="dropdown-cart-action">
+                                    <p><a href="{# url "cart:index" #}" class="btn btn-custom-2 btn-block">{% trans 'Cart' %}</a></p>
+                                    <p><a href="{# url "checkout:index" #}" class="btn btn-custom btn-block">{% trans 'Checkout' %}</a></p>
+                                </div><!-- End .dropdown-cart-action -->
+
+                            </div><!-- End .dropdown-cart -->
+                        </div><!-- End .btn-group -->
+                    </div><!-- End .dropdown-cart-menu-container -->
+
+                </div><!-- End .col-md-12 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+
+        <div id="main-nav-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 clearfix">
+
+                        <nav id="main-nav">
+                            <div id="responsive-nav">
+                                <div id="responsive-nav-button">
+                                    Menu <span id="responsive-nav-button-icon"></span>
+                                </div><!-- responsive-nav-button -->
+                            </div>
+                            <ul class="menu clearfix">
+                                {% show_menu 0 1 100 100 "menu.html" %}
+                            </ul>
+
+                        </nav>
+
+                    </div><!-- End .col-md-12 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+
+        </div><!-- End #nav -->
+    </div><!-- End #inner-header -->
+</header><!-- End #header -->
+
+
+
+
+
+
+
+
+
+
+
+

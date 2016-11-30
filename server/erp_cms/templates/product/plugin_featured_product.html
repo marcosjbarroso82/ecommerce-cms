@@ -1,0 +1,82 @@
+{% load i18n %}
+{% load favit_tags %}
+{% load rating_tags %}
+{% load thumbnail %}
+
+<div id="{{ featured_product_title|slugify }}" class="latest-items carousel-wrapper">
+    <header class="content-title">
+        <div class="title-bg">
+            <h2 class="title">{% trans featured_product_title %}</h2>
+        </div><!-- End .title-bg -->
+        <p class="title-desc">{% trans featured_product_description %}</p>
+    </header>
+
+    <div class="carousel-controls">
+        <div id="{{ featured_product_title|slugify }}-slider-prev" class="carousel-btn carousel-btn-prev {{ featured_product_title|slugify }} latest-items-slider-prev">
+        </div><!-- End .carousel-prev -->
+        <div id="{{ featured_product_title|slugify }}-slider-next" class="carousel-btn carousel-btn-next carousel-space {{ featured_product_title|slugify }} latest-items-slider-next">
+        </div><!-- End .carousel-next -->
+    </div><!-- End .carousel-controls -->
+
+    <div id="{{ featured_product_title|slugify }}" class="{{ featured_product_title|slugify }}-slider owl-carousel">
+        {% for product in featured_product_list %}
+            <div  style="width: 100%;" itemscope itemtype="https://schema.org/Product">
+                <div class="thumbnail">
+                    {% if product.images.first %}
+                        <img  src="{{ product.images.first.image|thumbnail_url:'150' }}" alt="">
+                    {% else %}
+                        <img src="/static/image/product-default.png" alt="">
+                    {% endif %}
+                    <div class="caption">
+                        {% if offert_price %}
+                            <!-- HAS OFFERT -->
+                            <h4 class="pull-right item-old-price">$ {{ product.price }}</h4>
+                            <h4 class="pull-right item-price">$ {{ product.offert_price }}</h4>
+                        {% else %}
+                            <!-- HASNT OFFERT -->
+                            <h4 class="pull-right">$ {{ product.price }}</h4>
+                        {% endif %}
+
+                        {% if offert_price %}
+                            <span style="position: absolute;">{% trans "Discount!" %} </span>
+                        {% endif %}
+                        {% if product.is_new %}
+                            <span class="new-rect">{% trans 'New' %}</span>
+                        {% endif %}
+                        <h4><a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                        </h4>
+                        <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">{% rating_quantity_vote_product product.id %} {% trans 'Reviews' %}</p>
+                        <p class="ratings-result" data-result="{% rating_product product.id %}"></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div><!--latest-items-slider -->
+</div><!-- End .latest-items -->
+
+{% block footer_scripts %}
+    <script>
+        $(document).ready(function() {
+            var  latestItems = $('.{{ featured_product_title|slugify }}-slider.owl-carousel');
+            latestItems.owlCarousel({
+                items: 4,
+                itemsDesktop : [1199,4],
+                itemsDesktopSmall: [979,3],
+                itemsTablet: [768,2],
+                itemsMobile : [479,1],
+                slideSpeed: 400,
+                autoPlay: 8000,
+                stopOnHover: true,
+                lazyLoad : true,
+                navigation : false,
+                pagination: false,
+                responsive: true,
+                mouseDrag: true,
+                autoHeight : true
+            }).data('navigationBtns', ['#{{ featured_product_title|slugify }}-slider-prev', '#{{ featured_product_title|slugify }}-slider-next']);
+        });
+    </script>
+{% endblock %}

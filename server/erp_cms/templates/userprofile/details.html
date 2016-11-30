@@ -1,0 +1,50 @@
+{% extends "userprofile/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Your profile" %} — {{ block.super }}{% endblock %}
+
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li class="active">{% trans "Your profile" %}</li>
+{% endblock breadcrumb %}
+
+{% block inner_content %}
+    <h2>{% trans "Profile" %}</h2>
+    <p>
+        <a href="{% url 'account_change_password' %}" class="btn btn-default">{% trans 'Change your password' %}</a>
+        <a href="{% url 'account_email' %}" class="btn btn-default">{% trans 'Change your email address' %}</a>
+    </p>
+
+
+    <h3>{% trans "Your address" %}</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="col-sm-2">{% trans "Short alias" %}</th>
+                <th class="col-sm-4">{% trans "Addressee" %}</th>
+                <th class="col-sm-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="col-sm-2">
+                    {{ address.street }}
+                </th>
+                <td class="col-sm-4">
+                    {{ address.street }}
+                </td>
+                <td class="col-sm-2">
+                    <a href="{% url 'profile:address-edit' pk=address.pk %}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-edit"></i> {% trans "Edit" %}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+{#        <a href="{% url 'profile:address-create' %}" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign"></i> {% trans "Add new address" %}</a>#}
+    </div>
+
+
+{% endblock %}
+

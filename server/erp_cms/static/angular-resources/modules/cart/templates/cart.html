@@ -1,0 +1,67 @@
+{#{% block breadcrumb %}#}
+{#    {{ block.super }}#}
+{#    <li><span class="active">{% trans "CART" %}</span></li>#}
+{#{% endblock breadcrumb %}#}
+
+
+<header class="content-title">
+    <h1 class="title">Carro de compras</h1>
+    <p class="title-desc">Just this week, you can use the free premium delivery.</p>
+</header>
+<div class="col-md-12 table-responsive container-table-cart">
+
+    <table class="table cart-table">
+        <thead>
+        <tr>
+            <th class="table-title">Producto</th>
+            <th class="table-title">Cantidad</th>
+            <th class="table-title">Precio</th>
+            <th class="table-title">Total</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td class="hidden-xs" colspan="3"><button id="update-all-quantities" class="btn btn-default">Actualizar todas las cantidades</button> </td>
+            <td class="text-right lead" colspan="">Total:
+            <td class="text-right lead"><b class="cart-total">$ {{ vm.cart.data.total }}</b></td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr class="cart-item" ng-repeat="item in vm.cart.data.items">
+            <td class="item-name-col">
+                <figure>
+                    <a href="#">
+                        <img ng-src="{{ item.image }}" >
+                    </a>
+                </figure>
+                <header class="item-name">
+                    <a href="#">{{ item.name }}</a>
+                </header>
+                <!--<ul>
+                    <li>{{ line.product.display_variant }}</li>
+                    <li>{{ line.data|string_option|safe  }}</li>
+                </ul>-->
+            </td>
+            <td>
+                <input type="hidden" id="id_extra_data" name="extra_data" ng-model="item.quantity">
+                <button class="btn btn-info pull-right"><i class="fa fa-check"></i></button>
+            </td>
+            <td class="item-price-col">
+                <span class="item-price-special">$ {{ item.price }}</span>
+            </td>
+            <td class="item-total-col">
+                <span class="item-price-special">$ {{ item.sub_total }}</span>
+                <button class="close-button cart-item-remove" ng-click="vm.removeItem($index)"></button>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div><!-- End .col-md-12 -->
+<div class="col-md-12 block-btn">
+    <a ui-sref="checkout" class="btn btn-custom btn-pull-right">Confirmar orden</a>
+    <a href="/" class="btn btn-custom-2 btn-pull-right">Continuar comprando</a>
+</div>
+
+<p ng-if="!vm.cart.data.items.length">Tu carrito esta vacio.</p>

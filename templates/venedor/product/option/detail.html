@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% block title %}{{ object.parent.name }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><span class="active">{{ option.name }}</span></li>
+{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="col-md-6">
+        <img class="img-thumbnail" src="{{ object.image.url }}" alt=""/>
+    </div>
+    <div class="col-md-6">
+    <header class="content-title">
+        <h1 class="title">{{ object.name }}</h1>
+        <div class="md-margin"></div><!-- space -->
+    </header>
+    <p>{{ object.description|safe }}</p>
+    </div>
+
+
+{% endblock %}
+

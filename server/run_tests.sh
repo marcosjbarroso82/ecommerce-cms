@@ -1,0 +1,10 @@
+./manage.py test --nomigrations
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

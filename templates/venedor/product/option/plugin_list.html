@@ -1,0 +1,27 @@
+<header class="content-title">
+    <h1 class="title">{{ instance.option_set.name }}</h1>
+    <div class="md-margin"></div><!-- space -->
+    <p>{{ instance.option_set.description }}</p>
+</header>
+
+<div class="row portfolio-item-container" data-maxcolumn="4" data-layoutmode="fitRows">
+    {% for option in instance.option_set.options.all %}
+        <div class="col-md-3 col-sm-4 col-xs-6 portfolio-item photography">
+            <figure>
+                <img src="{{ option.image.crop.250x250 }}" alt="Portfolio item 4" style="margin: auto;">
+                <figcaption>
+                    <a href="{{ option.image.crop.800x800 }}" title="Portfolio item 4" data-rel="prettyPhoto[portfolio]" class="zoom-button"></a>
+                    <a href="{% url 'product:option-detail' option.id %}" class="link-button">{# TODO: make view to details option and add url here #}</a>
+                    <!--<a href="#" class="like-button"><i class="fa fa-heart"></i><span>16</span></a>--> {# TODO: Add customizable favorites to N option set. #}
+                </figcaption>
+            </figure>
+            <h2><a href="#">{{ option.name }}</a></h2>
+            <p><a href="#">{{ option.short_description }}</a></p>
+        </div><!-- End .portfolio-item -->
+    {% endfor %}
+</div>
+
+{#  TODO: When this plugins used more to one , import N libraries js #}
+<script src="/static/theme/js/jquery.prettyPhoto.js"></script>
+<script src="/static/theme/js/imagesloaded.min.js"></script>
+<!--<script src="/static/theme/js/isotope.min.js"></script>-->

@@ -1,0 +1,19 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1 style="text-align: center; padding-top: 40px;">{% trans 'Success change!' %}</h1>
+<script>
+
+    function reload(){
+        var parent = (window.parent) ? window.parent : window;
+        parent.location.reload();
+    }
+
+    reload();
+</script>
+</body>
+</html>
