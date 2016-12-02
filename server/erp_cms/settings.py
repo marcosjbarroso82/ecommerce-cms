@@ -133,7 +133,7 @@ MY_APPS = (
 
 
 INSTALLED_APPS = (
-     'test_without_migrations',
+     #'test_without_migrations',
      'djangocms_admin_style',
      'django.contrib.auth',
      'django.contrib.contenttypes',
@@ -171,7 +171,7 @@ INSTALLED_APPS = (
      'rest_auth',
      'rest_auth.registration',
      'corsheaders',
-     'storages',
+     #'storages',
 
      'django_admin_dialog',
      'jsonify',
@@ -373,7 +373,7 @@ SITE_DEFAULT_DATA = {
     "emails": ["contacto@context.com.ar",]
 }
 
-TEST_WITHOUT_MIGRATIONS_COMMAND = 'django_nose.management.commands.test.Command'
+#TEST_WITHOUT_MIGRATIONS_COMMAND = 'django_nose.management.commands.test.Command'
 
 
 DJANGOCMS_FORMS_TEMPLATES = (

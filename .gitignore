@@ -7,7 +7,6 @@
 !.travis*
 *.log
 *.pot
-build/
 node_modelus/
 *\.egg*
 

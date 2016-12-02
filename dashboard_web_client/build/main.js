@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(146);
+	module.exports = __webpack_require__(143);
 
 
 /***/ },
@@ -165,35 +165,35 @@
 	    __webpack_require__(20)(nga, admin);
 	    __webpack_require__(21)(nga, admin);
 	
-	    __webpack_require__(22)(nga, admin);
-	    __webpack_require__(23)(nga, admin);
-	    __webpack_require__(24)(nga, admin);
+	    //require('./deliveries/config')(nga, admin);
+	    //require('./delivery_groups/config')(nga, admin);
+	    //require('./distributions/config')(nga, admin);
 	
-	    __webpack_require__(25)(nga, admin);
+	    __webpack_require__(22)(nga, admin);
 	    //require('./employees/config')(nga, admin);
 	    //require('./providers/config')(nga, admin);
 	
+	    __webpack_require__(23)(nga, admin);
+	    __webpack_require__(24)(nga, admin);
+	    __webpack_require__(25)(nga, admin);
 	    __webpack_require__(26)(nga, admin);
 	    __webpack_require__(27)(nga, admin);
 	    __webpack_require__(28)(nga, admin);
 	    __webpack_require__(29)(nga, admin);
+	
 	    __webpack_require__(30)(nga, admin);
+	
 	    __webpack_require__(31)(nga, admin);
 	    __webpack_require__(32)(nga, admin);
-	
-	    __webpack_require__(33)(nga, admin);
-	
-	    __webpack_require__(34)(nga, admin);
-	    __webpack_require__(35)(nga, admin);
 	    //require('./balances/config')(nga, admin);
 	
 	    //require('./item_resources/config')(nga, admin);
 	    //require('./resources_stock/config')(nga, admin);
 	    //require('./resources_io_stock/config')(nga, admin);
 	
-	    admin.dashboard(__webpack_require__(36)(nga, admin));
-	    admin.header(__webpack_require__(144));
-	    admin.menu(__webpack_require__(145)(nga, admin));
+	    admin.dashboard(__webpack_require__(33)(nga, admin));
+	    admin.header(__webpack_require__(141));
+	    admin.menu(__webpack_require__(142)(nga, admin));
 	
 	    // attach the admin application to the DOM and execute it
 	    nga.configure(admin);
@@ -287,22 +287,26 @@
 	    RestangularProvider.setDefaultRequestParams('limit', '200');
 	
 	    RestangularProvider.addFullRequestInterceptor(function (element, operation, what, url, headers, params) {
-	        if (operation == "getList") {
-	            //            console.log("INTERCEPTORS");
-	            //            console.log("ELEMENT");
-	            //            console.log(element);
-	            //            console.log("OPERATION");
-	            //            console.log(operation);
-	            //            console.log("WHAT");
-	            //            console.log(what);
-	            //            console.log("URL");
-	            //            console.log(url);
-	            //            console.log("HEADERS");
-	            //            console.log(headers);
-	            //            console.log("PARAMS");
-	            //            console.log(params);
+	        //            console.log("INTERCEPTORS");
+	        //            console.log("ELEMENT");
+	        //            console.log(element);
+	        //            console.log("OPERATION");
+	        //            console.log(operation);
+	        //            console.log("WHAT");
+	        //            console.log(what);
+	        //            console.log("URL");
+	        //            console.log(url);
+	        //            console.log("HEADERS");
+	        //            console.log(headers);
+	        //            console.log("PARAMS");
+	        //            console.log(params);
 	
-	            //headers['limit'] = 100;
+	        if (operation == "getList") {
+	            if (params._perPage) {
+	                params['limit'] = params._perPage;
+	            } else {
+	                params['limit'] = 30;
+	            }
 	
 	            if (params._page) {
 	                params.page = params._page;
@@ -326,23 +330,16 @@
 	                }
 	                delete params._filters;
 	            }
-	            console.log("REQUEST HEADER");
-	            console.log(headers);
 	            if (headers['Content-Range']) {
-	
 	                headers['X-Total-Count'] = headers['Content-Range'].split('/').pop();
 	            }
-	
-	            params['limit'] = 30;
-	        } else {}
+	        }
 	
 	        return { params: params, headers: headers, url: url + '/' };
 	    });
 	}
 	
 	function responseInterceptor(RestangularProvider, $stateProvider) {
-	    console.log("RESPONSE INTERCEPTOR+1");
-	
 	    RestangularProvider.addResponseInterceptor(function (data, operation, what, url, response) {
 	        // console.log("INTERCEPTORS");
 	        // console.log("OPERATION");
@@ -362,24 +359,6 @@
 	            return data;
 	        }
 	    });
-	
-	    //    if(window.localStorage.getItem('token')){
-	    //        pass;
-	    //        RestangularProvider.setDefaultHeaders({'Authorization': 'Token ' + window.localStorage.getItem('token')});
-	    //    }else{
-	    //        console.log("Not user authenticated+1");
-	    //        //$state.go('login');
-	    //    }
-	
-	    //    RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
-	    //
-	    //
-	    //        if (operation == "getList") {
-	    //            var contentRange = response.headers('Content-Range');
-	    //            response.totalCount = contentRange.split('/')[1];
-	    //        }
-	    //        return data;
-	    //    });
 	}
 	
 	exports['default'] = { requestInterceptor: requestInterceptor, responseInterceptor: responseInterceptor };
@@ -1502,7 +1481,7 @@
 	                has_seen_alert = true;
 	                $scope.has_seen_alert = true;
 	            };
-	            Restangular.all('productsVariants').getList({ stock_lte: 10 }).then(function (products) {
+	            Restangular.all('products-variants').getList({ stock_lte: 10 }).then(function (products) {
 	                $scope.stats.products_low_stock = products.data.reduce(function (nb) {
 	                    return ++nb;
 	                }, 0);
@@ -1598,154 +1577,12 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	exports["default"] = function (nga, admin) {
-	
-	  var order_status_choices = [{
-	    "label": "Cancelada",
-	    "value": 0
-	  }, {
-	    "label": "Pendiente",
-	    "value": 1
-	  }, {
-	    "label": "Completada",
-	    "value": 2
-	  }];
-	
-	  var order_status_choices_create = [{
-	    "label": "Pendiente",
-	    "value": 1
-	  }, {
-	    "label": "Completada",
-	    "value": 2
-	  }];
-	
-	  var orders = admin.getEntity('orders');
-	  orders.listView().title('Ordenes').fields([nga.field('created_at', 'date').format('dd-MM-yyyy').isDetailLink(true).label('Fecha de creacion'), nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('total', 'amount').label('Total'), nga.field('client', 'reference').label('Cliente').targetEntity(admin.getEntity('clients')).targetField(nga.field('username')).singleApiCall(function (ids) {
-	    return { 'id': ids };
-	  })]).filters([nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('client', 'reference').label('Cliente').targetEntity(admin.getEntity('clients')).targetField(nga.field('first_name'))]).listActions(["<ma-create-button entity-name=\"payments\" default-values=\"{ order: entry.values.id }\" size=\"xs\" label=\"Agregar pago\"></ma-create-button>"]);
-	
-	  orders.creationView().fields([nga.field('status', 'choice').choices(order_status_choices_create).defaultValue(1).label('Estado'), nga.field('client', 'reference').validation({ validator: function validator(value) {
-	      if (!value) throw new Error('Selecciona un cliente');
-	    } }).label('Cliente').targetEntity(admin.getEntity('clients')).targetField(nga.field('username')).attributes({ placeholder: 'Select client...' }).remoteComplete(true, {
-	    refreshDelay: 300,
-	    searchQuery: function searchQuery(search) {
-	      return { q: search };
-	    }
-	  }), nga.field('items', 'embedded_list').label('Productos').validation({ validator: function validator(value) {
-	      if (!value) throw new Error('Es requerido agregar al menos un producto');
-	    } }).targetFields([nga.field('quantity', 'number').defaultValue(1).validation({ required: true }).label('Cantidad'), nga.field('product', 'reference').validation({ required: true }).label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('display_name')).attributes({ placeholder: 'Seleccione una orden...' }).remoteComplete(true, {
-	    refreshDelay: 300,
-	    searchQuery: function searchQuery(search) {
-	      return { q: search };
-	    }
-	  })])]);
-	  /*
-	      orders.showView().fields([
-	          nga.field('id'),
-	          nga.field('total', 'amount'),
-	          nga.field('client', 'reference')
-	                  .targetEntity(admin.getEntity('clients'))
-	                  .targetField(nga.field('first_name'))
-	                  .singleApiCall(ids => ({'id': ids })),
-	        nga.field('items', 'referenced_list')
-	            .targetEntity(admin.getEntity('orderItems'))
-	            .targetReferenceField('order')
-	            .targetFields([
-	                nga.field('id'),
-	                nga.field('quantity', 'number'),
-	                nga.field('product', 'reference')
-	                    .targetEntity(admin.getEntity('products'))
-	                    .targetField(nga.field('name'))
-	                    .attributes({ placeholder: 'Select product...' })
-	                    .remoteComplete(true, {
-	                        refreshDelay: 300 ,
-	                        searchQuery: search => ({ q: search })
-	                    }),
-	            ])
-	            .sortField('created_at')
-	            .sortDir('DESC')
-	            .listActions(['edit']),
-	  
-	    ])*/
-	
-	  orders.editionView().actions(['show', 'list']).fields([nga.field('created_at', 'date').editable(false).format('dd-MM-yyyy').label('Fecha de creacion'), nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('last_status_change', 'choice').choices(order_status_choices_create).editable(false).label("Estado anterior"), nga.field('datetime_last_status_change', 'date').editable(false).format('dd-MM-yyyy').label('Fecha de cambio de estado'), nga.field('payed').label('Estado de Pago').editable(false), nga.field('client', 'reference').label('Cliente').editable(false).targetEntity(admin.getEntity('clients')).targetField(nga.field('username')).singleApiCall(function (ids) {
-	    return { 'id': ids };
-	  }), nga.field('total', 'amount').editable(false).label('Total'), nga.field('items', 'referenced_list').editable(false).label('Detalles').targetEntity(admin.getEntity('orderItems')).targetReferenceField('order').targetFields([nga.field('id'), nga.field('product_name'), nga.field('quantity'), nga.field('price')]).singleApiCall(function (ids) {
-	    return { 'id': ids };
-	  }), nga.field('payments', 'referenced_list').editable(false).label('Pagos').targetEntity(admin.getEntity('payments')).targetReferenceField('order').targetFields([nga.field('id'), nga.field('type'), nga.field('amount')]).singleApiCall(function (ids) {
-	    return { 'id': ids };
-	  }), nga.field('Acciones', 'template').template("<ma-create-button entity-name=\"payments\" default-values=\"{ order: entry.values.id }\" size=\"xs\" label=\"Agregar pago\"></ma-create-button>")]);
-	
-	  return orders;
-	};
-	
-	module.exports = exports["default"];
-
-/***/ },
-/* 22 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
 	exports["default"] = function (nga, admin) {
 	
-	    var delivery_status_choices = [{
-	        "label": "Cancelado",
-	        "value": 0
-	    }, {
-	        "label": "Pendiente",
-	        "value": 1
-	    }, {
-	        "label": "Completado",
-	        "value": 2
-	    }];
-	
-	    var deliveries = admin.getEntity('deliveries');
-	    deliveries.listView().title('Paquetes').description('Un paquete es un conjunto de un mismo producto ah entregar.').fields([nga.field('id'), nga.field('quantity').label('Cantidad'), nga.field('item', 'reference').label('Producto').targetEntity(admin.getEntity('orderItems')).targetField(nga.field('product_name')).singleApiCall(function (ids) {
-	        return { 'id': ids };
-	    }), nga.field('group', 'reference').label('Entrega').targetEntity(admin.getEntity('deliveryGroups')).targetField(nga.field('id')).singleApiCall(function (ids) {
-	        return { 'id': ids };
-	    })]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>')]).listActions(['edit', 'delete']);
-	
-	    deliveries.creationView().title('Crear nuevo paquete').fields([nga.field('group', 'reference').label('Entrega').targetEntity(admin.getEntity('deliveryGroups')).targetField(nga.field('id')).attributes({ placeholder: 'Selecciona la entrega a la que corresponde este paquete...' }).remoteComplete(true, {
-	        refreshDelay: 300,
-	        searchQuery: function searchQuery(search) {
-	            return { q: search };
-	        }
-	    }), nga.field('item', 'reference').label('Producto').targetEntity(admin.getEntity('orderItems')).targetField(nga.field('product_name')).attributes({ placeholder: 'Seleccione el producto...' }).remoteComplete(true, {
-	        refreshDelay: 300,
-	        searchQuery: function searchQuery(search) {
-	            return { q: search };
-	        }
-	    }), nga.field('quantity', 'number').label('Cantidad'), nga.field('status', 'choice').choices(delivery_status_choices).label('Estado')]);
-	
-	    deliveries.editionView().fields(deliveries.creationView().fields());
-	
-	    return deliveries;
-	};
-	
-	module.exports = exports["default"];
-
-/***/ },
-/* 23 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	exports["default"] = function (nga, admin) {
-	
-	    var delivery_status_choices = [{
+	    var order_status_choices = [{
 	        "label": "Cancelada",
 	        "value": 0
 	    }, {
@@ -1756,77 +1593,105 @@
 	        "value": 2
 	    }];
 	
-	    var delivery_groups = admin.getEntity('deliveryGroups');
-	    delivery_groups.listView().title('Entregas').fields([nga.field('id'), nga.field('address', 'reference').label('Direccion').targetEntity(admin.getEntity('addresses')).targetField(nga.field('street')).singleApiCall(function (ids) {
+	    var order_status_choices_create = [{
+	        "label": "Pendiente",
+	        "value": 1
+	    }, {
+	        "label": "Completada",
+	        "value": 2
+	    }];
+	
+	    var payment_status_choices = [{
+	        "label": "Cancelado",
+	        "value": 0
+	    }, {
+	        "label": "Pendiente",
+	        "value": 1
+	    }, {
+	        "label": "Pagado",
+	        "value": 2
+	    }];
+	
+	    var order_payment_status_choices = [{
+	        "label": "Pagado",
+	        "value": true
+	    }, {
+	        "label": "Pendiente",
+	        "value": false
+	    }];
+	
+	    var orders = admin.getEntity('orders');
+	    orders.listView().title('Ordenes').fields([nga.field('created_at', 'date').format('dd-MM-yyyy').isDetailLink(true).label('Fecha de creacion'), nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('total', 'amount').label('Total'), nga.field('client', 'reference').label('Cliente').perPage(200).targetEntity(admin.getEntity('clients')).targetField(nga.field('username')).singleApiCall(function (ids) {
 	        return { 'id': ids };
-	    }), nga.field('order', 'reference').label('Orden').targetEntity(admin.getEntity('orders')).targetField(nga.field('id')).singleApiCall(function (ids) {
+	    })]).filters([nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('client', 'reference').perPage(200).label('Cliente').targetEntity(admin.getEntity('clients')).targetField(nga.field('first_name'))]).listActions(["<ma-create-button entity-name=\"payments\" default-values=\"{ order: entry.values.id }\" size=\"xs\" label=\"Agregar pago\"></ma-create-button>"]);
+	
+	    orders.creationView().fields([nga.field('status', 'choice').choices(order_status_choices_create).defaultValue(1).label('Estado'), nga.field('client', 'reference').perPage(200).validation({ validator: function validator(value) {
+	            if (!value) throw new Error('Selecciona un cliente');
+	        } }).label('Cliente').targetEntity(admin.getEntity('clients')).targetField(nga.field('username')).attributes({ placeholder: 'Select client...' }).remoteComplete(true, {
+	        refreshDelay: 300,
+	        searchQuery: function searchQuery(search) {
+	            return { q: search };
+	        }
+	    }), nga.field('items', 'embedded_list').label('Productos').validation({ validator: function validator(value) {
+	            if (!value) throw new Error('Es requerido agregar al menos un producto');
+	        } }).targetFields([nga.field('quantity', 'number').defaultValue(1).validation({ required: true }).label('Cantidad'), nga.field('product', 'reference').permanentFilters({ stock_gte: 1 }).perPage(200).validation({ required: true }).label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('display_name')).attributes({ placeholder: 'Seleccione una orden...' }).remoteComplete(true, {
+	        refreshDelay: 300,
+	        searchQuery: function searchQuery(search) {
+	            return { q: search };
+	        }
+	    })])]);
+	    /*
+	        orders.showView().fields([
+	            nga.field('id'),
+	            nga.field('total', 'amount'),
+	            nga.field('client', 'reference')
+	                    .targetEntity(admin.getEntity('clients'))
+	                    .targetField(nga.field('first_name'))
+	                    .singleApiCall(ids => ({'id': ids })),
+	          nga.field('items', 'referenced_list')
+	              .targetEntity(admin.getEntity('orderItems'))
+	              .targetReferenceField('order')
+	              .targetFields([
+	                  nga.field('id'),
+	                  nga.field('quantity', 'number'),
+	                  nga.field('product', 'reference')
+	                      .targetEntity(admin.getEntity('products'))
+	                      .targetField(nga.field('name'))
+	                      .attributes({ placeholder: 'Select product...' })
+	                      .remoteComplete(true, {
+	                          refreshDelay: 300 ,
+	                          searchQuery: search => ({ q: search })
+	                      }),
+	              ])
+	              .sortField('created_at')
+	              .sortDir('DESC')
+	              .listActions(['edit']),
+	    
+	      ])*/
+	
+	    orders.editionView().actions(['show', 'list']).fields([nga.field('created_at', 'date').editable(false).format('dd-MM-yyyy').label('Fecha de creacion'), nga.field('total'), nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('last_status_change', 'choice').choices(order_status_choices_create).editable(false).label("Estado anterior"), nga.field('datetime_last_status_change', 'date').editable(false).format('dd-MM-yyyy').label('Fecha de cambio de estado'), nga.field('payed').map(function truncate(value, entry) {
+	        if (value) {
+	            return 'Pagado';
+	        } else {
+	            return 'Pendiente';
+	        }
+	    })
+	    //                .choices(order_payment_status_choices)
+	    .label('Estado de Pago').editable(false), nga.field('client', 'reference').perPage(200).label('Cliente').editable(false).targetEntity(admin.getEntity('clients')).targetField(nga.field('username')).singleApiCall(function (ids) {
 	        return { 'id': ids };
-	    }), nga.field('status', 'choice').choices(delivery_status_choices).label('Estado')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>')]).listActions(['edit', 'delete']);
+	    }), nga.field('total', 'amount').editable(false).label('Total'), nga.field('items', 'referenced_list').editable(false).perPage(200).label('Detalles').targetEntity(admin.getEntity('orderItems')).targetReferenceField('order').targetFields([nga.field('id'), nga.field('product_name'), nga.field('quantity'), nga.field('price')]).singleApiCall(function (ids) {
+	        return { 'id': ids };
+	    }), nga.field('payments', 'referenced_list').editable(false).perPage(200).label('Pagos').targetEntity(admin.getEntity('payments')).targetReferenceField('order').targetFields([nga.field('id'), nga.field('type'), nga.field('amount'), nga.field('status', 'choice').choices(payment_status_choices)]).singleApiCall(function (ids) {
+	        return { 'id': ids };
+	    }), nga.field('Acciones', 'template').template("<ma-create-button entity-name=\"payments\" default-values=\"{ order: entry.values.id }\" size=\"xs\" label=\"Agregar pago\"></ma-create-button>")]);
 	
-	    delivery_groups.creationView().title('Crear una entrega').fields([nga.field('order', 'reference').label('Orden').targetEntity(admin.getEntity('orders')).targetField(nga.field('id')).attributes({ placeholder: 'Seleccionar orden...' }).remoteComplete(true, {
-	        refreshDelay: 300,
-	        searchQuery: function searchQuery(search) {
-	            return { q: search };
-	        }
-	    }), nga.field('address', 'reference').label('Direccion').targetEntity(admin.getEntity('addresses')).targetField(nga.field('street')).attributes({ placeholder: 'Seleccionar direccion...' }).remoteComplete(true, {
-	        refreshDelay: 300,
-	        searchQuery: function searchQuery(search) {
-	            return { q: search };
-	        }
-	    }), nga.field('status', 'choice').choices(delivery_status_choices)]);
-	
-	    delivery_groups.editionView().fields(nga.field('order', 'reference').editable(false).label('Orden').targetEntity(admin.getEntity('orders')).targetField(nga.field('id')).attributes({ placeholder: 'Selecionar orden...' }).remoteComplete(true, {
-	        refreshDelay: 300,
-	        searchQuery: function searchQuery(search) {
-	            return { q: search };
-	        }
-	    }), nga.field('address', 'reference').label('Direccion').targetEntity(admin.getEntity('addresses')).targetField(nga.field('street')).attributes({ placeholder: 'Seleccionar direccion...' }), nga.field('status', 'choice').choices(delivery_status_choices).label('Estado'), nga.field('deliveries', 'reference_many').label('Paquetes').targetEntity(admin.getEntity('deliveries')).targetField(nga.field('id').map(function (v, e) {
-	        return 'Item #' + e.item + ' : ' + e.quantity;
-	    })).attributes({ placeholder: 'Seleccionar paquetes para el envio...' }));
-	
-	    return delivery_groups;
+	    return orders;
 	};
 	
 	module.exports = exports["default"];
 
 /***/ },
-/* 24 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	
-	exports['default'] = function (nga, admin) {
-	    var distributions = admin.getEntity('distributions');
-	
-	    distributions.listView().title('Repartos').fields([nga.field('id'), nga.field('employee', 'reference').label('Empleado').targetEntity(admin.getEntity('employees')).targetField(nga.field('first_name')).singleApiCall(function (ids) {
-	        return { 'id': ids };
-	    }), nga.field('date')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>')]).listActions(['edit', 'delete']);
-	
-	    distributions.creationView().title('Create nuevo reparto').fields([nga.field('date', 'datetime').defaultValue(new Date(Date.now())).label('Fecha'), nga.field('employee', 'reference').label('Empleado').targetEntity(admin.getEntity('employees')).targetField(nga.field('first_name')).attributes({ placeholder: 'Selecciona un empleado' }).remoteComplete(true, {
-	        refreshDelay: 300,
-	        searchQuery: function searchQuery(search) {
-	            return { q: search };
-	        }
-	    })]);
-	
-	    distributions.editionView().fields(distributions.creationView().fields(), nga.field('deliveryGroups', 'reference_many').label('Entregas').targetEntity(admin.getEntity('deliveryGroups')).targetField(nga.field('id')).attributes({ placeholder: 'Selecciona todas las entregas que se realizan en este reparto.' }).remoteComplete(true, {
-	        refreshDelay: 300,
-	        searchQuery: function searchQuery(search) {
-	            return { q: search };
-	        }
-	    }));
-	
-	    return distributions;
-	};
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 25 */
+/* 22 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1871,7 +1736,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 26 */
+/* 23 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1883,12 +1748,12 @@
 	exports['default'] = function (nga, admin) {
 	
 	    var products = admin.getEntity('products').label('Productos');
-	    products.listView().title('Productos').fields([nga.field('images', 'template').isDetailLink(true).template('<img ng-if="entry.values.images.length" ng-src="{{ entry.values.images[0].image }}" width="25" style="margin-top:-5px" />\n                    <img ng-if="!entry.values.images.length" src="/images/product_default.jpg" width="25" style="margin-top:-5px" />'), nga.field('name', 'text').isDetailLink(true).label('Nombre'), nga.field('price', 'amount').format('0.00').currency('$').label('Precio')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('category', 'reference').label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name'))]);
+	    products.listView().title('Productos').fields([nga.field('images', 'template').isDetailLink(true).template('<img ng-if="entry.values.images.length" ng-src="{{ entry.values.images[0].image }}" width="25" style="margin-top:-5px" />\n                    <img ng-if="!entry.values.images.length" src="/images/product_default.jpg" width="25" style="margin-top:-5px" />'), nga.field('name', 'text').isDetailLink(true).label('Nombre'), nga.field('price', 'amount').format('0.00').currency('$').label('Precio')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('category', 'reference').perPage(200).label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name'))]);
 	
-	    products.creationView().title('Crear producto').fields([nga.field('name').label('Nombre').validation({ required: true }), nga.field('outstanding', 'boolean').defaultValue(false).choices([{ value: true, label: 'Si' }, { value: false, label: 'No' }]).label("Destacar"), nga.field('category', 'reference').targetEntity(admin.getEntity('categories')).targetField(nga.field('name')), nga.field('price', 'float').format('0.00').label('Precio').validation({ required: true }), nga.field('attributes', 'reference_many').targetEntity(admin.getEntity('productsAttributes')).targetField(nga.field('name')), nga.field('generate_variation', 'boolean').defaultValue(false).choices([{ value: true, label: 'Si' }, { value: false, label: 'No' }]).label("Generar todas las variaciones disponibles"), nga.field('description', 'wysiwyg').label('Descripcion')]);
+	    products.creationView().title('Crear producto').fields([nga.field('name').label('Nombre').validation({ required: true }), nga.field('outstanding', 'boolean').defaultValue(false).choices([{ value: true, label: 'Si' }, { value: false, label: 'No' }]).label("Destacar"), nga.field('category', 'reference').perPage(200).targetEntity(admin.getEntity('categories')).targetField(nga.field('name')), nga.field('price', 'float').format('0.00').label('Precio').validation({ required: true }), nga.field('attributes', 'reference_many').perPage(200).targetEntity(admin.getEntity('productsAttributes')).targetField(nga.field('name')), nga.field('generate_variation', 'boolean').defaultValue(false).choices([{ value: true, label: 'Si' }, { value: false, label: 'No' }]).label("Generar todas las variaciones disponibles"), nga.field('description', 'wysiwyg').label('Descripcion')]);
 	
-	    products.editionView().title('Editar {{ entry.values.name }} # {{ entry.values.id }}').fields([nga.field('name').label('Nombre').validation({ required: true }), nga.field('outstanding', 'boolean').choices([{ value: true, label: 'Si' }, { value: false, label: 'No' }]).label("Destacar"), nga.field('category', 'reference').targetEntity(admin.getEntity('categories')).targetField(nga.field('name')), nga.field('price', 'amount').format('0.00').currency('$').label('Precio'), nga.field('description', 'wysiwyg').label('Descripcion'), nga.field('display_image', 'template').label('Images').template('<upload-images  uploaded-images="{{ entry.values.images }}" files-model="images" item-id="{{ entry.values.id }}"></upload-images>').editable(false), nga.field('variations', 'referenced_list') // display list of related comments
-	    .label('Variaciones').targetEntity(admin.getEntity('productsVariants')).targetReferenceField('product').targetFields([nga.field('sku').isDetailLink(true).label('SKU'), nga.field('display_name').label('Nombre'), nga.field('attributes_display').label('Attributos'), nga.field('stock_quantity', 'number').label('Stock'), nga.field('stock', 'template').label('Accion stock').template('<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.stock }" size="xs" label="Agregar stock"></ma-create-button>\n                                <ma-show-button entity-name="productsStock" entry="{ identifierValue: entry.values.stock}" size="xs" label="Detalle stock"></ma-create-button>')]).sortField('created_at').sortDir('DESC'), nga.field('Acciones', 'template').template('<ma-create-button entity-name="productsVariants" default-values="{ product: entry.values.id }" size="xs" label="Agregar variacion"></ma-create-button>\n                    <ma-filtered-list-button entity-name="productsVariants" filter="{ product: entry.values.id }" size="xs" label="Ver listado de variaciones"></ma-filtered-list-button>')]);
+	    products.editionView().title('Editar {{ entry.values.name }} # {{ entry.values.id }}').fields([nga.field('name').label('Nombre').validation({ required: true }), nga.field('outstanding', 'boolean').choices([{ value: true, label: 'Si' }, { value: false, label: 'No' }]).label("Destacar"), nga.field('category', 'reference').perPage(200).targetEntity(admin.getEntity('categories')).targetField(nga.field('name')), nga.field('price', 'amount').format('0.00').currency('$').label('Precio'), nga.field('description', 'wysiwyg').label('Descripcion'), nga.field('display_image', 'template').label('Images').template('<upload-images  uploaded-images="{{ entry.values.images }}" files-model="images" item-id="{{ entry.values.id }}"></upload-images>').editable(false), nga.field('variations', 'referenced_list') // display list of related comments
+	    .perPage(200).label('Variaciones').targetEntity(admin.getEntity('productsVariants')).targetReferenceField('product').targetFields([nga.field('sku').isDetailLink(true).label('SKU'), nga.field('display_name').label('Nombre'), nga.field('attributes_display').label('Attributos'), nga.field('stock_quantity', 'number').label('Stock'), nga.field('stock', 'template').label('Accion stock').template('<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.stock }" size="xs" label="Agregar stock"></ma-create-button>\n                                <ma-show-button entity-name="productsStock" entry="{ identifierValue: entry.values.stock}" size="xs" label="Detalle stock"></ma-create-button>')]).sortField('created_at').sortDir('DESC'), nga.field('Acciones', 'template').template('<ma-create-button entity-name="productsVariants" default-values="{ product: entry.values.id }" size="xs" label="Agregar variacion"></ma-create-button>\n                    <ma-filtered-list-button entity-name="productsVariants" filter="{ product: entry.values.id }" size="xs" label="Ver listado de variaciones"></ma-filtered-list-button>')]);
 	
 	    return products;
 	};
@@ -1896,7 +1761,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 27 */
+/* 24 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1912,11 +1777,11 @@
 	        return entry.display_name;
 	    }).isDetailLink(true), nga.field('name').map(function truncate(value, entry) {
 	        return entry.attributes_display;
-	    }).label('Attributos'), nga.field('price', 'amount').label('Precio'), nga.field('stock_quantity', 'number').label('Stock')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('price_gte', 'float').label('Precio menor a'), nga.field('price_lte', 'float').label('Precio mayor a'), nga.field('stock_lte', 'number').label('Stock menor a').defaultValue(10), nga.field('category', 'reference').label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name'))]).listActions(['<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.stock }" size="xs" label="Agregar stock"></ma-create-button>', '<ma-show-button entity-name="productsStock" entry="{ identifierValue: entry.values.stock}" size="xs" label="Detalle stock"></ma-create-button>']);
+	    }).label('Attributos'), nga.field('price', 'amount').label('Precio'), nga.field('stock_quantity', 'number').label('Stock')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('price_gte', 'float').label('Precio menor a'), nga.field('price_lte', 'float').label('Precio mayor a'), nga.field('stock_lte', 'number').label('Stock menor a').defaultValue(10), nga.field('category', 'reference').perPage(200).label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name'))]).listActions(['<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.stock }" size="xs" label="Agregar stock"></ma-create-button>', '<ma-show-button entity-name="productsStock" entry="{ identifierValue: entry.values.stock}" size="xs" label="Detalle stock"></ma-create-button>']);
 	
 	    //'<ma-edit-button entry="entry" entity="entity" label="Edit me" size="xs"></ma-edit-button>',
 	    //'<ma-delete-button entry="entry" entity="entity" label="Delete me" size="xs"></ma-delete-button>',
-	    productsVariants.creationView().title('Crear variacion de producto').fields([nga.field('name').label('Nombre').validation({ required: true }), nga.field('sku').label('SKU').validation({ required: true }), nga.field('product', 'reference').targetEntity(admin.getEntity('products')).targetField(nga.field('name')), nga.field('price', 'float').label('Precio').map(function truncate(value, entry) {
+	    productsVariants.creationView().title('Crear variacion de producto').fields([nga.field('name').label('Nombre').validation({ required: true }), nga.field('sku').label('SKU').validation({ required: true }), nga.field('product', 'reference').perPage(200).targetEntity(admin.getEntity('products')).targetField(nga.field('name')), nga.field('price', 'float').label('Precio').map(function truncate(value, entry) {
 	        //return parseFloat(value).toFixed(2);
 	        return parseFloat(value);
 	    }).validation({ required: true }), nga.field('attributes', 'template').template('<attribute-field field="::field" value="::entry.values[field.name()]"></attribute-field>')]).onSubmitSuccess(['progression', 'notification', '$state', 'entry', 'entity', function (progression, notification, $state, entry, entity) {
@@ -1931,7 +1796,7 @@
 	        return false;
 	    }]);
 	
-	    productsVariants.editionView().title('Editar {{ entry.values.display_name }}').fields(nga.field('name').label('Nombre').validation({ required: true }), nga.field('sku').label('SKU').validation({ required: true }), nga.field('product', 'reference').editable(false).targetEntity(admin.getEntity('products')).targetField(nga.field('name')), nga.field('price').label('Precio').validation({ required: true }), nga.field('attributes', 'template').template('<attribute-field field="::field" value="::entry.values[field.name()]"></attribute-field>')
+	    productsVariants.editionView().title('Editar {{ entry.values.display_name }}').fields(nga.field('name').label('Nombre').validation({ required: true }), nga.field('sku').label('SKU').validation({ required: true }), nga.field('product', 'reference').perPage(200).editable(false).targetEntity(admin.getEntity('products')).targetField(nga.field('name')), nga.field('price').label('Precio').validation({ required: true }), nga.field('attributes', 'template').template('<attribute-field field="::field" value="::entry.values[field.name()]"></attribute-field>')
 	    //nga.field('attributes', 'attributes')
 	    );
 	
@@ -1941,7 +1806,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 28 */
+/* 25 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1998,7 +1863,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 29 */
+/* 26 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2023,12 +1888,12 @@
 	        return { 'id': ids };
 	    })]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>')]);
 	
-	    productsOptionsets.creationView().title('Crear Set de opciones de producto').fields([nga.field('name').label('Nombre'), nga.field('description', 'text').label('Descripcion'), nga.field('widget_type', 'choice').choices(widget_types_choices).label('Tipo'), nga.field('category', 'reference').label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name')).singleApiCall(function (ids) {
+	    productsOptionsets.creationView().title('Crear Set de opciones de producto').fields([nga.field('name').label('Nombre'), nga.field('description', 'text').label('Descripcion'), nga.field('widget_type', 'choice').choices(widget_types_choices).label('Tipo'), nga.field('category', 'reference').perPage(200).label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name')).singleApiCall(function (ids) {
 	        return { 'id': ids };
 	    })]);
 	
 	    productsOptionsets.editionView().title('Set de opciones  para la categoria "{{ entry.values.category_name }}"').fields([productsOptionsets.creationView().fields(), nga.field('options', 'referenced_list') // display list of related comments
-	    .label('Opciones').targetEntity(admin.getEntity('productsOptions')).targetReferenceField('parent').targetFields([nga.field('id'), nga.field('name').label('Nombre'), nga.field('short_description').label('Descripcion corta')]).sortField('created_at').sortDir('DESC'), nga.field('Acciones', 'template').template("<ma-create-button entity-name=\"productsOptions\" default-values=\"{ parent: entry.values.id }\" size=\"xs\" label=\"Agregar opcion\"></ma-create-button>\n                    <ma-filtered-list-button entity-name=\"productsOptions\" filter=\"{ parent: entry.values.id }\" size=\"xs\" label=\"Ver listado de opciones\"></ma-filtered-list-button>")]);
+	    .perPage(200).label('Opciones').targetEntity(admin.getEntity('productsOptions')).targetReferenceField('parent').targetFields([nga.field('id'), nga.field('name').label('Nombre'), nga.field('short_description').label('Descripcion corta')]).sortField('created_at').sortDir('DESC'), nga.field('Acciones', 'template').template("<ma-create-button entity-name=\"productsOptions\" default-values=\"{ parent: entry.values.id }\" size=\"xs\" label=\"Agregar opcion\"></ma-create-button>\n                    <ma-filtered-list-button entity-name=\"productsOptions\" filter=\"{ parent: entry.values.id }\" size=\"xs\" label=\"Ver listado de opciones\"></ma-filtered-list-button>")]);
 	
 	    return productsOptionsets;
 	};
@@ -2036,7 +1901,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 30 */
+/* 27 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2051,9 +1916,9 @@
 	
 	    productsOptions.listView().title('Options').fields([nga.field('id', 'number'), nga.field('name', 'text').label('Nombre'), nga.field('short_description', 'text').label('Descripcion corta'), nga.field('parent', 'reference').label('Options set').targetEntity(admin.getEntity('productsOptionsets')).targetField(nga.field('name')).singleApiCall(function (ids) {
 	        return { 'id': ids };
-	    })]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('parent', 'reference').label('Options set').targetEntity(admin.getEntity('productsOptionsets')).targetField(nga.field('name'))]);
+	    })]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('parent', 'reference').perPage(200).label('Options set').targetEntity(admin.getEntity('productsOptionsets')).targetField(nga.field('name'))]);
 	
-	    productsOptions.creationView().title('Crear opcion').fields([nga.field('name').label('Nombre').validation({ required: true }), nga.field('parent', 'reference').targetEntity(admin.getEntity('productsOptionsets')).targetField(nga.field('name')), nga.field('short_description', 'text').label('Descripcion corta'), nga.field('description', 'wysiwyg').label('Descripcion')]).onSubmitSuccess(['progression', 'notification', '$state', 'entry', 'entity', function (progression, notification, $state, entry, entity) {
+	    productsOptions.creationView().title('Crear opcion').fields([nga.field('name').label('Nombre').validation({ required: true }), nga.field('parent', 'reference').perPage(200).targetEntity(admin.getEntity('productsOptionsets')).targetField(nga.field('name')), nga.field('short_description', 'text').label('Descripcion corta'), nga.field('description', 'wysiwyg').label('Descripcion')]).onSubmitSuccess(['progression', 'notification', '$state', 'entry', 'entity', function (progression, notification, $state, entry, entity) {
 	        // stop the progress bar
 	        progression.done();
 	        // add a notification
@@ -2073,7 +1938,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 31 */
+/* 28 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2086,12 +1951,12 @@
 	    var productsStock = admin.getEntity('productsStock');
 	    productsStock.listView().title('Stock de productos').fields([nga.field('quantity').label('Cantidad'), nga.field('reserved_stock').label('Stock comprometido'), nga.field('item', 'reference').label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('display_name')).singleApiCall(function (ids) {
 	        return { 'id': ids };
-	    }), nga.field('actions', 'template').template('<ma-show-button entry="entry" entity="entity" size="xs" label="Ver detalle"></ma-show-button>')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('item', 'reference').label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('name'))]).listActions(['<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.id }" size="xs" label="Agregar stock"></ma-create-button>']);
+	    }), nga.field('actions', 'template').template('<ma-show-button entry="entry" entity="entity" size="xs" label="Ver detalle"></ma-show-button>')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('item', 'reference').perPage(200).label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('name'))]).listActions(['<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.id }" size="xs" label="Agregar stock"></ma-create-button>']);
 	
-	    productsStock.showView().title('Stock de {{ entry.values.product_name }}').fields([nga.field('quantity').label('Cantidad'), nga.field('item', 'reference').label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('display_name')).singleApiCall(function (ids) {
+	    productsStock.showView().title('Stock de {{ entry.values.product_name }}').fields([nga.field('quantity').label('Cantidad'), nga.field('item', 'reference').perPage(200).label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('display_name')).singleApiCall(function (ids) {
 	        return { 'id': ids };
 	    }).editable(false), nga.field('io_products_stock', 'referenced_list') // display list of related comments
-	    .label('Detalles').targetEntity(admin.getEntity('IOProductsStock')).targetReferenceField('stock').targetFields([nga.field('date', 'date').format('dd-MM-yyyy').label("Fecha"), nga.field('quantity').label('Cantidad'), nga.field('note').label('Nota')]).sortField('created_at').sortDir('DESC'), nga.field('Acciones', 'template').template('<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.id }" size="xs" label="Agregar stock"></ma-create-button>\n                    <ma-filtered-list-button entity-name="IOProductsStock" filter="{ stock: entry.values.id }" size="xs" label="Ver detalles"></ma-filtered-list-button>')]);
+	    .perPage(200).label('Detalles').targetEntity(admin.getEntity('IOProductsStock')).targetReferenceField('stock').targetFields([nga.field('date', 'date').format('dd-MM-yyyy').label("Fecha"), nga.field('quantity').label('Cantidad'), nga.field('note').label('Nota')]).sortField('created_at').sortDir('DESC'), nga.field('Acciones', 'template').template('<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.id }" size="xs" label="Agregar stock"></ma-create-button>\n                    <ma-filtered-list-button entity-name="IOProductsStock" filter="{ stock: entry.values.id }" size="xs" label="Ver detalles"></ma-filtered-list-button>')]);
 	
 	    return productsStock;
 	};
@@ -2099,7 +1964,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 32 */
+/* 29 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2112,10 +1977,10 @@
 	    var IOProductsStock = admin.getEntity('IOProductsStock');
 	    IOProductsStock.listView().title('Movimiento de stock de productos').description('Detalles de ingresos y/o egresos de productos').fields([nga.field('stock', 'reference').label('Producto').targetEntity(admin.getEntity('productsStock')).targetField(nga.field('product_name')).singleApiCall(function (ids) {
 	        return { 'id': ids };
-	    }), nga.field('quantity').label('Cantidad'), nga.field('date', 'date').format('dd-MM-yyyy').label('Fecha'), nga.field('note').label('Nota')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('stock', 'reference').label('Producto').targetEntity(admin.getEntity('productsStock')).targetField(nga.field('product_name'))]);
+	    }), nga.field('quantity').label('Cantidad'), nga.field('date', 'date').format('dd-MM-yyyy').label('Fecha'), nga.field('note').label('Nota')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('stock', 'reference').perPage(200).label('Producto').targetEntity(admin.getEntity('productsStock')).targetField(nga.field('product_name'))]);
 	    //.listActions(['edit', 'delete']);
 	
-	    IOProductsStock.creationView().title('Ingresar stock').fields([nga.field('quantity', 'number').label('Cantidad'), nga.field('date', 'datetime').defaultValue(new Date(Date.now())).label('Fecha'), nga.field('stock', 'reference').label('Producto').targetEntity(admin.getEntity('productsStock')).targetField(nga.field('product_name')).attributes({ placeholder: 'Selecionar producto...' }).remoteComplete(true, {
+	    IOProductsStock.creationView().title('Ingresar stock').fields([nga.field('quantity', 'number').label('Cantidad'), nga.field('date', 'datetime').defaultValue(new Date(Date.now())).label('Fecha'), nga.field('stock', 'reference').perPage(200).label('Producto').targetEntity(admin.getEntity('productsStock')).targetField(nga.field('product_name')).attributes({ placeholder: 'Selecionar producto...' }).remoteComplete(true, {
 	        refreshDelay: 300,
 	        searchQuery: function searchQuery(search) {
 	            return { q: search };
@@ -2140,7 +2005,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 33 */
+/* 30 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2163,7 +2028,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 34 */
+/* 31 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2188,12 +2053,26 @@
 	        "value": "transfer"
 	    }];
 	
+	    var payment_status_choices = [{
+	        "label": "Cancelado",
+	        "value": 0
+	    }, {
+	        "label": "Pendiente",
+	        "value": 1
+	    }, {
+	        "label": "Pagado",
+	        "value": 2
+	    }];
+	
 	    var payments = admin.getEntity('payments');
 	    payments.listView().title('Pagos').fields([nga.field('date', 'date').isDetailLink(true).format('dd-MM-yyyy').label('Fecha'), nga.field('amount', 'amount').label('Monto'), nga.field('type', 'choice').choices(payment_types_choices).label('Tipo'), nga.field('order', 'reference').label('Orden').targetEntity(admin.getEntity('orders')).targetField(nga.field('id')).singleApiCall(function (ids) {
 	        return { 'id': ids };
 	    })]).listActions(['edit', 'delete']);
 	
-	    payments.creationView().title('Crear pago').fields([nga.field('amount', 'float').label('Monto').validation({ required: true }), nga.field('date', 'datetime').defaultValue(new Date(Date.now())).label('Fecha').validation({ required: true }), nga.field('type', 'choice').choices(payment_types_choices).defaultValue('cash').label('Tipo').validation({ required: true }), nga.field('order', 'reference').targetEntity(admin.getEntity('orders')).targetField(nga.field('id')).validation({ required: true }).singleApiCall(function (ids) {
+	    payments.creationView().title('Crear pago').fields([nga.field('amount', 'float').label('Monto').validation({ required: true }), nga.field('status', 'choice').choices(payment_status_choices).defaultValue(2),
+	    //            nga.field('status', 'boolean').validation({required: true}).defaultValue(true),
+	    //            nga.field('status', 'boolean'),
+	    nga.field('date', 'datetime').defaultValue(new Date(Date.now())).label('Fecha').validation({ required: true }), nga.field('type', 'choice').choices(payment_types_choices).defaultValue('cash').label('Tipo').validation({ required: true }), nga.field('order', 'reference').perPage(200).permanentFilters({ status: 1 }).targetEntity(admin.getEntity('orders')).targetField(nga.field('id')).validation({ required: true }).singleApiCall(function (ids) {
 	        return { 'id': ids };
 	    })]).onSubmitSuccess(['progression', 'notification', '$state', 'entry', 'entity', function (progression, notification, $state, entry, entity) {
 	        // stop the progress bar
@@ -2213,7 +2092,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 35 */
+/* 32 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2236,7 +2115,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 36 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2244,7 +2123,7 @@
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
-	var moment = __webpack_require__(37);
+	var moment = __webpack_require__(34);
 	var fromNow = function fromNow(v) {
 	    return moment(v).fromNow();
 	};
@@ -2259,7 +2138,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 37 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
@@ -4058,7 +3937,7 @@
 	                module && module.exports) {
 	            try {
 	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(39)("./" + name);
+	                __webpack_require__(36)("./" + name);
 	                // because defineLocale currently also sets the global locale, we
 	                // want to undo that for lazy loaded locales
 	                locale_locales__getSetGlobalLocale(oldLocale);
@@ -6496,10 +6375,10 @@
 	    return _moment;
 	
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)(module)))
 
 /***/ },
-/* 38 */
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -6515,218 +6394,218 @@
 
 
 /***/ },
-/* 39 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 40,
-		"./af.js": 40,
-		"./ar": 41,
-		"./ar-ly": 42,
-		"./ar-ly.js": 42,
-		"./ar-ma": 43,
-		"./ar-ma.js": 43,
-		"./ar-sa": 44,
-		"./ar-sa.js": 44,
-		"./ar-tn": 45,
-		"./ar-tn.js": 45,
-		"./ar.js": 41,
-		"./az": 46,
-		"./az.js": 46,
-		"./be": 47,
-		"./be.js": 47,
-		"./bg": 48,
-		"./bg.js": 48,
-		"./bn": 49,
-		"./bn.js": 49,
-		"./bo": 50,
-		"./bo.js": 50,
-		"./br": 51,
-		"./br.js": 51,
-		"./bs": 52,
-		"./bs.js": 52,
-		"./ca": 53,
-		"./ca.js": 53,
-		"./cs": 54,
-		"./cs.js": 54,
-		"./cv": 55,
-		"./cv.js": 55,
-		"./cy": 56,
-		"./cy.js": 56,
-		"./da": 57,
-		"./da.js": 57,
-		"./de": 58,
-		"./de-at": 59,
-		"./de-at.js": 59,
-		"./de.js": 58,
-		"./dv": 60,
-		"./dv.js": 60,
-		"./el": 61,
-		"./el.js": 61,
-		"./en-au": 62,
-		"./en-au.js": 62,
-		"./en-ca": 63,
-		"./en-ca.js": 63,
-		"./en-gb": 64,
-		"./en-gb.js": 64,
-		"./en-ie": 65,
-		"./en-ie.js": 65,
-		"./en-nz": 66,
-		"./en-nz.js": 66,
-		"./eo": 67,
-		"./eo.js": 67,
-		"./es": 68,
-		"./es-do": 69,
-		"./es-do.js": 69,
-		"./es.js": 68,
-		"./et": 70,
-		"./et.js": 70,
-		"./eu": 71,
-		"./eu.js": 71,
-		"./fa": 72,
-		"./fa.js": 72,
-		"./fi": 73,
-		"./fi.js": 73,
-		"./fo": 74,
-		"./fo.js": 74,
-		"./fr": 75,
-		"./fr-ca": 76,
-		"./fr-ca.js": 76,
-		"./fr-ch": 77,
-		"./fr-ch.js": 77,
-		"./fr.js": 75,
-		"./fy": 78,
-		"./fy.js": 78,
-		"./gd": 79,
-		"./gd.js": 79,
-		"./gl": 80,
-		"./gl.js": 80,
-		"./he": 81,
-		"./he.js": 81,
-		"./hi": 82,
-		"./hi.js": 82,
-		"./hr": 83,
-		"./hr.js": 83,
-		"./hu": 84,
-		"./hu.js": 84,
-		"./hy-am": 85,
-		"./hy-am.js": 85,
-		"./id": 86,
-		"./id.js": 86,
-		"./is": 87,
-		"./is.js": 87,
-		"./it": 88,
-		"./it.js": 88,
-		"./ja": 89,
-		"./ja.js": 89,
-		"./jv": 90,
-		"./jv.js": 90,
-		"./ka": 91,
-		"./ka.js": 91,
-		"./kk": 92,
-		"./kk.js": 92,
-		"./km": 93,
-		"./km.js": 93,
-		"./ko": 94,
-		"./ko.js": 94,
-		"./ky": 95,
-		"./ky.js": 95,
-		"./lb": 96,
-		"./lb.js": 96,
-		"./lo": 97,
-		"./lo.js": 97,
-		"./lt": 98,
-		"./lt.js": 98,
-		"./lv": 99,
-		"./lv.js": 99,
-		"./me": 100,
-		"./me.js": 100,
-		"./mi": 101,
-		"./mi.js": 101,
-		"./mk": 102,
-		"./mk.js": 102,
-		"./ml": 103,
-		"./ml.js": 103,
-		"./mr": 104,
-		"./mr.js": 104,
-		"./ms": 105,
-		"./ms-my": 106,
-		"./ms-my.js": 106,
-		"./ms.js": 105,
-		"./my": 107,
-		"./my.js": 107,
-		"./nb": 108,
-		"./nb.js": 108,
-		"./ne": 109,
-		"./ne.js": 109,
-		"./nl": 110,
-		"./nl.js": 110,
-		"./nn": 111,
-		"./nn.js": 111,
-		"./pa-in": 112,
-		"./pa-in.js": 112,
-		"./pl": 113,
-		"./pl.js": 113,
-		"./pt": 114,
-		"./pt-br": 115,
-		"./pt-br.js": 115,
-		"./pt.js": 114,
-		"./ro": 116,
-		"./ro.js": 116,
-		"./ru": 117,
-		"./ru.js": 117,
-		"./se": 118,
-		"./se.js": 118,
-		"./si": 119,
-		"./si.js": 119,
-		"./sk": 120,
-		"./sk.js": 120,
-		"./sl": 121,
-		"./sl.js": 121,
-		"./sq": 122,
-		"./sq.js": 122,
-		"./sr": 123,
-		"./sr-cyrl": 124,
-		"./sr-cyrl.js": 124,
-		"./sr.js": 123,
-		"./ss": 125,
-		"./ss.js": 125,
-		"./sv": 126,
-		"./sv.js": 126,
-		"./sw": 127,
-		"./sw.js": 127,
-		"./ta": 128,
-		"./ta.js": 128,
-		"./te": 129,
-		"./te.js": 129,
-		"./th": 130,
-		"./th.js": 130,
-		"./tl-ph": 131,
-		"./tl-ph.js": 131,
-		"./tlh": 132,
-		"./tlh.js": 132,
-		"./tr": 133,
-		"./tr.js": 133,
-		"./tzl": 134,
-		"./tzl.js": 134,
-		"./tzm": 135,
-		"./tzm-latn": 136,
-		"./tzm-latn.js": 136,
-		"./tzm.js": 135,
-		"./uk": 137,
-		"./uk.js": 137,
-		"./uz": 138,
-		"./uz.js": 138,
-		"./vi": 139,
-		"./vi.js": 139,
-		"./x-pseudo": 140,
-		"./x-pseudo.js": 140,
-		"./zh-cn": 141,
-		"./zh-cn.js": 141,
-		"./zh-hk": 142,
-		"./zh-hk.js": 142,
-		"./zh-tw": 143,
-		"./zh-tw.js": 143
+		"./af": 37,
+		"./af.js": 37,
+		"./ar": 38,
+		"./ar-ly": 39,
+		"./ar-ly.js": 39,
+		"./ar-ma": 40,
+		"./ar-ma.js": 40,
+		"./ar-sa": 41,
+		"./ar-sa.js": 41,
+		"./ar-tn": 42,
+		"./ar-tn.js": 42,
+		"./ar.js": 38,
+		"./az": 43,
+		"./az.js": 43,
+		"./be": 44,
+		"./be.js": 44,
+		"./bg": 45,
+		"./bg.js": 45,
+		"./bn": 46,
+		"./bn.js": 46,
+		"./bo": 47,
+		"./bo.js": 47,
+		"./br": 48,
+		"./br.js": 48,
+		"./bs": 49,
+		"./bs.js": 49,
+		"./ca": 50,
+		"./ca.js": 50,
+		"./cs": 51,
+		"./cs.js": 51,
+		"./cv": 52,
+		"./cv.js": 52,
+		"./cy": 53,
+		"./cy.js": 53,
+		"./da": 54,
+		"./da.js": 54,
+		"./de": 55,
+		"./de-at": 56,
+		"./de-at.js": 56,
+		"./de.js": 55,
+		"./dv": 57,
+		"./dv.js": 57,
+		"./el": 58,
+		"./el.js": 58,
+		"./en-au": 59,
+		"./en-au.js": 59,
+		"./en-ca": 60,
+		"./en-ca.js": 60,
+		"./en-gb": 61,
+		"./en-gb.js": 61,
+		"./en-ie": 62,
+		"./en-ie.js": 62,
+		"./en-nz": 63,
+		"./en-nz.js": 63,
+		"./eo": 64,
+		"./eo.js": 64,
+		"./es": 65,
+		"./es-do": 66,
+		"./es-do.js": 66,
+		"./es.js": 65,
+		"./et": 67,
+		"./et.js": 67,
+		"./eu": 68,
+		"./eu.js": 68,
+		"./fa": 69,
+		"./fa.js": 69,
+		"./fi": 70,
+		"./fi.js": 70,
+		"./fo": 71,
+		"./fo.js": 71,
+		"./fr": 72,
+		"./fr-ca": 73,
+		"./fr-ca.js": 73,
+		"./fr-ch": 74,
+		"./fr-ch.js": 74,
+		"./fr.js": 72,
+		"./fy": 75,
+		"./fy.js": 75,
+		"./gd": 76,
+		"./gd.js": 76,
+		"./gl": 77,
+		"./gl.js": 77,
+		"./he": 78,
+		"./he.js": 78,
+		"./hi": 79,
+		"./hi.js": 79,
+		"./hr": 80,
+		"./hr.js": 80,
+		"./hu": 81,
+		"./hu.js": 81,
+		"./hy-am": 82,
+		"./hy-am.js": 82,
+		"./id": 83,
+		"./id.js": 83,
+		"./is": 84,
+		"./is.js": 84,
+		"./it": 85,
+		"./it.js": 85,
+		"./ja": 86,
+		"./ja.js": 86,
+		"./jv": 87,
+		"./jv.js": 87,
+		"./ka": 88,
+		"./ka.js": 88,
+		"./kk": 89,
+		"./kk.js": 89,
+		"./km": 90,
+		"./km.js": 90,
+		"./ko": 91,
+		"./ko.js": 91,
+		"./ky": 92,
+		"./ky.js": 92,
+		"./lb": 93,
+		"./lb.js": 93,
+		"./lo": 94,
+		"./lo.js": 94,
+		"./lt": 95,
+		"./lt.js": 95,
+		"./lv": 96,
+		"./lv.js": 96,
+		"./me": 97,
+		"./me.js": 97,
+		"./mi": 98,
+		"./mi.js": 98,
+		"./mk": 99,
+		"./mk.js": 99,
+		"./ml": 100,
+		"./ml.js": 100,
+		"./mr": 101,
+		"./mr.js": 101,
+		"./ms": 102,
+		"./ms-my": 103,
+		"./ms-my.js": 103,
+		"./ms.js": 102,
+		"./my": 104,
+		"./my.js": 104,
+		"./nb": 105,
+		"./nb.js": 105,
+		"./ne": 106,
+		"./ne.js": 106,
+		"./nl": 107,
+		"./nl.js": 107,
+		"./nn": 108,
+		"./nn.js": 108,
+		"./pa-in": 109,
+		"./pa-in.js": 109,
+		"./pl": 110,
+		"./pl.js": 110,
+		"./pt": 111,
+		"./pt-br": 112,
+		"./pt-br.js": 112,
+		"./pt.js": 111,
+		"./ro": 113,
+		"./ro.js": 113,
+		"./ru": 114,
+		"./ru.js": 114,
+		"./se": 115,
+		"./se.js": 115,
+		"./si": 116,
+		"./si.js": 116,
+		"./sk": 117,
+		"./sk.js": 117,
+		"./sl": 118,
+		"./sl.js": 118,
+		"./sq": 119,
+		"./sq.js": 119,
+		"./sr": 120,
+		"./sr-cyrl": 121,
+		"./sr-cyrl.js": 121,
+		"./sr.js": 120,
+		"./ss": 122,
+		"./ss.js": 122,
+		"./sv": 123,
+		"./sv.js": 123,
+		"./sw": 124,
+		"./sw.js": 124,
+		"./ta": 125,
+		"./ta.js": 125,
+		"./te": 126,
+		"./te.js": 126,
+		"./th": 127,
+		"./th.js": 127,
+		"./tl-ph": 128,
+		"./tl-ph.js": 128,
+		"./tlh": 129,
+		"./tlh.js": 129,
+		"./tr": 130,
+		"./tr.js": 130,
+		"./tzl": 131,
+		"./tzl.js": 131,
+		"./tzm": 132,
+		"./tzm-latn": 133,
+		"./tzm-latn.js": 133,
+		"./tzm.js": 132,
+		"./uk": 134,
+		"./uk.js": 134,
+		"./uz": 135,
+		"./uz.js": 135,
+		"./vi": 136,
+		"./vi.js": 136,
+		"./x-pseudo": 137,
+		"./x-pseudo.js": 137,
+		"./zh-cn": 138,
+		"./zh-cn.js": 138,
+		"./zh-hk": 139,
+		"./zh-hk.js": 139,
+		"./zh-tw": 140,
+		"./zh-tw.js": 140
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -6739,11 +6618,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 39;
+	webpackContext.id = 36;
 
 
 /***/ },
-/* 40 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6751,7 +6630,7 @@
 	//! author : Werner Mollentze : https://github.com/wernerm
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -6820,7 +6699,7 @@
 	}));
 
 /***/ },
-/* 41 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6830,7 +6709,7 @@
 	//! author : forabi https://github.com/forabi
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -6961,7 +6840,7 @@
 	}));
 
 /***/ },
-/* 42 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6969,7 +6848,7 @@
 	//! author : Ali Hmer: https://github.com/kikoanis
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -7087,7 +6966,7 @@
 	}));
 
 /***/ },
-/* 43 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7096,7 +6975,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -7151,7 +7030,7 @@
 	}));
 
 /***/ },
-/* 44 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7159,7 +7038,7 @@
 	//! author : Suhail Alkowaileet : https://github.com/xsoh
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -7259,7 +7138,7 @@
 	}));
 
 /***/ },
-/* 45 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7267,7 +7146,7 @@
 	//! author : Nader Toukabri : https://github.com/naderio
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -7322,7 +7201,7 @@
 	}));
 
 /***/ },
-/* 46 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7330,7 +7209,7 @@
 	//! author : topchiyev : https://github.com/topchiyev
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -7431,7 +7310,7 @@
 	}));
 
 /***/ },
-/* 47 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7441,7 +7320,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -7569,7 +7448,7 @@
 	}));
 
 /***/ },
-/* 48 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7577,7 +7456,7 @@
 	//! author : Krasen Borisov : https://github.com/kraz
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -7663,7 +7542,7 @@
 	}));
 
 /***/ },
-/* 49 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7671,7 +7550,7 @@
 	//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -7786,7 +7665,7 @@
 	}));
 
 /***/ },
-/* 50 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7794,7 +7673,7 @@
 	//! author : Thupten N. Chakrishar : https://github.com/vajradog
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -7909,7 +7788,7 @@
 	}));
 
 /***/ },
-/* 51 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7917,7 +7796,7 @@
 	//! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8021,7 +7900,7 @@
 	}));
 
 /***/ },
-/* 52 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8030,7 +7909,7 @@
 	//! based on (hr) translation by Bojan Marković
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8168,7 +8047,7 @@
 	}));
 
 /***/ },
-/* 53 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8176,7 +8055,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8253,7 +8132,7 @@
 	}));
 
 /***/ },
-/* 54 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8261,7 +8140,7 @@
 	//! author : petrbela : https://github.com/petrbela
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8429,7 +8308,7 @@
 	}));
 
 /***/ },
-/* 55 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8437,7 +8316,7 @@
 	//! author : Anatoly Mironov : https://github.com/mirontoli
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8496,7 +8375,7 @@
 	}));
 
 /***/ },
-/* 56 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8505,7 +8384,7 @@
 	//! author : https://github.com/ryangreaves
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8581,7 +8460,7 @@
 	}));
 
 /***/ },
-/* 57 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8589,7 +8468,7 @@
 	//! author : Ulrik Nielsen : https://github.com/mrbase
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8645,7 +8524,7 @@
 	}));
 
 /***/ },
-/* 58 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8655,7 +8534,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8727,7 +8606,7 @@
 	}));
 
 /***/ },
-/* 59 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8738,7 +8617,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8810,7 +8689,7 @@
 	}));
 
 /***/ },
-/* 60 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8818,7 +8697,7 @@
 	//! author : Jawish Hameed : https://github.com/jawish
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -8913,7 +8792,7 @@
 	}));
 
 /***/ },
-/* 61 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8921,7 +8800,7 @@
 	//! author : Aggelos Karalias : https://github.com/mehiel
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9015,7 +8894,7 @@
 	}));
 
 /***/ },
-/* 62 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9023,7 +8902,7 @@
 	//! author : Jared Morse : https://github.com/jarcoal
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9086,7 +8965,7 @@
 	}));
 
 /***/ },
-/* 63 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9094,7 +8973,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9153,7 +9032,7 @@
 	}));
 
 /***/ },
-/* 64 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9161,7 +9040,7 @@
 	//! author : Chris Gedrim : https://github.com/chrisgedrim
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9224,7 +9103,7 @@
 	}));
 
 /***/ },
-/* 65 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9232,7 +9111,7 @@
 	//! author : Chris Cartlidge : https://github.com/chriscartlidge
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9295,7 +9174,7 @@
 	}));
 
 /***/ },
-/* 66 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9303,7 +9182,7 @@
 	//! author : Luke McGregor : https://github.com/lukemcgregor
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9366,7 +9245,7 @@
 	}));
 
 /***/ },
-/* 67 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9376,7 +9255,7 @@
 	//!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9443,7 +9322,7 @@
 	}));
 
 /***/ },
-/* 68 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9451,7 +9330,7 @@
 	//! author : Julio Napurí : https://github.com/julionc
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9528,14 +9407,14 @@
 	}));
 
 /***/ },
-/* 69 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale : Spanish (Dominican Republic) [es-do]
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9612,7 +9491,7 @@
 	}));
 
 /***/ },
-/* 70 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9621,7 +9500,7 @@
 	//! improvements : Illimar Tambek : https://github.com/ragulka
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9696,7 +9575,7 @@
 	}));
 
 /***/ },
-/* 71 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9704,7 +9583,7 @@
 	//! author : Eneko Illarramendi : https://github.com/eillarra
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9766,7 +9645,7 @@
 	}));
 
 /***/ },
-/* 72 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9774,7 +9653,7 @@
 	//! author : Ebrahim Byagowi : https://github.com/ebraminio
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9876,7 +9755,7 @@
 	}));
 
 /***/ },
-/* 73 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9884,7 +9763,7 @@
 	//! author : Tarmo Aidantausta : https://github.com/bleadof
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -9987,7 +9866,7 @@
 	}));
 
 /***/ },
-/* 74 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9995,7 +9874,7 @@
 	//! author : Ragnar Johannesen : https://github.com/ragnar123
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10051,7 +9930,7 @@
 	}));
 
 /***/ },
-/* 75 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10059,7 +9938,7 @@
 	//! author : John Fischer : https://github.com/jfroffice
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10119,7 +9998,7 @@
 	}));
 
 /***/ },
-/* 76 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10127,7 +10006,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10183,7 +10062,7 @@
 	}));
 
 /***/ },
-/* 77 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10191,7 +10070,7 @@
 	//! author : Gaspard Bucher : https://github.com/gaspard
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10251,7 +10130,7 @@
 	}));
 
 /***/ },
-/* 78 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10259,7 +10138,7 @@
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10328,7 +10207,7 @@
 	}));
 
 /***/ },
-/* 79 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10336,7 +10215,7 @@
 	//! author : Jon Ashdown : https://github.com/jonashdown
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10408,7 +10287,7 @@
 	}));
 
 /***/ },
-/* 80 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10416,7 +10295,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10489,7 +10368,7 @@
 	}));
 
 /***/ },
-/* 81 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10499,7 +10378,7 @@
 	//! author : Tal Ater : https://github.com/TalAter
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10592,7 +10471,7 @@
 	}));
 
 /***/ },
-/* 82 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10600,7 +10479,7 @@
 	//! author : Mayank Singhal : https://github.com/mayanksinghal
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10720,7 +10599,7 @@
 	}));
 
 /***/ },
-/* 83 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10728,7 +10607,7 @@
 	//! author : Bojan Marković : https://github.com/bmarkovic
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10869,7 +10748,7 @@
 	}));
 
 /***/ },
-/* 84 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10877,7 +10756,7 @@
 	//! author : Adam Brunner : https://github.com/adambrunner
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -10982,7 +10861,7 @@
 	}));
 
 /***/ },
-/* 85 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10990,7 +10869,7 @@
 	//! author : Armendarabyan : https://github.com/armendarabyan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11081,7 +10960,7 @@
 	}));
 
 /***/ },
-/* 86 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11090,7 +10969,7 @@
 	//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11168,7 +11047,7 @@
 	}));
 
 /***/ },
-/* 87 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11176,7 +11055,7 @@
 	//! author : Hinrik Örn Sigurðsson : https://github.com/hinrik
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11299,7 +11178,7 @@
 	}));
 
 /***/ },
-/* 88 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11308,7 +11187,7 @@
 	//! author: Mattia Larentis: https://github.com/nostalgiaz
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11373,7 +11252,7 @@
 	}));
 
 /***/ },
-/* 89 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11381,7 +11260,7 @@
 	//! author : LI Long : https://github.com/baryon
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11453,7 +11332,7 @@
 	}));
 
 /***/ },
-/* 90 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11462,7 +11341,7 @@
 	//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11540,7 +11419,7 @@
 	}));
 
 /***/ },
-/* 91 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11548,7 +11427,7 @@
 	//! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11633,7 +11512,7 @@
 	}));
 
 /***/ },
-/* 92 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11641,7 +11520,7 @@
 	//! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11724,7 +11603,7 @@
 	}));
 
 /***/ },
-/* 93 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11732,7 +11611,7 @@
 	//! author : Kruy Vanna : https://github.com/kruyvanna
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11786,7 +11665,7 @@
 	}));
 
 /***/ },
-/* 94 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11795,7 +11674,7 @@
 	//! author : Jeeeyul Lee <jeeeyul@gmail.com>
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11855,7 +11734,7 @@
 	}));
 
 /***/ },
-/* 95 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11863,7 +11742,7 @@
 	//! author : Chyngyz Arystan uulu : https://github.com/chyngyz
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -11947,7 +11826,7 @@
 	}));
 
 /***/ },
-/* 96 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11956,7 +11835,7 @@
 	//! author : David Raison : https://github.com/kwisatz
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12088,7 +11967,7 @@
 	}));
 
 /***/ },
-/* 97 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12096,7 +11975,7 @@
 	//! author : Ryan Hart : https://github.com/ryanhart2
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12162,7 +12041,7 @@
 	}));
 
 /***/ },
-/* 98 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12170,7 +12049,7 @@
 	//! author : Mindaugas Mozūras : https://github.com/mmozuras
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12283,7 +12162,7 @@
 	}));
 
 /***/ },
-/* 99 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12292,7 +12171,7 @@
 	//! author : Jānis Elmeris : https://github.com/JanisE
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12384,7 +12263,7 @@
 	}));
 
 /***/ },
-/* 100 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12392,7 +12271,7 @@
 	//! author : Miodrag Nikač <miodrag@restartit.me> : https://github.com/miodragnikac
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12499,7 +12378,7 @@
 	}));
 
 /***/ },
-/* 101 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12507,7 +12386,7 @@
 	//! author : John Corrigan <robbiecloset@gmail.com> : https://github.com/johnideal
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12567,7 +12446,7 @@
 	}));
 
 /***/ },
-/* 102 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12575,7 +12454,7 @@
 	//! author : Borislav Mickov : https://github.com/B0k0
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12661,7 +12540,7 @@
 	}));
 
 /***/ },
-/* 103 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12669,7 +12548,7 @@
 	//! author : Floyd Pink : https://github.com/floydpink
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12746,7 +12625,7 @@
 	}));
 
 /***/ },
-/* 104 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12755,7 +12634,7 @@
 	//! author : Vivek Athalye : https://github.com/vnathalye
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12909,7 +12788,7 @@
 	}));
 
 /***/ },
-/* 105 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12917,7 +12796,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -12995,7 +12874,7 @@
 	}));
 
 /***/ },
-/* 106 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13004,7 +12883,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13082,7 +12961,7 @@
 	}));
 
 /***/ },
-/* 107 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13092,7 +12971,7 @@
 	//! author : Tin Aung Lin : https://github.com/thanyawzinmin
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13181,7 +13060,7 @@
 	}));
 
 /***/ },
-/* 108 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13190,7 +13069,7 @@
 	//!           Sigurd Gartmann : https://github.com/sigurdga
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13248,7 +13127,7 @@
 	}));
 
 /***/ },
-/* 109 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13256,7 +13135,7 @@
 	//! author : suvash : https://github.com/suvash
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13375,7 +13254,7 @@
 	}));
 
 /***/ },
-/* 110 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13384,7 +13263,7 @@
 	//! author : Jacob Middag : https://github.com/middagj
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13465,7 +13344,7 @@
 	}));
 
 /***/ },
-/* 111 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13473,7 +13352,7 @@
 	//! author : https://github.com/mechuwind
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13529,7 +13408,7 @@
 	}));
 
 /***/ },
-/* 112 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13537,7 +13416,7 @@
 	//! author : Harpreet Singh : https://github.com/harpreetkhalsagtbit
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13657,7 +13536,7 @@
 	}));
 
 /***/ },
-/* 113 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13665,7 +13544,7 @@
 	//! author : Rafal Hirsz : https://github.com/evoL
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13766,7 +13645,7 @@
 	}));
 
 /***/ },
-/* 114 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13774,7 +13653,7 @@
 	//! author : Jefferson : https://github.com/jalex79
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13835,7 +13714,7 @@
 	}));
 
 /***/ },
-/* 115 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13843,7 +13722,7 @@
 	//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13900,7 +13779,7 @@
 	}));
 
 /***/ },
-/* 116 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13909,7 +13788,7 @@
 	//! author : Valentin Agachi : https://github.com/avaly
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -13979,7 +13858,7 @@
 	}));
 
 /***/ },
-/* 117 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13989,7 +13868,7 @@
 	//! author : Коренберг Марк : https://github.com/socketpair
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -14166,7 +14045,7 @@
 	}));
 
 /***/ },
-/* 118 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14174,7 +14053,7 @@
 	//! authors : Bård Rolstad Henriksen : https://github.com/karamell
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -14231,7 +14110,7 @@
 	}));
 
 /***/ },
-/* 119 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14239,7 +14118,7 @@
 	//! author : Sampath Sitinamaluwa : https://github.com/sampathsris
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -14306,7 +14185,7 @@
 	}));
 
 /***/ },
-/* 120 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14315,7 +14194,7 @@
 	//! based on work of petrbela : https://github.com/petrbela
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -14460,7 +14339,7 @@
 	}));
 
 /***/ },
-/* 121 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14468,7 +14347,7 @@
 	//! author : Robert Sedovšek : https://github.com/sedovsek
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -14626,7 +14505,7 @@
 	}));
 
 /***/ },
-/* 122 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14636,7 +14515,7 @@
 	//! author : Oerd Cukalla : https://github.com/oerd
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -14700,7 +14579,7 @@
 	}));
 
 /***/ },
-/* 123 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14708,7 +14587,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -14814,7 +14693,7 @@
 	}));
 
 /***/ },
-/* 124 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14822,7 +14701,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -14928,7 +14807,7 @@
 	}));
 
 /***/ },
-/* 125 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14936,7 +14815,7 @@
 	//! author : Nicolai Davies<mail@nicolai.io> : https://github.com/nicolaidavies
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15021,7 +14900,7 @@
 	}));
 
 /***/ },
-/* 126 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15029,7 +14908,7 @@
 	//! author : Jens Alm : https://github.com/ulmus
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15094,7 +14973,7 @@
 	}));
 
 /***/ },
-/* 127 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15102,7 +14981,7 @@
 	//! author : Fahad Kassim : https://github.com/fadsel
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15157,7 +15036,7 @@
 	}));
 
 /***/ },
-/* 128 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15165,7 +15044,7 @@
 	//! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15290,7 +15169,7 @@
 	}));
 
 /***/ },
-/* 129 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15298,7 +15177,7 @@
 	//! author : Krishna Chaitanya Thota : https://github.com/kcthota
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15383,7 +15262,7 @@
 	}));
 
 /***/ },
-/* 130 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15391,7 +15270,7 @@
 	//! author : Kridsada Thanabulpong : https://github.com/sirn
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15454,7 +15333,7 @@
 	}));
 
 /***/ },
-/* 131 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15462,7 +15341,7 @@
 	//! author : Dan Hagman : https://github.com/hagmandan
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15520,7 +15399,7 @@
 	}));
 
 /***/ },
-/* 132 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15528,7 +15407,7 @@
 	//! author : Dominika Kruk : https://github.com/amaranthrose
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15644,7 +15523,7 @@
 	}));
 
 /***/ },
-/* 133 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15653,7 +15532,7 @@
 	//!           Burak Yiğit Kaya: https://github.com/BYK
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15738,7 +15617,7 @@
 	}));
 
 /***/ },
-/* 134 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15747,7 +15626,7 @@
 	//! author : Iustì Canun
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15833,7 +15712,7 @@
 	}));
 
 /***/ },
-/* 135 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15841,7 +15720,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15895,7 +15774,7 @@
 	}));
 
 /***/ },
-/* 136 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15903,7 +15782,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -15957,7 +15836,7 @@
 	}));
 
 /***/ },
-/* 137 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15966,7 +15845,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -16107,7 +15986,7 @@
 	}));
 
 /***/ },
-/* 138 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -16115,7 +15994,7 @@
 	//! author : Sardor Muminov : https://github.com/muminoff
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -16169,7 +16048,7 @@
 	}));
 
 /***/ },
-/* 139 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -16177,7 +16056,7 @@
 	//! author : Bang Nguyen : https://github.com/bangnk
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -16252,7 +16131,7 @@
 	}));
 
 /***/ },
-/* 140 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -16260,7 +16139,7 @@
 	//! author : Andrew Hood : https://github.com/andrewhood125
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -16324,7 +16203,7 @@
 	}));
 
 /***/ },
-/* 141 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -16333,7 +16212,7 @@
 	//! author : Zeno Zeng : https://github.com/zenozeng
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -16455,7 +16334,7 @@
 	}));
 
 /***/ },
-/* 142 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -16465,7 +16344,7 @@
 	//! author : Konstantin : https://github.com/skfd
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -16564,7 +16443,7 @@
 	}));
 
 /***/ },
-/* 143 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -16573,7 +16452,7 @@
 	//! author : Chris Lam : https://github.com/hehachris
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(37)) :
+	    true ? factory(__webpack_require__(34)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -16672,13 +16551,13 @@
 	}));
 
 /***/ },
-/* 144 */
+/* 141 */
 /***/ function(module, exports) {
 
 	module.exports = "    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-2\">\n                <span class=\"sr-only\">Context ERP</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" ng-click=\"appController.displayHome()\" href=\"#\">{{ appController.applicationName }}</a>\n        </div>\n\n        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-2\">\n            <!--<ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#\">Link <span class=\"sr-only\">(current)</span></a></li>\n                <li><a href=\"#\">Link</a></li>\n\n            </ul>-->\n            <form class=\"navbar-form navbar-left\" role=\"search\">\n                <div class=\"form-group\">\n                    <div class=\"input-group\">\n                        <div class=\"input-group-btn\" ng-init=\"target_search= 'Productos';\">\n                            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">{{ target_search }} <span class=\"caret\"></span></button>\n                            <ul class=\"dropdown-menu\">\n                                <li ng-click=\"target_search = 'Productos'\"><a >Productos</a></li>\n                                <!--<li ng-click=\"target_search = 'Recursos'\"><a >Recursos</a></li>\n                                <li ng-click=\"target_search = 'Paquetes'\"><a >Paquetes</a></li>-->\n                                <li ng-click=\"target_search = 'Clientes'\"><a >Clientes</a></li>\n                                <!--<li ng-click=\"target_search = 'Proveedores'\"><a>Proveedores</a></li>-->\n                            </ul>\n                        </div><!-- /btn-group -->\n                        <input type=\"text\" ng-model=\"q\" class=\"form-control\" placeholder=\"Buscar..\">\n                        <!--Productos-->\n                        <span class=\"input-group-addon btn\" ng-show=\"target_search == 'Productos'\" ui-sref=\"list({entity:'productsVariants',search:{search: q}})\">\n                            <i class=\"fa fa-search\" aria-hidden=\"true\"></i>\n                        </span>\n\n                        <!--Recursos \n                        <span class=\"input-group-addon btn\" ng-show=\"target_search == 'Recursos'\" ui-sref=\"list({entity:'itemResources',search:{search: q}})\">\n                            <i class=\"fa fa-search\" aria-hidden=\"true\"></i>\n                        </span>-->\n\n                        <!--Paquetes \n                        <span class=\"input-group-addon btn\" ng-show=\"target_search == 'Paquetes'\" ui-sref=\"list({entity:'deliveries',search:{search: q}})\">\n                            <i class=\"fa fa-search\" aria-hidden=\"true\"></i>\n                        </span>-->\n\n                        <!--Clientes -->\n                        <span class=\"input-group-addon btn\" ng-show=\"target_search == 'Clientes'\" ui-sref=\"list({entity:'clients',search:{search: q}})\">\n                            <i class=\"fa fa-search\" aria-hidden=\"true\"></i>\n                        </span>\n\n                        <!--Proveedores\n                        <span class=\"input-group-addon btn\" ng-show=\"target_search == 'Proveedores'\" ui-sref=\"list({entity:'providers',search:{search: q}})\">\n                            <i class=\"fa fa-search\" aria-hidden=\"true\"></i>\n                        </span>-->\n\n                        \n\n                    </div><!-- /input-group -->\n\n                </div>\n            </form>\n            <ul class=\"nav navbar-nav navbar-right\">\n                <!--<li class=\"dropdown\">\n                    <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\"><i class=\"fa fa-envelope fa-fw\"></i> <i class=\"fa fa-caret-down\"></i></a>\n                    <ul class=\"dropdown-menu dropdown-messages\" role=\"menu\">\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <strong>John Smith</strong>\n                                    <span class=\"pull-right text-muted\">\n                                        <em>Yesterday</em>\n                                    </span>\n                                </div>\n                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <strong>John Smith</strong>\n                                    <span class=\"pull-right text-muted\">\n                                        <em>Yesterday</em>\n                                    </span>\n                                </div>\n                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <strong>John Smith</strong>\n                                    <span class=\"pull-right text-muted\">\n                                        <em>Yesterday</em>\n                                    </span>\n                                </div>\n                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a class=\"text-center\" href=\"#\">\n                                <strong>Read All Messages</strong>\n                                <i class=\"fa fa-angle-right\"></i>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n                <li class=\"dropdown\">\n                    <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\"><i class=\"fa fa-bell fa-fw\"></i> <i class=\"fa fa-caret-down\"></i></a>\n                    <ul class=\"dropdown-menu dropdown-alerts\" role=\"menu\" style=\"width: 250px;\">\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <i class=\"fa fa-comment fa-fw\"></i> New Comment\n                                    <span class=\"pull-right text-muted small\">4 minutes ago</span>\n                                </div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <i class=\"fa fa-twitter fa-fw\"></i> 3 New Followers\n                                    <span class=\"pull-right text-muted small\">12 minutes ago</span>\n                                </div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <i class=\"fa fa-envelope fa-fw\"></i> Message Sent\n                                    <span class=\"pull-right text-muted small\">4 minutes ago</span>\n                                </div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <i class=\"fa fa-tasks fa-fw\"></i> New Task\n                                    <span class=\"pull-right text-muted small\">4 minutes ago</span>\n                                </div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <i class=\"fa fa-upload fa-fw\"></i> Server Rebooted\n                                    <span class=\"pull-right text-muted small\">4 minutes ago</span>\n                                </div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a class=\"text-center\" href=\"#\">\n                                <strong>See All Alerts</strong>\n                                <i class=\"fa fa-angle-right\"></i>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n                <li class=\"dropdown\">\n                    <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\"><i class=\"fa fa-tasks fa-fw\"></i> <i class=\"fa fa-caret-down\"></i></a>\n                    <ul class=\"dropdown-menu dropdown-tasks\" role=\"menu\" style=\"width: 250px;\">\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <p>\n                                        <strong>Task 2</strong>\n                                        <span class=\"pull-right text-muted\">20% Complete</span>\n                                    </p>\n                                    <div class=\"progress progress-striped active\">\n                                        <div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\">\n                                            <span class=\"sr-only\">20% Complete</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <p>\n                                        <strong>Task 3</strong>\n                                        <span class=\"pull-right text-muted\">60% Complete</span>\n                                    </p>\n                                    <div class=\"progress progress-striped active\">\n                                        <div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\">\n                                            <span class=\"sr-only\">60% Complete (warning)</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a href=\"#\">\n                                <div>\n                                    <p>\n                                        <strong>Task 4</strong>\n                                        <span class=\"pull-right text-muted\">80% Complete</span>\n                                    </p>\n                                    <div class=\"progress progress-striped active\">\n                                        <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\">\n                                            <span class=\"sr-only\">80% Complete (danger)</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            </a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <a class=\"text-center\" href=\"#\">\n                                <strong>See All Tasks</strong>\n                                <i class=\"fa fa-angle-right\"></i>\n                            </a>\n                        </li>\n                    </ul>\n                </li>-->\n                <!--<li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n                    <ul class=\"dropdown-menu\" role=\"menu\">\n                        <li><a href=\"#\">Action</a></li>\n                        <li><a href=\"#\">Another action</a></li>\n                        <li><a href=\"#\">Something else here</a></li>\n                        <li class=\"divider\"></li>\n                        <li><a href=\"#\">Separated link</a></li>\n                        <li class=\"divider\"></li>\n                        <li><a href=\"#\">One more separated link</a></li>\n                    </ul>\n                </li>-->\n                <li><a href=\"#\" onclick=\"logout()\" style=\"padding-top: 15px;\"><i class=\"fa fa-sign-out fa-2x\" aria-hidden=\"true\"></i></a></li>\n            </ul>\n        </div>\n    </div>\n";
 
 /***/ },
-/* 145 */
+/* 142 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16788,7 +16667,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 146 */
+/* 143 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
