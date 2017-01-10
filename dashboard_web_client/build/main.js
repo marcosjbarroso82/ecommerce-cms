@@ -1833,7 +1833,10 @@
 	    var productsAttributes = admin.getEntity('productsAttributes').label('Productos');
 	    productsAttributes.listView().title('Productos').fields([nga.field('name', 'text').isDetailLink(true).label('Nombre'), nga.field('display', 'text').label('Display'), nga.field('widget_type', 'choice').choices(widget_types_choices).label('Tipo')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>')]);
 	
-	    productsAttributes.creationView().title('Crear Atributo de producto').fields([nga.field('name').label('Nombre'), nga.field('display').label('Display'), nga.field('widget_type', 'choice').choices(widget_types_choices).label('Tipo'), nga.field('values', 'embedded_list').targetFields([nga.field('display').label('Display'), nga.field('color')])]);
+	    productsAttributes.creationView().title('Crear Atributo de producto').fields([
+	    //nga.field('name')
+	    //    .label('Nombre'),
+	    nga.field('display').label('Display'), nga.field('widget_type', 'choice').choices(widget_types_choices).label('Tipo'), nga.field('values', 'embedded_list').targetFields([nga.field('display').label('Display'), nga.field('color')])]);
 	
 	    productsAttributes.editionView().title('Editar {{ entry.values.name }}').fields(productsAttributes.creationView().fields()).onSubmitError(['error', 'form', 'progression', 'notification', function (error, form, progression, notification) {
 	        // mark fields based on errors from the response
