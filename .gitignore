@@ -26,3 +26,4 @@ dashboard_web_client/js
 /dashboard_web_client/webpack.config.js
 /dashboard_web_client/run.sh
 
+server/manage.pyc
