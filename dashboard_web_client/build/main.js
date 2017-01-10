@@ -86,7 +86,7 @@
 	
 	myApp.config(['NgAdminConfigurationProvider', function (nga) {
 	    // create the admin application
-	    var admin = nga.application('ERP').baseApiUrl(endpoint);
+	    var admin = nga.application('ERP').baseApiUrl(window.endpoint);
 	
 	    // add entities
 	    admin.addEntity(nga.entity('addresses'));
@@ -205,7 +205,7 @@
 	});
 	
 	myApp.config(['ngAdminJWTAuthConfiguratorProvider', function (ngAdminJWTAuthConfigurator) {
-	    ngAdminJWTAuthConfigurator.setJWTAuthURL(endpoint + 'api-token-auth');
+	    ngAdminJWTAuthConfigurator.setJWTAuthURL(window.endpoint + 'api-token-auth');
 	    ngAdminJWTAuthConfigurator.setCustomAuthHeader({
 	        name: 'Authorization',
 	        template: 'JWT {{token}}'
@@ -1621,7 +1621,13 @@
 	    }];
 	
 	    var orders = admin.getEntity('orders');
-	    orders.listView().title('Ordenes').fields([nga.field('created_at', 'date').format('dd-MM-yyyy').isDetailLink(true).label('Fecha de creacion'), nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('total', 'amount').label('Total'), nga.field('client', 'reference').label('Cliente').perPage(200).targetEntity(admin.getEntity('clients')).targetField(nga.field('username')).singleApiCall(function (ids) {
+	    orders.listView().title('Ordenes').fields([nga.field('created_at', 'date').format('dd-MM-yyyy').isDetailLink(true).label('Fecha de creacion'), nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('payed').map(function truncate(value, entry) {
+	        if (value) {
+	            return 'Pagado';
+	        } else {
+	            return 'Pendiente';
+	        }
+	    }).label('Estado de Pago'), nga.field('total', 'amount').label('Total'), nga.field('client', 'reference').label('Cliente').perPage(200).targetEntity(admin.getEntity('clients')).targetField(nga.field('username')).singleApiCall(function (ids) {
 	        return { 'id': ids };
 	    })]).filters([nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('client', 'reference').perPage(200).label('Cliente').targetEntity(admin.getEntity('clients')).targetField(nga.field('first_name'))]).listActions(["<ma-create-button entity-name=\"payments\" default-values=\"{ order: entry.values.id }\" size=\"xs\" label=\"Agregar pago\"></ma-create-button>"]);
 	
@@ -1669,7 +1675,16 @@
 	    
 	      ])*/
 	
-	    orders.editionView().actions(['show', 'list']).fields([nga.field('created_at', 'date').editable(false).format('dd-MM-yyyy').label('Fecha de creacion'), nga.field('total'), nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('last_status_change', 'choice').choices(order_status_choices_create).editable(false).label("Estado anterior"), nga.field('datetime_last_status_change', 'date').editable(false).format('dd-MM-yyyy').label('Fecha de cambio de estado'), nga.field('payed').map(function truncate(value, entry) {
+	    orders.editionView().actions(['show', 'list']).fields([nga.field('created_at', 'date').editable(false).format('dd-MM-yyyy').label('Fecha de creacion'), nga.field('total').editable(false), nga.field('status', 'choice').choices(order_status_choices).label('Estado'),
+	    //            nga.field('last_status_change', 'choice').choices(order_status_choices_create)
+	    //              .editable(false)
+	    //              .label("Estado anterior"),
+	    //            nga.field('datetime_last_status_change', 'date')
+	    //              .editable(false)
+	    //              .format('dd-MM-yyyy')
+	    //              .label('Fecha de cambio de estado'),
+	
+	    nga.field('payed').map(function truncate(value, entry) {
 	        if (value) {
 	            return 'Pagado';
 	        } else {
@@ -1679,7 +1694,7 @@
 	    //                .choices(order_payment_status_choices)
 	    .label('Estado de Pago').editable(false), nga.field('client', 'reference').perPage(200).label('Cliente').editable(false).targetEntity(admin.getEntity('clients')).targetField(nga.field('username')).singleApiCall(function (ids) {
 	        return { 'id': ids };
-	    }), nga.field('total', 'amount').editable(false).label('Total'), nga.field('items', 'referenced_list').editable(false).perPage(200).label('Detalles').targetEntity(admin.getEntity('orderItems')).targetReferenceField('order').targetFields([nga.field('id'), nga.field('product_name'), nga.field('quantity'), nga.field('price')]).singleApiCall(function (ids) {
+	    }), nga.field('total', 'amount').editable(false).label('Total'), nga.field('items', 'referenced_list').editable(false).perPage(200).label('Detalles').targetEntity(admin.getEntity('orderItems')).targetReferenceField('order').targetFields([nga.field('id'), nga.field('product_sku'), nga.field('product_name'), nga.field('quantity'), nga.field('price')]).singleApiCall(function (ids) {
 	        return { 'id': ids };
 	    }), nga.field('payments', 'referenced_list').editable(false).perPage(200).label('Pagos').targetEntity(admin.getEntity('payments')).targetReferenceField('order').targetFields([nga.field('id'), nga.field('type'), nga.field('amount'), nga.field('status', 'choice').choices(payment_status_choices)]).singleApiCall(function (ids) {
 	        return { 'id': ids };
@@ -1694,15 +1709,45 @@
 /* 22 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
-	exports['default'] = function (nga, admin) {
+	exports["default"] = function (nga, admin) {
+	    var order_status_choices = [{
+	        "label": "Cancelada",
+	        "value": 0
+	    }, {
+	        "label": "Pendiente",
+	        "value": 1
+	    }, {
+	        "label": "Completada",
+	        "value": 2
+	    }];
+	    var order_payment_status_choices = [{
+	        "label": "Pagado",
+	        "value": true
+	    }, {
+	        "label": "Pendiente",
+	        "value": false
+	    }];
 	    var clients = admin.getEntity('clients');
-	    clients.listView().title('Clientes').fields([nga.field('username').label('Nombre de usuario'), nga.field('first_name').label('Nombre'), nga.field('last_name').label('Apellido'), nga.field('email').label('Email'), nga.field('address.street').label('Direccion')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>')]).listActions(['edit', 'delete']);
+	    clients.listView().title('Clientes').fields([nga.field('username').isDetailLink(true).label('Nombre de usuario'), nga.field('first_name').label('Nombre'), nga.field('last_name').label('Apellido'), nga.field('email').label('Email'), nga.field('address.street').label('Direccion'), nga.field('orders', 'referenced_list') // display list of related comments
+	    .perPage(200).label('Ordenes').targetEntity(admin.getEntity('orders')).targetReferenceField('client').targetFields([nga.field('id').isDetailLink(true).label('id'), nga.field('created_at', 'date').format('dd-MM-yyyy').isDetailLink(true).label('Fecha de creacion'), nga.field('status', 'choice').choices(order_status_choices).label('Estado'), nga.field('payed').map(function truncate(value, entry) {
+	        if (value) {
+	            return 'Pagado';
+	        } else {
+	            return 'Pendiente';
+	        }
+	    }).label('Estado de Pago'), nga.field('total', 'amount').label('Total')]).
+	    //                        nga.field('stock', 'template')
+	    //                            .label('Accion stock')
+	    //                            .template(`<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.stock }" size="xs" label="Agregar stock"></ma-create-button>
+	    //                                <ma-show-button entity-name="productsStock" entry="{ identifierValue: entry.values.stock}" size="xs" label="Detalle stock"></ma-create-button>`)
+	
+	    sortField('created_at').sortDir('DESC')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>')]).listActions(['edit', 'delete']);
 	
 	    clients.showView().title('Detalle del usuario {{ entry.values.username }}').fields(clients.listView().fields());
 	
@@ -1733,7 +1778,7 @@
 	    return clients;
 	};
 	
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ },
 /* 23 */
@@ -1748,7 +1793,7 @@
 	exports['default'] = function (nga, admin) {
 	
 	    var products = admin.getEntity('products').label('Productos');
-	    products.listView().title('Productos').fields([nga.field('images', 'template').isDetailLink(true).template('<img ng-if="entry.values.images.length" ng-src="{{ entry.values.images[0].image }}" width="25" style="margin-top:-5px" />\n                    <img ng-if="!entry.values.images.length" src="/images/product_default.jpg" width="25" style="margin-top:-5px" />'), nga.field('name', 'text').isDetailLink(true).label('Nombre'), nga.field('price', 'amount').format('0.00').currency('$').label('Precio')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('category', 'reference').perPage(200).label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name'))]);
+	    products.listView().title('Productos').fields([nga.field('images', 'template').isDetailLink(true).template('<img ng-if="entry.values.images.length" ng-src="{{ entry.values.images[0].image }}" width="25" style="margin-top:-5px" />\n                    <img ng-if="!entry.values.images.length" src="/images/product_default.jpg" width="25" style="margin-top:-5px" />'), nga.field('name', 'text').isDetailLink(true).label('Nombre'), nga.field('category', 'reference').perPage(200).label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name')), nga.field('price', 'amount').format('0.00').currency('$').label('Precio')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('category', 'reference').perPage(200).label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name'))]);
 	
 	    products.creationView().title('Crear producto').fields([nga.field('name').label('Nombre').validation({ required: true }), nga.field('outstanding', 'boolean').defaultValue(false).choices([{ value: true, label: 'Si' }, { value: false, label: 'No' }]).label("Destacar"), nga.field('category', 'reference').perPage(200).targetEntity(admin.getEntity('categories')).targetField(nga.field('name')), nga.field('price', 'float').format('0.00').label('Precio').validation({ required: true }), nga.field('attributes', 'reference_many').perPage(200).targetEntity(admin.getEntity('productsAttributes')).targetField(nga.field('name')), nga.field('generate_variation', 'boolean').defaultValue(false).choices([{ value: true, label: 'Si' }, { value: false, label: 'No' }]).label("Generar todas las variaciones disponibles"), nga.field('description', 'wysiwyg').label('Descripcion')]);
 	
@@ -1773,11 +1818,11 @@
 	exports['default'] = function (nga, admin) {
 	
 	    var productsVariants = admin.getEntity('productsVariants').label('Variaciones de Productos');
-	    productsVariants.listView().title('Variaciones de Productos').fields([nga.field('name', 'text').label('Nombre').map(function truncate(value, entry) {
+	    productsVariants.listView().title('Variaciones de Productos').fields([nga.field('sku', 'text'), nga.field('name', 'text').label('Nombre').map(function truncate(value, entry) {
 	        return entry.display_name;
-	    }).isDetailLink(true), nga.field('name').map(function truncate(value, entry) {
+	    }).isDetailLink(true), nga.field('attributes_display').map(function truncate(value, entry) {
 	        return entry.attributes_display;
-	    }).label('Attributos'), nga.field('price', 'amount').label('Precio'), nga.field('stock_quantity', 'number').label('Stock')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('price_gte', 'float').label('Precio menor a'), nga.field('price_lte', 'float').label('Precio mayor a'), nga.field('stock_lte', 'number').label('Stock menor a').defaultValue(10), nga.field('category', 'reference').perPage(200).label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name'))]).listActions(['<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.stock }" size="xs" label="Agregar stock"></ma-create-button>', '<ma-show-button entity-name="productsStock" entry="{ identifierValue: entry.values.stock}" size="xs" label="Detalle stock"></ma-create-button>']);
+	    }).label('Attributos'), nga.field('price', 'amount').label('Precio'), nga.field('stock_quantity', 'number').label('Stock')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('price_lte', 'float').label('Precio menor a'), nga.field('price_gte', 'float').label('Precio mayor a'), nga.field('stock_lte', 'number').label('Stock menor a').defaultValue(10), nga.field('category', 'reference').perPage(200).label('Categoria').targetEntity(admin.getEntity('categories')).targetField(nga.field('name'))]).listActions(['<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.stock }" size="xs" label="Agregar stock"></ma-create-button>', '<ma-show-button entity-name="productsStock" entry="{ identifierValue: entry.values.stock}" size="xs" label="Detalle stock"></ma-create-button>']);
 	
 	    //'<ma-edit-button entry="entry" entity="entity" label="Edit me" size="xs"></ma-edit-button>',
 	    //'<ma-delete-button entry="entry" entity="entity" label="Delete me" size="xs"></ma-delete-button>',
@@ -1831,7 +1876,11 @@
 	    }];
 	
 	    var productsAttributes = admin.getEntity('productsAttributes').label('Productos');
-	    productsAttributes.listView().title('Productos').fields([nga.field('name', 'text').isDetailLink(true).label('Nombre'), nga.field('display', 'text').label('Display'), nga.field('widget_type', 'choice').choices(widget_types_choices).label('Tipo')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>')]);
+	    productsAttributes.listView().title('Productos').fields([
+	    //nga.field('name', 'text')
+	    //    .isDetailLink(true)
+	    //    .label('Nombre'),
+	    nga.field('display', 'text').label('Display'), nga.field('widget_type', 'choice').choices(widget_types_choices).label('Tipo')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Buscar" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>')]);
 	
 	    productsAttributes.creationView().title('Crear Atributo de producto').fields([
 	    //nga.field('name')
@@ -1952,7 +2001,7 @@
 	
 	exports['default'] = function (nga, admin) {
 	    var productsStock = admin.getEntity('productsStock');
-	    productsStock.listView().title('Stock de productos').fields([nga.field('quantity').label('Cantidad'), nga.field('reserved_stock').label('Stock comprometido'), nga.field('item', 'reference').label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('display_name')).singleApiCall(function (ids) {
+	    productsStock.listView().title('Stock de productos').fields([nga.field('product_sku'), nga.field('quantity').label('Cantidad'), nga.field('reserved_stock').label('Stock comprometido'), nga.field('item', 'reference').label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('display_name')).singleApiCall(function (ids) {
 	        return { 'id': ids };
 	    }), nga.field('actions', 'template').template('<ma-show-button entry="entry" entity="entity" size="xs" label="Ver detalle"></ma-show-button>')]).filters([nga.field('search', 'template').label('').pinned(true).template('<div class="input-group"><input type="text" ng-model="value" placeholder="Search" class="form-control"></input><span class="input-group-addon"><i class="fa fa-search"></i></span></div>'), nga.field('item', 'reference').perPage(200).label('Producto').targetEntity(admin.getEntity('productsVariants')).targetField(nga.field('name'))]).listActions(['<ma-create-button entity-name="IOProductsStock" default-values="{ stock: entry.values.id }" size="xs" label="Agregar stock"></ma-create-button>']);
 	
