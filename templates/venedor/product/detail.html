@@ -110,7 +110,7 @@
                 <img src="{{ product.images.first.image|thumbnail_url:'500' }}" data-zoom-image="{{ product.images.first.image|thumbnail_url:'800' }}" alt="Product Big image" class="product-image" id="product-image">
                 <figcaption class="item-price-container">
                     {% verbatim %}
-                    <span class="item-price">{{ vm.selected_variation.price[0] }}</span>
+                    <span class="item-price">{{ vm.selected_variation.price | currency:"$ ":2 }}</span>
                     {% endverbatim %}
                 </figcaption>
             </figure>

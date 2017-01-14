@@ -65,14 +65,14 @@
 </aside><!-- End .col-md-3 -->
 <div class="col-md-9 col-sm-8 col-xs-12 main-content">
 
-<div id="category-header" class="category-banner" ng-show="vm.category_selected">
+<!--<div id="category-header" class="category-banner" ng-show="vm.category_selected">
     <img src="/static/theme/images/banner.png" alt="Category banner" class="img-responsive">
     <div class="category-title">
         <h2>{{ vm.category_selected.name }}</h2>
         <p>{{ vm.category_selected.slug }}</p>
-        <!--<a href="#" class="btn btn-custom">LEARN MORE</a>-->
-    </div><!-- End .category-title -->
-</div><!-- End #category-header -->
+        <a href="#" class="btn btn-custom">LEARN MORE</a>
+    </div>
+</div> End #category-header -->
 
 <div class="md-margin"></div><!-- space -->
 
@@ -173,7 +173,7 @@
                         {{ product.rating.quantity_vote }} Reviews
                     </span>
                 </div><!-- End .rating-container -->
-                <p>{{ product.description }}</p>
+                <p ng-bind-html="product.description"></p>
                 <div class="item-action">
                     <a href="{{vm.path}}/{{ product.slug }}-{{ product.id }}/" class="item-add-btn">
                         <span class="icon-cart-text">Agregar al carrito</span>
@@ -285,13 +285,13 @@
         });
     </script>
 
-<script src="/static/theme/js/jquery.nouislider.min.js"></script>
-<script src="/static/theme/js/jquery.jscrollpane.min.js"></script>
+<script src="/static/venedor/theme/js/jquery.nouislider.min.js"></script>
+<script src="/static/venedor/theme/js/jquery.jscrollpane.min.js"></script>
 
 
 <script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
 <script type="text/javascript" src="/static/bower_components/angular-resource/angular-resource.min.js"></script>
-
+<script type="text/javascript" src="/static/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <!--<script type="text/javascript" src="/static/bower_components/nya-bootstrap-select/dist/js/nya-bs-select.js"></script>-->
 
 <script type="text/javascript" src="/static/angular-resources/apps/product.js"></script>
