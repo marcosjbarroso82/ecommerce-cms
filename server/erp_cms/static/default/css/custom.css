@@ -39,6 +39,11 @@ body {
 
 
 /* Block products style */
+
+.btn-favorite{
+    font-size: 1.2em;
+}
+
 .caption {
     height: 130px;
     overflow: hidden;
@@ -48,22 +53,18 @@ body {
     white-space: nowrap;
 }
 
-.thumbnail img {
+.porduct-each-list img {
     width: 100%;
 }
 
 .ratings {
     padding-right: 10px;
     padding-left: 10px;
-    color: #d17581;
+    float: right;
 }
 
-.thumbnail {
-    padding: 0;
-}
 
-.thumbnail .caption-full {
-    padding: 9px;
+.porduct-each-list .caption-full{
     color: #333;
 }
 

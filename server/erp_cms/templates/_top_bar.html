@@ -21,32 +21,31 @@
             </ul>
             <form class="navbar-form navbar-left" method="get" action="{{ url_search }}">
                 <div class="form-group">
-                    <input type="text" name="search" class="form-control" placeholder="Search">
+                    <input type="text" name="search" class="form-control" placeholder="{% trans 'Search' %}">
                 </div>
-                <button type="submit" class="btn btn-default">Buscar</button>
+                <button type="submit" class="btn btn-default">{% trans 'Search' %}</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'checkout:cart' %}" title="My Cart">{% trans "My cart" %}</a></li>
                 <li class="dropdown cart">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="badge" id="cart-quantity-items">0</span> Carro <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="badge" id="cart-quantity-items">0</span> {% trans 'Cart' %} <span class="caret"></span></a>
                     <ul class="dropdown-menu" id="dropdown-cart-product-list">
                         <!-- CART -->
                     </ul>
                 </li>
                 {% if request.user.is_authenticated %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user }} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{% url 'profile:details' %}">Perfil</a></li>
-                        <li><a href="{% url 'profile:orders' %}">Mis ordenes</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{% url "account_logout" %}">Salir</a></li>
-                    </ul>
-                </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'profile:details' %}">{% trans 'Profile' %}</a></li>
+                            <li><a href="{% url 'profile:orders' %}">{% trans 'My orders' %}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{% url "account_logout" %}">{% trans 'Sign out' %}</a></li>
+                        </ul>
+                    </li>
                 {% else %}
-                <li><a href="{% url "account_login" %}">Entrar</a></li>
-                <li><a href="{% url 'account_signup' %}">Registrarse</a></li>
+                    <li><a href="{% url "account_login" %}">{% trans 'Sign in' %}</a></li>
+                    <li><a href="{% url 'account_signup' %}">{% trans 'Sign up' %}</a></li>
                 {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->

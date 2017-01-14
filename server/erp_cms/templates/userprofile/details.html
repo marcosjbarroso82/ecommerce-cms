@@ -27,17 +27,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th class="col-sm-2">
-                    {{ address.street }}
-                </th>
-                <td class="col-sm-4">
-                    {{ address.street }}
-                </td>
-                <td class="col-sm-2">
-                    <a href="{% url 'profile:address-edit' pk=address.pk %}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-edit"></i> {% trans "Edit" %}</a>
-                </td>
-            </tr>
+            {% if address %}
+                <tr>
+                    <th class="col-sm-2">
+                        {{ address.street }}
+                    </th>
+                    <td class="col-sm-4">
+                        {{ address.street }}
+                    </td>
+                    <td class="col-sm-2">
+                        <a href="{% url 'profile:address-edit' pk=address.pk %}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-edit"></i> {% trans "Edit" %}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <th class="col-sm-12 text-center">
+                           No hay direcciones creadas
+                    </th>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
 

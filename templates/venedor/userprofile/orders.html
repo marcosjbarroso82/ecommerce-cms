@@ -1,11 +1,11 @@
 {% extends "userprofile/base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Your orders" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "My orders" %} — {{ block.super }}{% endblock %}
 
 {% block breadcrumb %}
     {{ block.super }}
-    <li><span class="active">{% trans "Your orders" %}</span></li>
+    <li><span class="active">{% trans "My orders" %}</span></li>
 {% endblock breadcrumb %}
 
 {% block inner_content %}
@@ -33,7 +33,7 @@
             {% for order in orders %}
                 <tr>
                     <td class="col-sm-2">
-                        <a href="{% url 'order:detail' order.pk %}">{{ order.pk }}</a>
+                        <a href="{% url 'profile:order-detail' order.pk %}">{{ order.pk }}</a>
                     </td>
                     <td class="col-sm-2">
                         {{ order.created_at }}

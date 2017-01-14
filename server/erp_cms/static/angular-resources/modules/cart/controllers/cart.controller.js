@@ -5,12 +5,12 @@
         .module('cart.controllers')
         .controller('CartCtrl', CartCtrl);
 
-    CartCtrl.$inject = ['Cart', '$scope'];
+    CartCtrl.$inject = ['Cart'];
 
     /**
      * @namespace CartCtrl
      */
-    function CartCtrl(Cart, $scope) {
+    function CartCtrl(Cart) {
         var vm = this;
         vm.cart = Cart.cart;
 
@@ -65,8 +65,10 @@
 
         vm.createOrder = function(){
             Cart.create_order().then(function(data){
+                console.log("CREATE ORDER");
+                console.log(data);
                 Cart.reset();
-                //$state.go('order-detail', {id: orden.data.id});
+                window.location = '/profile/orders/' + String(data.data.id) + '/';
             },function(data){
                 console.log("ERROR");
                 console.log(data);

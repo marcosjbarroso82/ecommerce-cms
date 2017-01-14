@@ -118,20 +118,10 @@
         <!-- product-image-container -->
     </div><!-- End .col-md-6 -->
 
-    <div class="col-md-6 col-sm-12 col-xs-12 product">
+    <div class="col-md-6 col-sm-12 col-xs-12 product product-detail-space">
         <div class="lg-margin visible-sm visible-xs"></div><!-- Space -->
         <h1 class="product-name">{{ product.name }}</h1>
 
-        <!-- Start .rating-container -->
-        <div class="ratings-container">
-            <div class="ratings separator">
-                <div class="ratings-result" data-result="{{ product.get_rating.get_percent_rate }}"></div>
-            </div><!-- End .ratings -->
-                <span class="ratings-amount separator">
-                    {{ product.get_rating.quantity_vote }} {% trans 'Reviews' %}
-                </span>
-        </div>
-        <!-- End .rating-container -->
 
         <ul class="product-list" >
             <li><span>{% trans "Availability" %}:</span>{% verbatim %}{{ vm.selected_variation.stock }}{% endverbatim %} {% trans "in Stock" %} </li>
@@ -139,6 +129,9 @@
             {% verbatim %}<li ng-repeat="attr in vm.selected_variation.attributes"><span>{{ attr.display_name }}:</span>{{ attr.display_value }}</li>{% endverbatim %}
             <li><span>{% trans "Selected Variation" %}:</span> {% verbatim %}{{ vm.selected_variation.name }}{% endverbatim %}</li>
         </ul>
+        <div class="detail-description" id="description">
+                        {{ product.description|safe }}
+        </div><!-- End .tab-pane -->
         <hr/>
         {% if product %}
                 <form role="form" class="product-form form-vertical" method="post" action=".">
@@ -225,14 +218,14 @@
                                 <!-- End Widget for Options with Images -->
                             </div>
                             <div ng-if="option_set.widget_type == 'TXT' ">
-                                <!-- Start Widget for Options with Text
-                                <select2 ng-model="vm.selected_option_set_ids[option_set.id]" name="option-set-{{ option_set.id }}" s2-options="option.id as option.title for (id, option) in option_set.options | orderBy:'id'"></select2>-->
-                               <!-- <select class="form-control product-option"
+                                Start Widget for Options with Text
+                                <select2 ng-model="vm.selected_option_set_ids[option_set.id]" name="option-set-{{ option_set.id }}" s2-options="option.id as option.title for (id, option) in option_set.options | orderBy:'id'"></select2>
+                               <select class="form-control product-option"
                                         ng-if="option_set.widget_type == 'TXT' "
                                         ng-model="vm.selected_option_set_ids[option_set.id]"
                                         name="option-set-{{ option_set.id }}"
                                         ng-options="option.id as option.title for (id, option) in option_set.options | orderBy:'id'"></select>
-                                -->
+                                
                                 <ol class="nya-bs-select form-control"
                                     ng-model="vm.selected_option_set_ids[option_set.id]"
                                     size="8"
@@ -267,95 +260,15 @@
                         </div>
                     </div>
                 </form>
-                <!-- Start Favorites and Social -->
-                <div class="md-margin"></div><!-- Space -->
-                <div class="product-extra clearfix">
-                    <div class="product-extra-box-container clearfix">
-                        <div class="item-action-inner">
-                            {% favorite_button product %}
-                        </div><!-- End .item-action-inner -->
-                    </div>
-                    <div class="md-margin visible-xs"></div>
-                    <div class="share-button-group">
-                        <!-- SOCIAL SHARE HERE -->
-                    </div><!-- End .share-button-group -->
-                </div>
-                <!-- End Favorites and Social -->
                 </div><!-- End .col-md-6 -->
         {% else %}
             <p class="alert alert-warning">{% trans "This product is currently <strong>unavailable</strong>." %}</p>
         {% endif %}
+
     </div><!-- End .row -->
 
     <div class="lg-margin2x"></div><!-- End .space -->
-    {% cache 86400 'productdetail' request.get_full_path %}
-    <div class="row">
-        <div class="col-md-9 col-sm-12 col-xs-12">
 
-            <div class="tab-container left product-detail-tab clearfix">
-                <ul class="nav-tabs">
-                    <li class="active"><a href="#description" data-toggle="tab">{% trans "Description" %}</a></li>
-                    <li><a href="#review" data-toggle="tab">{% trans "Review" %}</a></li>
-                    <li><a href="#additional" data-toggle="tab">{% trans "Addintional Info" %}</a></li>
-                    <li><a href="#video" data-toggle="tab">{% trans "Video" %}</a></li>
-                </ul>
-                <div class="tab-content clearfix">
-                    <div class="tab-pane active" id="description">
-                        {{ product.description|safe }}
-                    </div><!-- End .tab-pane -->
-
-                    <div class="tab-pane" id="review">
-
-                        <p>Sed volutpat ac massa eget lacinia. Suspendisse non purus semper, tellus vel, tristique urna. </p>
-                        <p>Cumque nihil facere itaque mollitia consectetur saepe cupiditate debitis fugiat temporibus soluta maxime doloremque alias enim officia aperiam at similique quae vel sapiente nulla molestiae tenetur deleniti architecto ratione accusantium.
-                        </p>
-                    </div><!-- End .tab-pane -->
-
-                    <div class="tab-pane" id="additional">
-                        <strong>Additional Informations</strong>
-                        <p>Quae eum placeat reiciendis enim at dolorem eligendi?</p>
-                        <hr>
-                        <ul class="product-details-list">
-                            <li>Lorem ipsum dolor sit quam</li>
-                            <li>Consectetur adipisicing elit</li>
-                            <li>Illum autem tempora officia</li>
-                            <li>Amet  id odio architecto explicabo </li>
-                            <li>Voluptatem  laborum veritatis</li>
-                            <li>Quae laudantium iste libero</li>
-                        </ul>
-                    </div><!-- End .tab-pane -->
-
-                    <div class="tab-pane" id="video">
-                        <div class="video-container">
-                            <strong>A Video about Product</strong>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur adipisci esse.</p>
-                            <hr>
-                            {#                            <iframe width="560" height="315" src="//www.youtube.com/embed/Z0MNVFtyO30?rel=0"></iframe>#}
-
-                        </div><!-- End .video-container -->
-
-                    </div><!-- End .tab-pane -->
-                </div><!-- End .tab-content -->
-            </div><!-- End .tab-container -->
-            <div class="lg-margin visible-xs"></div>
-            {% render_placeholder product_detail_placeholder.details "640" %}
-        </div><!-- End .col-md-9 -->
-        <div class="lg-margin2x visible-sm visible-xs"></div><!-- Space -->
-
-        {% load cms_tags %}
-
-        <div class="col-md-3 col-sm-12 col-xs-12 sidebar">
-            {% include "product/plugin_vertical_featured_product.html" with featured_product_title=_("Featured.") featured_product_description=_("Some featured products.") featured_product_list=featured_products  %}
-        </div><!-- End .col-md-4 -->
-    </div><!-- End .row -->
-    <div class="lg-margin2x"></div><!-- Space -->
-
-    </div><!-- End .col-md-12 -->
-    </div><!-- End .row -->
-
-    </div>
-
-    {% endcache %}
 {% endblock content %}
 {% block footer_scripts %}
     <script>

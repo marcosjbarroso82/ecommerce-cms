@@ -5,25 +5,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="header-top-left">
+                    <!-- <div class="header-top-left">
                         <ul id="top-links" class="clearfix">
                             {% include '_top_menu.html' %}
                         </ul>
-                    </div><!-- End .header-top-left -->
+                    </div> --> <!-- End .header-top-left -->
                     <div class="header-top-right">
-
-                        <div class="header-top-dropdowns pull-right">
-                            {% include '_dropdown_money.html' %}
-                            {% include '_dropdown_language.html' %}
-                        </div><!-- End .header-top-dropdowns -->
-
                         <div class="header-text-container pull-right">
                             {% if user.is_authenticated %}
-                                <p class="header-text">{% trans 'Welcome to' %} {{ user }}!</p>
+                                <p class="header-text">{% trans '¡Bienvenido' %} {{ user }}!</p>
+                                <ul id="top-links" class="clearfix">
+		                            {% include '_top_menu.html' %}
+		                        </ul>
                                 <p class="header-link"><a href="{% url "account_logout" %}">{% trans "Log out" %}</a></p>
                             {% else %}
                                 <p class="header-text">Welcome to Commerce!</p>
-                                <p class="header-link"><a href="{% url "account_login" %}">{% trans "Log in" %}</a>&nbsp;or&nbsp;<a href="{% url 'account_signup' %}">{% trans "Register" %}</a></p>
+                                <p class="header-link"><a href="{% url "account_login" %}">{% trans "Log in" %}</a>&nbsp;o&nbsp;<a href="{% url 'account_signup' %}">{% trans "Register" %}</a></p>
                             {% endif %}
                         </div><!-- End .pull-right -->
                     </div><!-- End .header-top-right -->
@@ -38,67 +35,26 @@
                 <div class="col-md-3 col-sm-3 col-xs-12 logo-container">
                     <h1 class="logo clearfix">
                         <span>{{ custom_site.display_name }}</span>
-                        <a href="/" title="{{ custom_site.display_name }}"><img src="{{ custom_site.logo }}" alt="{{ custom_site.name }}" width="211" height="36"></a>
+                        <a href="/" title="{{ custom_site.display_name }}"><img src="{{ custom_site.logo }}" alt="{{ custom_site.name }}" width="132" height="50"></a>
                     </h1>
                 </div><!-- End .col-md-3 -->
-                <div class="col-md-9 col-sm-9 col-xs-12 header-inner-right">
+                <div class="col-md-6 col-sm-6 col-xs-12 header-inner-right">
+                	<div id="quick-access">
+                        {% include '_search.html' %}
+                    </div><!-- End #quick-access -->
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 header-inner-right">
                     <div class="header-inner-right-wrapper clearfix">
 
                         <div class="dropdown-cart-menu-container pull-right">
                             {% include '_dropdown_cart.html' %}
                         </div><!-- End .dropdown-cart-menu-container -->
 
-                        <div class="header-box contact-infos pull-right">
-                            <ul>
-                                <li><span class="header-box-icon header-box-icon-skype"></span>context</li>
-                                <li><span class="header-box-icon header-box-icon-email"></span><a href="mailto:contacto@context.com-ar">contacto@context.com.ar</a></li>
-                            </ul>
-                        </div><!-- End .contact-infos -->
-
-                        <div class="header-box contact-phones pull-right clearfix">
-                            <span class="header-box-icon header-box-icon-earphones"></span>
-                            <ul class="pull-left">
-                                <li>+(549) 351 70 37 107</li>
-                                <li>+(549) 351 70 37 107</li>
-                            </ul>
-                        </div><!-- End .contact-phones -->
-
                     </div><!-- End .header-inner-right-wrapper -->
                 </div><!-- End .col-md-7 -->
             </div><!-- End .row -->
         </div><!-- End .container -->
 
-        <div id="main-nav-container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 clearfix">
-
-                        <nav id="main-nav">
-                            <div id="responsive-nav">
-                                <div id="responsive-nav-button">
-                                    Menu <span id="responsive-nav-button-icon"></span>
-                                </div><!-- responsive-nav-button -->
-                            </div>
-                            <div class="menu-table clearfix">
-                                <div class="menu-table-wrapper">
-                                    <ul class="menu clearfix">
-                                        {% show_menu 0 1 100 100 "menu.html" %}
-                                    </ul>
-                                </div><!-- End .menu-table-wrapper -->
-
-                                <div id="quick-access">
-                                    {% include '_search.html' %}
-                                </div><!-- End #quick-access -->
-
-                            </div><!-- End .menu-table -->
-
-                        </nav>
-
-                    </div><!-- End .col-md-12 -->
-                </div><!-- End .row -->
-            </div><!-- End .container -->
-
-        </div><!-- End #nav -->
     </div><!-- End #inner-header -->
 </header><!-- End #header -->
 

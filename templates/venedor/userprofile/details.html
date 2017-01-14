@@ -1,12 +1,12 @@
 {% extends "userprofile/base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Your profile" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "My profile" %} — {{ block.super }}{% endblock %}
 
 
 {% block breadcrumb %}
     {{ block.super }}
-    <li><span class="active">{% trans "Your profile" %}</span></li>
+    <li><span class="active">{% trans "My profile" %}</span></li>
 {% endblock breadcrumb %}
 
 {% block inner_content %}
@@ -17,7 +17,8 @@
     </p>
 
 
-    <h3>{% trans "Your address" %}</h3>
+    <h3>{% trans "My address" %}</h3>
+        {% if address %}
     <table class="table table-striped">
         <thead>
             <tr>
@@ -27,19 +28,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th class="col-sm-2">
-                    {{ address.street }}
-                </th>
-                <td class="col-sm-4">
-                    {{ address.street }}
-                </td>
-                <td class="col-sm-2">
-                    <a href="{% url 'profile:address-edit' pk=address.pk %}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-edit"></i> {% trans "Edit" %}</a>
-                </td>
-            </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        {{ address.street }}
+                    </th>
+                    <td class="col-sm-4">
+                        {{ address.street }}
+                    </td>
+                    <td class="col-sm-2">
+                        <a href="{% url 'profile:address-edit' pk=address.pk %}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-edit"></i> {% trans "Edit" %}</a>
+                    </td>
+                </tr>
         </tbody>
     </table>
+        {% else %}
+        <br/>
+        <p>No hay direcciones creadas</p>
+        {% endif %}
 
     <div>
 {#        <a href="{% url 'profile:address-create' %}" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign"></i> {% trans "Add new address" %}</a>#}

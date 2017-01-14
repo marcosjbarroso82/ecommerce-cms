@@ -2,6 +2,7 @@ window.endpoint = '/api/public/v1/';
 
 var App = angular.module('App', [
         'ngResource',
+            'ngSanitize',
         'product'
     ])
 

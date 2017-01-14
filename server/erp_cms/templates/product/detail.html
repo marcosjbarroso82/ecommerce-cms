@@ -51,7 +51,7 @@ cg-busy="productPromise"
                 <img src="{{ product.images.first.image|thumbnail_url:'500' }}" data-zoom-image="{{ product.images.first.image|thumbnail_url:'800' }}" alt="Product Big image" class="img-responsive img-thumbnail" id="product-image">
                 <figcaption class="item-price-container">
                     {% verbatim %}
-                    <span class="item-price">$ {{ vm.selected_variation.price[0] }}</span>
+                    <span class="item-price">{{ vm.selected_variation.price | currency:"$ ":2 }}</span>
                     {% endverbatim %}
                 </figcaption>
             </figure>
@@ -61,7 +61,7 @@ cg-busy="productPromise"
 
     <div class="col-md-6 col-sm-12 col-xs-12 product">
         <div class="lg-margin visible-sm visible-xs"></div><!-- Space -->
-        <h1 class="product-name">{% render_model product 'name' %}</h1>
+        <h1 class="product-name">{{ product.name }}</h1>
 
         <!-- Start .rating-container -->
         <div class="ratings-container">
@@ -207,7 +207,7 @@ cg-busy="productPromise"
                 </div>
                 <div class="spacer spacer-xs"></div>
                 <div class="col-md-12">
-                    <span class="error-messages" ng-show="vm.selected_variation.stock == 0">Este producto no tiene stock!</span>
+                    <span class="text-danger" ng-show="vm.selected_variation.stock == 0">Este producto no tiene stock!</span>
                 </div>
             </div>
             {% endverbatim %}

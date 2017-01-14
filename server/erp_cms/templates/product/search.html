@@ -38,8 +38,8 @@
 
             </div>
             <div class="panel-footer">
-                <button id="btn-search-range-price" class="btn btn-custom-2 btn-sm" ng-click="vm.changeParams()">Ok</button>
-                <button class="btn btn-custom-2 btn-sm" ng-click="vm.q.min_price = ''; vm.q.max_price= ''; vm.changeParams();">Clear</button>
+                <button id="btn-search-range-price" class="btn btn-info btn-sm" ng-click="vm.changeParams()">Ok</button>
+                <button class="btn btn-info btn-sm" ng-click="vm.q.min_price = ''; vm.q.max_price= ''; vm.changeParams();">Clear</button>
             </div>
         </div>
     </div>
@@ -52,8 +52,8 @@
         </div>-->
 
         <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-3" style="margin: 20px 0px;">
+            <div class="col-md-12 form-inline">
+                <div class="col-md-4 form-group" style="margin: 20px 0px;">
                     <label for="ordering">Ordenar por</label>
                     <select name="ordering" id="ordering" ng-model="vm.q.ordering" ng-change="vm.changeParams()" class="form-control">
                         <option value="">----</option>
@@ -61,15 +61,15 @@
                         <option value="price">Precio</option>
                     </select>
                 </div>
-                <div class="col-md-3" style="margin: 20px 0px;">
-                    <label for="ordering">Mostrar cantidad</label>
-                    <select name="item_type" ng-model="vm.q.limit" ng-change="vm.changeParams()" class="form-control">
+                <div class="col-md-4 form-group" style="margin: 20px 0px;">
+                    <label for="cant_show">Mostrar cantidad</label>
+                    <select name="cant_show" id="cant_show" ng-model="vm.q.limit" ng-change="vm.changeParams()" class="form-control">
                         <option value="8">8</option>
                         <option value="15">15</option>
                         <option value="30">30</option>
                     </select>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <nav aria-label="Page navigation" class="pull-right" ng-if="vm.data.pages.length > 1">
                         <ul class="pagination">
                             <li ng-disabled="!vm.data.previous" ng-class="{'disabled': !vm.data.previous }">
@@ -94,32 +94,37 @@
 
         <div class="row" ng-if="vm.data.list.length">
             <div class="col-md-4" ng-repeat="product in vm.data.list" itemscope itemtype="https://schema.org/Product">
-                <div class="thumbnail">
-                    <img ng-if="product.images[0]"ng-src="{{ product.images[0].image }}" alt="" />
-                    <img ng-if="!product.images[0]" src="/static/image/product-default.png" alt="" />
-                    <div class="caption">
-                        <!-- HAS OFFERT -->
-                        <h4 ng-if="product.offert_price" class="pull-right old-price">$ {{ product.price }}</h4>
-                        <h4 ng-if="product.offert_price" class="pull-right item-price">$ {{ product.offert_price }}</h4>
-                        <!-- HASNT OFFERT -->
-                        <h4 ng-if="!product.offert_price" class="pull-right item-price">$ {{ product.price }}</h4>
+                <div class="panel panel-default">
+                    <div class="panel-body porduct-each-list">
+                        <img ng-if="product.images[0]"ng-src="{{ product.images[0].image }}" alt="" />
+                        <img ng-if="!product.images[0]" src="/static/image/product-default.png" alt="" />
+                        <div class="caption">
+                            <!-- HAS OFFERT -->
+                            <h4 ng-if="product.offert_price" class="pull-right old-price">$ {{ product.price }}</h4>
+                            <h4 ng-if="product.offert_price" class="pull-right item-price">$ {{ product.offert_price }}</h4>
+                            <!-- HASNT OFFERT -->
+                            <h4 ng-if="!product.offert_price" class="pull-right item-price text-danger">$ {{ product.price }}</h4>
 
-                        <span style="position: absolute;" ng-if="product.offert_price">{% trans "Discount!" %} </span>
-                        <span ng-if="product.is_new" class="new-rect">{% trans 'New' %}</span>
-                        <h4><a target="_self" href="{{vm.path}}/{{ product.slug }}-{{ product.id }}/">{{ product.name }}</a>
-                        </h4>
-                        <p>{{ product.description }}...</p>
-                        <div class="favit pull-right">
-                            <button ng-disabled="product.is_favorite" class="btn highlight second-color btn-favit-favorite" ng-click="vm.toggle_favorite(product)">
-                                <i class="fa " ng-class="{'fa-heart': product.is_favorite, 'fa-heart-o': !product.is_favorite}"></i>
-                            </button>
+                            <span style="position: absolute;" ng-if="product.offert_price">{% trans "Discount!" %} </span>
+                            <span ng-if="product.is_new" class="new-rect">{% trans 'New' %}</span>
+                            <h4><a target="_self" href="{{vm.path}}/{{ product.slug }}-{{ product.id }}/">{{ product.name }}</a>
+                            </h4>
+                            <p ng-bind-html="product.description"></p>
+
+                        </div>
+
+                    </div>
+                    <div class="panel-footer">
+                        <button type="button" class="btn btn-default btn-favorite btn-xs" ng-click="vm.toggle_favorite(product)" >
+                            <span class="glyphicon text-default" ng-class="{'glyphicon-heart': product.is_favorite, 'glyphicon-heart-empty': !product.is_favorite}" aria-hidden="true"></span>
+                        </button>
+                        <div class="ratings text-info">
+                            <p class="pull-right">{{ product.rating.quantity_vote }} Reviews</p>
+                            <p class="ratings-result" data-result="{{ product.rating.percent_rate }}"></p>
                         </div>
                     </div>
-                    <div class="ratings">
-                        <p class="pull-right">{{ product.rating.quantity_vote }} Reviews</p>
-                        <p class="ratings-result" data-result="{{ product.rating.percent_rate }}"></p>
-                    </div>
                 </div>
+
             </div>
         </div>
         <p ng-if="!vm.data.list.length">No hay productos.</p>
@@ -165,6 +170,7 @@
 
 
 <script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="/static/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script type="text/javascript" src="/static/bower_components/angular-resource/angular-resource.min.js"></script>
 
 <!--<script type="text/javascript" src="/static/bower_components/nya-bootstrap-select/dist/js/nya-bs-select.js"></script>-->

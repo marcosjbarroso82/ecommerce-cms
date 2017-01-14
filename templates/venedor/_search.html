@@ -1,8 +1,10 @@
-{% load i18n %}
+{% load i18n products_app %}
+        {% get_product_app_url 'search' as url_search %}
 {% block header-search %}
-    <form class="form-inline quick-search-form" id="quick-search-form" method="get" action="#">
+
+    <form class="form-inline quick-search-form" id="quick-search-form" method="get" action="{{ url_search }}">
         <div class="form-group">
-            <input type="text" name="q" id="text-search" class="form-control" placeholder="{% trans 'Search here' %}" {# value="{% block value_search %}{% endblock value_search %}" #}>
+            <input type="text" name="search" id="text-search" class="form-control" placeholder="Buscar producto" {# value="{% block value_search %}{% endblock value_search %}" #}>
         </div><!-- End .form-inline -->
         <button type="submit" id="quick-search" class="btn btn-custom"></button>
     </form>

@@ -19,10 +19,10 @@
 
                         <div class="header-text-container pull-right">
                             {% if user.is_authenticated %}
-                                <p class="header-text">{% trans 'Welcome to' %} {{ user }}!</p>
+                                <p class="header-text">Bienvenido {{ user }}!</p>
                                 <p class="header-link"><a href="{% url "account_logout" %}">{% trans "Log out" %}</a></p>
                             {% else %}
-                                <p class="header-text">Welcome to Commerce!</p>
+                                <p class="header-text">{% trans 'Welcome to' %} Commerce!</p>
                                 <p class="header-link"><a href="{% url "account_login" %}">{% trans "Log in" %}</a>&nbsp;or&nbsp;<a href="{% url 'account_signup' %}">{% trans "Register" %}</a></p>
                             {% endif %}
                         </div><!-- End .pull-right -->

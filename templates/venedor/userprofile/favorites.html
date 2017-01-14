@@ -2,17 +2,17 @@
 {% load i18n %}
 {% load staticfiles %}
 {% load favit_tags %}
-{% block title %}{% trans "Your favorites" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "My favorites" %} — {{ block.super }}{% endblock %}
 
 {% block breadcrumb %}
     {{ block.super }}
-    <li><span class="active">{% trans "Your favorites" %}</span></li>
+    <li><span class="active">{% trans "My favorites" %}</span></li>
 {% endblock breadcrumb %}
 
 {% block inner_content %}
         <header class="content-title">
-            <h1 class="title">{% trans 'Your favorites' %}</h1>
-            <p class="title-desc">Your products favorites. Add favorites products and know when new offert to interested product.</p>
+            <h1 class="title">{% trans 'My favorites' %}</h1>
+            <p class="title-desc">Sus productos favoritos. Agregar productos favoritos y saber cuándo nueva oferta al producto interesado.</p>
         </header>
 
         <table class="table">

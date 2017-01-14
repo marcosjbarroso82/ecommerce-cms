@@ -1,0 +1,393 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static from staticfiles %}
+{% load jsonify %}
+{% load favit_tags %}
+{% load cms_tags %}
+{% load cache %}
+{% load thumbnail %}
+
+{% block angular_app_declare_block %}
+    ng-app="App" ng-controller="ProductCtrl as vm"
+    cg-busy="productPromise"
+{% endblock %}
+
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'bower_components/nya-bootstrap-select/dist/css/nya-bs-select.css' %}"/>
+    <style>
+        .search-option {
+            padding: 5px 0;
+            width: 230px;
+            height: 30px;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            line-height: 22px;
+        }
+
+        .search-option input {
+            position: absolute;
+            width: 0px;
+            float: Left;
+            margin-left: 210px;
+            -webkit-transition: all 0.7s ease-in-out;
+            -moz-transition: all 0.7s ease-in-out;
+            -o-transition: all 0.7s ease-in-out;
+            transition: all 0.7s ease-in-out;
+            height: 30px;
+            line-height: 18px;
+            padding: 0 2px 0 2px;
+            border-radius:1px;
+        }
+
+        .search-option:hover input, .search-option input:focus {
+            width: 200px;
+            margin-left: 0px;
+        }
+
+        .search-option .btn-search {
+            height: 30px;
+            position: absolute;
+            right: 0;
+            top: 5px;
+            border-radius:1px;
+        }
+
+    .select-options-text{
+        font-size: 0.5em;
+        font-style: italic;
+        color: #808080;
+        width: 100%;
+        display: block;
+    }
+
+    .nya-bs-select .dropdown-menu, .nya-bs-select .dropdown-menu .dropdown-menu{
+        width: 100%;
+    }
+    </style>
+{% endblock %}
+
+{% block title %}{{ product }} — {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% if product.category %}
+        <li xmlns="http://www.w3.org/1999/html"><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></li>
+    {% endif %}
+    <li><span class="active">{{ product }}</span></li>
+{% endblock breadcrumb %}
+
+{% block content %}
+    <div id="loading" style=" display: block; width: 100%; min-height: 400px;">
+        <i class="fa-li fa fa-spinner fa-spin center-spinner"></i>
+    </div>
+    <div id="product-detail"
+         style="display: none"
+         itemscope itemtype="http://schema.org/Product" class="product-detail">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix">
+        <!-- Start product-carousel -->
+        <div id="product-image-carousel-container">
+            <ul id="product-carousel" class="celastislide-list">
+                {% with images=product.images.all %}
+                    {% for image in images %}
+                        <li class="active-slide"><a data-rel='prettyPhoto[product]' data-image="{{ image.image|thumbnail_url:'500' }}" data-zoom-image="{{ image.image|thumbnail_url:'800' }}" class="product-gallery-item"><img src="{{ image.image|thumbnail_url:'150' }}"></a></li>
+                    {% endfor %}
+                {% endwith %}
+            </ul>
+        </div>
+        <!-- End product-carousel -->
+
+        <!-- Start product-image-container -->
+        <div id="product-image-container" >
+
+            <figure style="width: 100%; height: 100%">
+                <!--<i class="fa fa-spinner fa-spin fa-2x" style="position: absolute; top: 50%; right: 50%;"></i>-->
+                <img src="{{ product.images.first.image|thumbnail_url:'500' }}" data-zoom-image="{{ product.images.first.image|thumbnail_url:'800' }}" alt="Product Big image" class="product-image" id="product-image">
+                <figcaption class="item-price-container">
+                    {% verbatim %}
+                    <span class="item-price">{{ vm.selected_variation.price[0] }}</span>
+                    {% endverbatim %}
+                </figcaption>
+            </figure>
+        </div>
+        <!-- product-image-container -->
+    </div><!-- End .col-md-6 -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 product">
+        <div class="lg-margin visible-sm visible-xs"></div><!-- Space -->
+        <h1 class="product-name">{{ product.name }}</h1>
+
+
+        <ul class="product-list" >
+            <li><span>{% trans "Availability" %}:</span>{% verbatim %}{{ vm.selected_variation.stock }}{% endverbatim %} {% trans "in Stock" %} </li>
+            <li><span>{% trans "Product Code" %}:</span>{% verbatim %}{{ vm.selected_variation.sku }}{% endverbatim %}</li>
+            {% verbatim %}<li ng-repeat="attr in vm.selected_variation.attributes"><span>{{ attr.display_name }}:</span>{{ attr.display_value }}</li>{% endverbatim %}
+            <li><span>{% trans "Selected Variation" %}:</span> {% verbatim %}{{ vm.selected_variation.name }}{% endverbatim %}</li>
+        </ul>
+        <br>
+        <div class="tab-pane active" id="description">
+                        {{ product.description|safe }}
+        </div><!-- End .tab-pane -->
+        <hr/>
+        {% if product %}
+                <form role="form" class="product-form form-vertical" method="post" action=".">
+
+                    <!-- Start Attributes -->
+                    {% verbatim %}
+                    <div ng-repeat="attribute in vm.attributes" class="product-attribute">
+                        <h4>{{ attribute.display_name }}:</h4>
+
+                        <!-- Start Widget TXT -->
+                        <div ng-if="attribute.widget_type == 'TXT' " class="btn-group" role="group">
+                            <label class="btn btn-sm btn-default"
+                                   ng-repeat="attr_value in attribute.values"
+                                   ng-class="{checked: vm.selected_attributes[attr_value.id] == attr_value.value }">
+                                <input type="radio" class="btn"
+                                       ng-click="vm.select_attribute(attr_value.id, attr_value.value)"
+                                       ng-model="vm.selected_attributes[attr_value.id]"
+                                       value="{{ attr_value.value }}"
+                                       name="attribute-{{ attribute.name }}">
+                                <span>{{ attr_value.display_value }}</span>
+                            </label>
+                        </div>
+                        <!-- End Widget TXT -->
+
+                        <!-- Start Widget COL -->
+                        <div ng-if="attribute.widget_type == 'COL' ">
+                            <div class="xs-margin"></div>
+                            <ul class="filter-color-list clearfix">
+                                <li ng-repeat="attr_value in attribute.values" >
+                                    <label ng-class="{checked: vm.selected_attributes[attr_value.id] == attr_value.value }">
+                                        <input type="radio" class="btn"
+                                               ng-click="vm.select_attribute(attr_value.id, attr_value.value)"
+                                               ng-model="vm.selected_attributes[attr_value.id]"
+                                               value="{{ attr_value.value }}"
+                                               name="attribute-{{ attribute.name }}">
+                                        <span ng-style="{'background-color': attr_value.color }" class="filter-color-box"></span>
+                                    </label>
+                            </ul>
+                        </div>
+                        <!-- End Widget COL -->
+                        <!-- Start Widget COL -->
+
+                        <div ng-if="attribute.widget_type == 'IMG' ">
+                            <div class="xs-margin"></div>
+                            <ul class="filter-color-list clearfix">
+                                <li ng-repeat="attr_value in attribute.values" >
+                                    <label ng-class="{checked: vm.selected_attributes[attr_value.id] == attr_value.value }">
+                                        <input type="radio" class="btn"
+                                               ng-click="vm.select_attribute(attr_value.id, attr_value.value)"
+                                               ng-model="vm.selected_attributes[attr_value.id]"
+                                               value="{{ attr_value.value }}"
+                                               name="attribute-{{ attribute.name }}">
+                                        <img ng-src="{{ attr_value.image }}" alt=""/>
+                                    </label>
+                            </ul>
+                        </div>
+                        <!-- End Widget COL -->
+                        <!-- <hr/>-->
+                    </div>
+
+
+                    <!-- Start Product options -->
+                    <div>
+                        <input style="display: none;" class="form-control" id="id_extra_data" maxlength="40" name="extra_data" type="text" value="{{ vm.get_extra_data() }}">
+                        <div ng-repeat="option_set in vm.option_set_list" class="product-color-filter-container" style="position: relative;">
+                            <h4>{{ option_set.name }}: </h4>
+                            <div class="search-option" ng-if="option_set.widget_type == 'IMG' ">
+                                <input type="text" ng-model="vm.search_option[option_set.id].name" class="form-control input-sm" maxlength="64" placeholder="Search" />
+                                <button type="button" class="btn btn-sm btn-search"><i class="fa fa-search"></i></button>
+                            </div>
+                            <!-- Start Widget for Options with Images -->
+                            <div style="height: 110px; overflow-y: auto;" ng-if="option_set.widget_type == 'IMG' ">
+
+                                <label class="product-option pull-left"
+                                       ng-repeat="option in option_set.options|filter:vm.search_option[option_set.id] | orderBy:'id' ">
+                                    <input type="radio"
+                                           value="{{ option.id }}"
+                                           ng-model="vm.selected_option_set_ids[option_set.id]"
+                                           name="option-set-{{ option_set.id }}">
+                                    <img class="img-thumbnail"
+                                         ng-class="{selected: vm.selected_option_set_ids[option_set.id]==option.id}"
+                                         style="width: 100px; height: 100px;" ng-src="{{ option.image.url }}">
+                                </label>
+                                <!-- End Widget for Options with Images -->
+                            </div>
+                            <div ng-if="option_set.widget_type == 'TXT' ">
+                                Start Widget for Options with Text
+                                <select2 ng-model="vm.selected_option_set_ids[option_set.id]" name="option-set-{{ option_set.id }}" s2-options="option.id as option.title for (id, option) in option_set.options | orderBy:'id'"></select2>
+                               <select class="form-control product-option"
+                                        ng-if="option_set.widget_type == 'TXT' "
+                                        ng-model="vm.selected_option_set_ids[option_set.id]"
+                                        name="option-set-{{ option_set.id }}"
+                                        ng-options="option.id as option.title for (id, option) in option_set.options | orderBy:'id'"></select>
+                                
+                                <ol class="nya-bs-select form-control"
+                                    ng-model="vm.selected_option_set_ids[option_set.id]"
+                                    size="8"
+                                    data-live-search="true">
+                                    <li nya-bs-option="(id, option) in option_set.options | orderBy:'id'" data-value="option.id" title="{{ option.name }} ...">
+                                        <a>
+                                            {{option.name}}
+                                            <span class="select-options-text">{{ option.description }}</span>
+                                        </a>
+                                    </li>
+                                </ol>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <!-- End Product options -->
+                    <!-- Start Attributes -->
+                    <div class="product-add clearfix">
+                        <div>
+                            <select class="form-control" style="display: none" id="id_variant" name="variant" ng-model="vm.selected_variation" ng-options="variant.name for variant in vm.variations track by variant.id"></select>
+                            {% endverbatim %}
+                        </div>
+                        <div class="md-margin"></div>
+                        <div class="custom-quantity-input">
+                            <input id="id_quantity" max="{{ vm.selected_variation.stock }}" min="1" name="quantity" ng-model="vm.quantity" type="number" value="1" />
+                        </div>
+                        <button class="btn btn-custom-2" ng-disabled="vm.selected_variation.stock == 0" type="button" ng-click="vm.add_cart()">{% trans "ADD TO CART" %}</button>
+                        <div class="col-md-12">
+                            <span class="help-block" ng-show="vm.selected_variation.stock == 0">Este producto no tiene stock!</span>
+                        </div>
+                    </div>
+                </form>
+                </div><!-- End .col-md-6 -->
+        {% else %}
+            <p class="alert alert-warning">{% trans "This product is currently <strong>unavailable</strong>." %}</p>
+        {% endif %}
+
+    </div><!-- End .row -->
+
+    <div class="lg-margin2x"></div><!-- End .space -->
+    {% cache 86400 'productdetail' request.get_full_path %}
+    <div class="row">
+        <div class="col-md-9 col-sm-12 col-xs-12">
+
+            <div class="tab-container left product-detail-tab clearfix">
+                <ul class="nav-tabs">
+                    <li class="active"><a href="#description" data-toggle="tab">{% trans "Description" %}</a></li>
+                 <!--    <li><a href="#review" data-toggle="tab">{% trans "Review" %}</a></li>
+                    <li><a href="#additional" data-toggle="tab">{% trans "Addintional Info" %}</a></li>
+                    <li><a href="#video" data-toggle="tab">{% trans "Video" %}</a></li> -->
+                </ul>
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="description">
+                        {{ product.description|safe }}
+                    </div><!-- End .tab-pane -->
+
+                    <div class="tab-pane" id="review">
+
+                        <p>Sed volutpat ac massa eget lacinia. Suspendisse non purus semper, tellus vel, tristique urna. </p>
+                        <p>Cumque nihil facere itaque mollitia consectetur saepe cupiditate debitis fugiat temporibus soluta maxime doloremque alias enim officia aperiam at similique quae vel sapiente nulla molestiae tenetur deleniti architecto ratione accusantium.
+                        </p>
+                    </div><!-- End .tab-pane -->
+
+                    <div class="tab-pane" id="additional">
+                        <strong>Additional Informations</strong>
+                        <p>Quae eum placeat reiciendis enim at dolorem eligendi?</p>
+                        <hr>
+                        <ul class="product-details-list">
+                            <li>Lorem ipsum dolor sit quam</li>
+                            <li>Consectetur adipisicing elit</li>
+                            <li>Illum autem tempora officia</li>
+                            <li>Amet  id odio architecto explicabo </li>
+                            <li>Voluptatem  laborum veritatis</li>
+                            <li>Quae laudantium iste libero</li>
+                        </ul>
+                    </div><!-- End .tab-pane -->
+
+                    <div class="tab-pane" id="video">
+                        <div class="video-container">
+                            <strong>A Video about Product</strong>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur adipisci esse.</p>
+                            <hr>
+                            {#                            <iframe width="560" height="315" src="//www.youtube.com/embed/Z0MNVFtyO30?rel=0"></iframe>#}
+
+                        </div><!-- End .video-container -->
+
+                    </div><!-- End .tab-pane -->
+                </div><!-- End .tab-content -->
+            </div><!-- End .tab-container -->
+            <div class="lg-margin visible-xs"></div>
+            {% render_placeholder product_detail_placeholder.details "640" %}
+        </div><!-- End .col-md-9 -->
+        <div class="lg-margin2x visible-sm visible-xs"></div><!-- Space -->
+
+        {% load cms_tags %}
+
+        <div class="col-md-3 col-sm-12 col-xs-12 sidebar">
+            {% include "product/plugin_vertical_featured_product.html" with featured_product_title=_("Featured.") featured_product_description=_("Some featured products.") featured_product_list=featured_products  %}
+        </div><!-- End .col-md-4 -->
+    </div><!-- End .row -->
+    <div class="lg-margin2x"></div><!-- Space -->
+
+    </div><!-- End .col-md-12 -->
+    </div><!-- End .row -->
+
+    </div>
+
+    {% endcache %}
+{% endblock content %}
+{% block footer_scripts %}
+    <script>
+        /**
+         * Loading when init app.
+         */
+        $( document ).ready(function() {
+            $("#loading").css('display', 'none');
+            $("#product-detail").css('display', 'block');
+        });
+    </script>
+
+    <script>
+        var variants_json = {{ variants_json|jsonify }};
+    </script>
+
+    <script src="/static/venedor/theme/js/jquery.elevateZoom.min.js"></script>
+
+    <!-- angular resources -->
+    <script type="text/javascript" src="{% static 'bower_components/angular/angular.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'bower_components/nya-bootstrap-select/dist/js/nya-bs-select.js' %}"></script>
+
+    <!-- ###################### angular-resources APP - MODULE PRODUCT DETAIL ###################### -->
+    <script type="text/javascript" src="{% static 'angular-resources/modules/product-detail/product.module.js' %}"></script>
+    <script type="text/javascript" src="{% static 'angular-resources/modules/product-detail/services/product.service.js' %}"></script>
+    <script type="text/javascript" src="{% static 'angular-resources/modules/product-detail/controllers/product.controller.js' %}"></script>
+    <!-- ###################### END angular-resources APP - MODULE PRODUCT DETAIL ###################### -->
+
+    <!-- ###################### angular-resources APP - MODULE CART ###################### -->
+    <script type="text/javascript" src="{% static 'angular-resources/modules/cart/cart.module.js' %}"></script>
+    <script type="text/javascript" src="{% static 'angular-resources/modules/cart/services/cart.service.js' %}"></script>
+    <!-- ###################### END angular-resources APP - MODULE CART ###################### -->
+
+    <!-- ###################### angular-resources APP ###################### -->
+    <script type="text/javascript" src="{% static 'angular-resources/apps/product-detail.js' %}"></script>
+    <!-- ###################### END angular-resources APP ###################### -->
+
+
+    <script>
+        $(function() {
+            $('#id_variant').on('change', function() {
+                console.log($(this).val() + $(this).val());
+                $('[class^="variant"]').css('color', 'red');
+                $('[class^="variant"]').hide();
+                $('[class^="variant-' + $(this).val()  + '"]').show()   ;
+                $('[class^="variant-' + $(this).val()  + '"]').css('color', 'green');
+            });
+            {#            $('[class^="variant"]').hide();#}
+            $('[class^="variant-' + $('#id_variant').val()  + '"]').show()
+        });
+    </script>
+
+{% endblock %}

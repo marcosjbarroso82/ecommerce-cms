@@ -25,27 +25,31 @@ function display_cart(){
             var total = 0;
             container_list.html('');
             //'<a title="Delete item" data-index="'+ i +'" class="cart-delete-item"><i class="fa fa-times" data-index="'+ i +'"></i></a>' +
-            for(var i=0; i < items.length; i++){
-                total += items[i].sub_total;
-                var url = '/products/' + items[i].slug + '-' + items[i].id;
+            if(items.length > 0){
+                for(var i=0; i < items.length; i++){
+                    total += items[i].sub_total;
+                    var url = '/products/' + items[i].slug + '-' + items[i].id;
 
-                var li = '<li class="media">' +
-                            '<div class="media-left">' +
-                                '<a sref="'+ url +'">'+
-                                  '<img class="media-object img-responsive img-thumbnail" src="'+ items[i].image +'" alt="'+ items[i].name +'" alt="...">'+
-                                '</a>' +
-                            '</div>' +
-                            '<div class="media-body">' +
-                                '<h4 class="media-heading">'+ items[i].name +'</h4>' +
-                                '<strong>Cantidad:</strong>' + items[i].quantity + '<strong>Precio:</strong> $'+ items[i].price +
-                            '</div>' +
-                           '</li>';
-                console.log("AGREGANDO UN ELEMENTO");
-
-                container_list.append(li);
+                    var li = '<li class="media">' +
+                                '<div class="media-left">' +
+                                    '<a sref="'+ url +'">'+
+                                      '<img class="media-object img-responsive img-thumbnail" src="'+ items[i].image +'" alt="'+ items[i].name +'" alt="...">'+
+                                    '</a>' +
+                                '</div>' +
+                                '<div class="media-body">' +
+                                    '<h4 class="media-heading">'+ items[i].name +'</h4>' +
+                                    '<strong>Cantidad:</strong>' + items[i].quantity + '<strong>Precio:</strong> $'+ items[i].price +
+                                '</div>' +
+                               '</li>';
+                    container_list.append(li);
+                }
+                container_list.append('<li role="separator" class="divider"></li>');
+                container_list.append('<li><a ><strong>Total:</strong> <span id="total-cart">$ '+ String(total) +'</span></a></li>');
+            }else{
+                container_list.append('<li><p class="text-center">No tienes ningun producto agregado en tu carrito</p></li>')
             }
-            container_list.append('<li role="separator" class="divider"></li>');
-            container_list.append('<li><a ><strong>Total:</strong> <span id="total-cart">$ '+ String(total) +'</span></a></li>');
+
+
         }
 
         /*var items = document.getElementsByClassName("cart-delete-item");

@@ -737,8 +737,6 @@
 	        };
 	
 	        function link(scope, element, attrs) {
-	            console.log("DATA DIRECTIVE");
-	            console.log(attrs);
 	            scope.vm.itemId = attrs.itemId;
 	
 	            if (attrs.uploadedImages) {
@@ -769,9 +767,14 @@
 	            field: '&'
 	        },
 	        link: function link(scope, element, attrs) {
+	            console.log("ENTRO A ESTA DIRECTIVA");
+	            console.log(scope);
 	            if (scope.value()) {
 	                //scope.attributes_values = JSON.parse(scope.value()); //JSON.parse(scope.value());
-	                scope.attributes_values = eval('(' + scope.value() + ')');
+	                console.log("HASTA ACA?");
+	                console.log(scope.value());
+	                scope.attributes_values = scope.value();
+	                console.log(scope.attributes_values);
 	            } else {
 	                scope.attributes_values = {};
 	            }
@@ -788,7 +791,7 @@
 	
 	            element.bind('change', function () {
 	                scope.$apply(function () {
-	                    scope.$parent.entry.values.attributes = angular.copy(JSON.stringify(scope.attributes_values));
+	                    scope.$parent.entry.values.attributes = angular.copy(scope.attributes_values);
 	                });
 	            });
 	        },
