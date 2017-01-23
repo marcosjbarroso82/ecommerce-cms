@@ -134,6 +134,7 @@
         </div><!-- End .tab-pane -->
         <hr/>
         {% if product %}
+
                 <form role="form" class="product-form form-vertical" method="post" action=".">
 
                     <!-- Start Attributes -->
@@ -248,19 +249,21 @@
                     <div class="product-add clearfix">
                         <div>
                             <select class="form-control" style="display: none" id="id_variant" name="variant" ng-model="vm.selected_variation" ng-options="variant.name for variant in vm.variations track by variant.id"></select>
-                            {% endverbatim %}
+
                         </div>
                         <div class="md-margin"></div>
                         <div class="custom-quantity-input">
                             <input id="id_quantity" max="{{ vm.selected_variation.stock }}" min="1" name="quantity" ng-model="vm.quantity" type="number" value="1" />
                         </div>
-                        <button class="btn btn-custom-2" ng-disabled="vm.selected_variation.stock == 0" type="button" ng-click="vm.add_cart()">{% trans "ADD TO CART" %}</button>
+
+                        <button class="btn btn-custom-2" ng-disabled="vm.selected_variation.stock == 0" type="button" ng-click="vm.add_cart()">Agregar al carrito</button>
                         <div class="col-md-12">
                             <span class="help-block" ng-show="vm.selected_variation.stock == 0">Este producto no tiene stock!</span>
                         </div>
                     </div>
                 </form>
                 </div><!-- End .col-md-6 -->
+            {% endverbatim %}
         {% else %}
             <p class="alert alert-warning">{% trans "This product is currently <strong>unavailable</strong>." %}</p>
         {% endif %}

@@ -55,7 +55,7 @@
         };
 
         vm.init_attribules_list = function(){
-            vm.variations.forEach(function aa(variation, index, array){
+            vm.variations.forEach(function(variation, index, array){
                 variation.attributes.forEach(function bb(attribute, index, array){
                     if(vm.attributes[attribute.id] == undefined) {
                         vm.attributes[attribute.id] = {'values': {}, 'name': ''};
@@ -67,6 +67,7 @@
                     vm.attributes[attribute.id]['values'][attribute.value] = attribute;
                 });
             });
+
         };
 
         vm.select_attribute = function(attr_key, attr_value){
@@ -90,7 +91,6 @@
                 });
             }
 
-            console.log(vm.search_option);
         };
 
         // Get first variation found with the fiven attributes

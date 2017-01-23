@@ -5,7 +5,6 @@
 (function () {
     'use strict';
 
-    console.log("declare product service");
     angular
         .module('App.product.services')
         .factory('Product', Product);
