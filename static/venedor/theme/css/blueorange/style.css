@@ -66,7 +66,7 @@ body {
 }
 
 .detail-description{
-	line-height: 1;
+	line-height: 0.9;
 	margin-top: 7px;
 }
 
@@ -4209,7 +4209,7 @@ parent's font-size:0
 
 .item-price-container {
 	display:block;
-	background:#fd5c48;
+	background:#00a8e6;
 	text-align:center;
 	font:700 16px/20px "Gudea", Arial, sans-serif;
 	color:#fff;
@@ -4219,7 +4219,7 @@ parent's font-size:0
 	bottom:-10px;
 	right:-9px;
 	text-align:center;
-	border-radius:500px;
+	border-radius:20px;
 	z-index:801;
 }
 

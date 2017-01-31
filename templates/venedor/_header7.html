@@ -17,10 +17,10 @@
                                 <ul id="top-links" class="clearfix">
 		                            {% include '_top_menu.html' %}
 		                        </ul>
-                                <p class="header-link"><a href="{% url "account_logout" %}">{% trans "Log out" %}</a></p>
+                                <p class="header-link"><a href="{% url "account_logout" %}">{% trans "Cerrar Sesión" %}</a></p>
                             {% else %}
-                                <p class="header-text">Welcome to Commerce!</p>
-                                <p class="header-link"><a href="{% url "account_login" %}">{% trans "Log in" %}</a>&nbsp;o&nbsp;<a href="{% url 'account_signup' %}">{% trans "Register" %}</a></p>
+                                <p class="header-text">¡Bienvenido!</p>
+                                <p class="header-link"><a href="{% url "account_login" %}">{% trans "Log in" %}</a>&nbsp;o&nbsp;<a href="{% url 'account_signup' %}">{% trans "Registrarse" %}</a></p>
                             {% endif %}
                         </div><!-- End .pull-right -->
                     </div><!-- End .header-top-right -->
