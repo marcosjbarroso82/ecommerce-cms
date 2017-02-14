@@ -1,0 +1,14 @@
+server {
+        listen 80;
+
+        root /webapps/ecommerce/ecommerce-cms/dashboard_web_client;
+
+        index index.html index.htm;
+
+        server_name dashboard.feyro.com;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+}
